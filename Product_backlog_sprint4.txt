@@ -1,0 +1,28 @@
+Requisito	Dificuldade	Urgencia
+1		    F		    NU
+2		    F		    U+  ok
+3		    M		    U-  A FAZER
+4		    F		    U+  ok
+5		    M		    U-  A FAZER
+6		    M		    NU
+7		    F		    U+  ok
+8		    F		    U-  A FAZER
+9		    D		    U-  
+10		    F		    NU
+11		    F		    NU
+12		    M		    NU
+13		    M		    U-  A FAZER
+14		    F		    U-  A FAZER
+15		    F		    U-  A FAZER
+16		    F		    U-  A FAZER
+
+Resultado primeira Sprint:
+Modelar BD		Jonas/Kazu ok
+Tabelas de usuarios	Jonas/Kazu ok
+Interface cadastro	Phill/Jão PENDENTE
+Programar cadastro	Jadder ok
+
+PARA proxima sprint (28/11/2012):
+Procedures referentes aos requisitos marcados  Jonas/Kazu
+PHP/Formularios de todas as páginas     Jadder
+Protótipo de todas as páginas/CSS       Phill/Jão

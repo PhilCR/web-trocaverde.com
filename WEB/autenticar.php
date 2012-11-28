@@ -32,21 +32,6 @@ if($num == 0) {
 	$tipo = $rst["tipo_usuario"];
 	
 	if($tipo == "0") {
-		
-		//encerrar conexão
-		mysql_close($conn);
-	
-	} else if($tipo == "1") {
-	
-		//encerrar conexão
-		mysql_close($conn);
-	
-	} else if($tipo == "2") {
-	
-		//encerrar conexão
-		mysql_close($conn);
-	
-	} else if($tipo == "3") {
 		$nome = $rst["nome"];
 		$snome = $rst["snome"];
 		$email = $rst["email"];
@@ -57,6 +42,60 @@ if($num == 0) {
 		$_SESSION["nome"]	= $nome;
 		$_SESSION["snome"]	= $snome;
 		$_SESSION["email"]	= $email;
+		
+		//encerrar conexão
+		mysql_close($conn);
+		
+		//redireciona
+		header("Location:admin_index.php");
+	
+	} else if($tipo == "1") {
+		$nome = $rst["nome"];
+		$snome = $rst["snome"];
+		$email = $rst["email"];
+		
+		session_start();
+		
+		$_SESSION["tipo"]	= $tipo;
+		$_SESSION["nome"]	= $nome;
+		$_SESSION["snome"]	= $snome;
+		$_SESSION["email"]	= $email;
+		
+		//encerrar conexão
+		mysql_close($conn);
+		
+		//redireciona
+		header("Location:pontuador_index.php");
+	
+	} else if($tipo == "2") {
+		$email = $rst["email"];
+		$razao_social = $rst["razao_social"];
+		
+		session_start();
+		
+		$_SESSION["tipo"]	= $tipo;
+		$_SESSION["razao_social"]	= $razao_social;
+		$_SESSION["email"]	= $email;
+	
+		//encerrar conexão
+		mysql_close($conn);
+		
+		//redireciona
+		header("Location:loja_index.php");
+	
+	} else if($tipo == "3") {
+		$nome = $rst["nome"];
+		$snome = $rst["snome"];
+		$email = $rst["email"];
+		$pontos = $rst["pontos"];
+		
+		session_start();
+		
+		$_SESSION["tipo"]	= $tipo;
+		$_SESSION["nome"]	= $nome;
+		$_SESSION["snome"]	= $snome;
+		$_SESSION["email"]	= $email;
+		$_SESSION["pontos"] = $pontos;
 		
 		//encerrar conexão
 		mysql_close($conn);

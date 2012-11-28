@@ -1,0 +1,23 @@
+Requisito	Dificuldade	Urgencia
+1		    F		    NU
+2		    F		    U+
+3		    M		    U-
+4		    F		    U+
+5		    M		    U-
+6		    M		    NU
+7		    F		    U+
+8		    F		    U-
+9		    D		    U-
+10		    F		    NU
+11		    F		    NU
+12		    M		    NU
+13		    M		    U-
+14		    F		    U-
+15		    F		    U-
+16		    F		    U-
+
+Para primeira Sprint:
+Modelar BD		Jonas/Kazu
+Tabelas de usuarios	Jonas/Kazu
+Interface cadastro	Phill/Jão
+Programar cadastro	Jadder

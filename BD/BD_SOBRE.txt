@@ -1,0 +1,1 @@
+Aqui serão disponibilizados os scripts a serem rodados no Banco de Dados do projeto.

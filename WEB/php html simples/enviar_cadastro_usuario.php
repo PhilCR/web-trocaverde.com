@@ -7,7 +7,7 @@ $cel = $_POST['txt_cel'];
 $nasc = $_POST['txt_nasc'];	
 $email = $_POST['txt_email'];
 $pontos = 0;
-$rg = $_POST['txt_rg'];
+$cpf = $_POST['txt_cpf'];
 $end_rua = $_POST['txt_end_rua'];
 $end_num = $_POST['txt_end_num'];
 $end_comp = $_POST['txt_end_comp'];
@@ -26,7 +26,7 @@ if($conn){
 }
 
 //criando comando sql
-$sql = "CALL cadastro_cliente('$nome','$snome','$tel','$cel','$nasc','$email',$pontos,'$rg','$end_rua','$end_num','$end_comp','$end_bar','$end_cid','$end_est','$end_cep','$senha');";
+$sql = "CALL cadastro_cliente('$nome','$snome','$tel','$cel','$nasc','$email',$pontos,'$cpf','$end_rua','$end_num','$end_comp','$end_bar','$end_cid','$end_est','$end_cep','$senha');";
 
 //executando comando
 if(mysql_query($sql, $conn)) {

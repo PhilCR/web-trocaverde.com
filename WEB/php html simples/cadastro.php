@@ -51,7 +51,7 @@
 		<p>E-mail:<input type="text" name="txt_email" size="50" maxlength="70"/></p>
 		<p>Senha:<input type="password" name="txt_senha" size="50" maxlength="16"/></p>
 		<p>Repita a senha:<input type="password" name="txt_re_senha" size="50" maxlength="16"/></p>
-		<p>RG:<input type="text" name="txt_rg" size="50" maxlength="10"/></p>
+		<p>CPF:<input type="text" name="txt_cpf" size="50" maxlength="11"/></p>
 		<p>Telefone:<input type="text" name="txt_tel" size="50" maxlength="11"/></p>
 		<p>Celular:<input type="text" name="txt_cel" size="50" maxlength="11"/></p>
 		<p>Data de nascimento:<input type="text" name="txt_nasc" size="50" maxlength="8"/></p>

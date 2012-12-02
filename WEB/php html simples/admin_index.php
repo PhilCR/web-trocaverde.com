@@ -16,5 +16,10 @@ session_start();
 <body>
 	<p>Olá <b> <?php echo $_SESSION['nome']; ?> </b>
 	<input type="button" name="btn_sair" value="Sair" onclick="location.href='sair.php'"/></p>
+	
+	<p><input type="button" name="btn_cadastro" value="Cadastro" onclick="location.href='admin_cadastro.php'"/>
+	<input type="button" name="btn_liberar_loja" value="Liberar Loja" onclick="location.href='???.php'"/>
+	<input type="button" name="btn_liberar_ofertas" value="Liberar Ofertas" onclick="location.href='???.php'"/>
+	<input type="button" name="btn_excluir" value="Excluir" onclick="location.href='???.php'"/></p>
 </body>
 </html>

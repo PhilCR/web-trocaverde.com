@@ -16,5 +16,11 @@ session_start();
 <body>
 	<p>Olá <b> <?php echo $_SESSION['nome']; ?> </b>
 	<input type="button" name="btn_sair" value="Sair" onclick="location.href='sair.php'"/></p>
+	
+	<form action="pre_pontuar.php" name="form_pre_pontuar" method="post">
+		<p>CPF:<input type="text" name="txt_cpf" size="50" maxlength="11"/></p>
+		<p>Peso(gramas):<input type="text" name="txt_peso" size="50" maxlength="6"/></p>
+		<p><input type="submit" name="btn_pontuar" value="Pontuar"/>
+	</form>
 </body>
 </html>

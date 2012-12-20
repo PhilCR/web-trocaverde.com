@@ -82,7 +82,7 @@
 					<tr><td>CPF:</td><td><input type="text" name="txt_cpf" size="50" maxlength="11"/></td></tr>
 					<tr><td>Telefone:</td><td><input type="text" name="txt_tel" size="50" maxlength="11"/></td></tr>
 					<tr><td>Celular:</td><td><input type="text" name="txt_cel" size="50" maxlength="11"/></td></tr>
-					<tr><td>Data de nascimento:</td><td><input type="text" name="txt_nasc" size="50" maxlength="8"/></td></tr>
+					<tr><td>Data de nascimento:</td><td><input type="text" name="txt_nasc" size="50" maxlength="10"/></td></tr>
 					<tr><td>Endereço</td><td></td></tr>
 					<tr><td>Rua:</td><td><input type="text" name="txt_end_rua" size="50" maxlength="200"/></td></tr>
 					<tr><td>Número:</td><td><input type="text" name="txt_end_num" size="50" maxlength="6"/></td></tr>

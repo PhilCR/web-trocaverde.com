@@ -1,15 +1,12 @@
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN”>
+
 <html>
     <head>
-        <title>TrocaVerde.com - Seu lixo reciclado como desconto para vocÃª!</title>
-        <meta name="description" content="Site de compras coletivas utilizando pontos para obtenÃ§Ã£o de descontos." />
+        <title>TrocaVerde.com - Seu lixo reciclado como desconto para você!</title>
+        <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
                
         
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" lang="pt-BR" >
         <link rel="stylesheet" type="text/css" href="Styles.css"/>
         
         <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0" />
@@ -22,14 +19,14 @@ and open the template in the editor.
                 <table>
                     <tr>
                         <td>
-                            <font style="color:rgb(00,00,255)">LocalizaÃ§Ã£o Atual: </font>
+                            <font style="color:rgb(00,00,255)">Localização Atual: </font>
                         </td>
                         <td width="25%">
-                            <font><select id="regionlocation" name="regiao" class="select"><option value="none">RegiÃ£o</option></select>
+                            <font><select id="regionlocation" name="regiao"><option value="none">Região</option></select>
                         </td>
                         
                         <td width="25%">
-                            <select id="levlocation" name="lev" class="select"><option value="none">L.E.V.</option></select></font>
+                            <select id="levlocation" name="lev"><option value="none">L.E.V.</option></select></font>
                         </td>
                     </tr>
                     
@@ -38,14 +35,19 @@ and open the template in the editor.
                         
                
             <div class="titlebox">
-                <p><font class="he1">TrocaVerde<font class="he2">.com</font></font></p><p><font class="he3">Seu lixo reciclado como desconto para vocÃª!</font></p>
-            </div>
-            
-            
+                <p><font class="he1">TrocaVerde<font class="he2">.com</font></font></p>
+				<p><font class="he3">Seu lixo reciclado como desconto para você!</font></p>
+			</div>
+			
             <div id="login" class="login">
-                <?php include("login.php") ?>
-                
+                <form action="autenticar.php" name="form_login" method="post">
+					<p>E-mail:<input type="text" name="txt_email" size="30" maxlength="70"/><br>
+					Senha:<input type="password" name="txt_senha" size="30" maxlength="16"/></p>
+					<p align="right"><input class="abutton" type="submit" name="btn_entrar" value="Entrar"/>
+					<input class="abutton" type="button" name="btn_cadastro" value="Novo" onclick="location.href='cadastro.php'"></p>
+				</form>
             </div>
+			
         </div>
         
         <div id="content" class="content">

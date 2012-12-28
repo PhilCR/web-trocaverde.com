@@ -1,3 +1,25 @@
+<?php
+//Inclui o arquivo de verificação
+include_once("verifica_pontuador.php");
+
+session_start();
+
+//receber dados
+$email = $_POST["txt_email"];
+$pontos = $_POST["txt_pontos"];
+	
+//conectando ao banco de dados
+$conn = mysql_connect("localhost", "pontuador", "pr0j_2012") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("trocaverde", $conn);
+}
+
+//criando comando sql
+$sql = "call pontuar('$pontos','$email');";
+?>
+
 <!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN”>
 
 <html>
@@ -21,16 +43,32 @@
 				<p><font class="he3">Seu lixo reciclado como desconto para você!</font></p>
 			</div>
 			
+            <div id="login" class="login_pont">
+				<p align="right">Olá <?php echo $_SESSION['nome']; ?>
+				<input align="right" class="abutton" type="button" name="btn_sair" value="Sair" onclick="location.href='sair.php'"/></p>
+            </div>
+			
         </div>
         
         <div align="center" id="content" class="content">
-            <p>Área somente para usuários cadastrados, faça o login.</p>
-			<form action="autenticar.php" name="form_login" method="post">
-				<p>E-mail:<input type="text" name="txt_email" size="30" maxlength="70"/><br>
-				Senha:<input type="password" name="txt_senha" size="30" maxlength="16"/></p>
-				<p><input class="abutton" type="submit" name="btn_entrar" value="Entrar"/>
-				<input class="abutton" type="button" name="btn_cadastro" value="Novo" onclick="location.href='cadastro.php'"></p>
-			</form>
+<?php
+//executando comando
+if(mysql_query($sql, $conn)) {
+?>
+
+			<p>Pontuação efetuada com sucesso.<br>
+			<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='pontuador_index.php'"/></p>
+	
+<?php
+} else {
+?>
+
+			<p>Erro: não foi possivel completar a pontuação.<br>
+			<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='pontuador_index.php'"/></p>
+
+<?php
+}
+?>
         </div>
         
         

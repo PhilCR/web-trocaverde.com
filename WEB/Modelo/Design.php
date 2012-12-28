@@ -13,7 +13,7 @@
 
         <!-- Habilitando a Responsive Design -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="/css/bootstrap-responsive.css" rel="stylesheet">
 
         <!-- Habilitar JQuery Script -->
         <script src="http://code.jquery.com/jquery-latest.js"></script>

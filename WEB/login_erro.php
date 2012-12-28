@@ -24,7 +24,7 @@
         </div>
         
         <div align="center" id="content" class="content">
-            <p>Área somente para usuários cadastrados, faça o login.</p>
+            <p>Email e/ou senha inválidos, tente novamente.</p>
 			<form action="autenticar.php" name="form_login" method="post">
 				<p>E-mail:<input type="text" name="txt_email" size="30" maxlength="70"/><br>
 				Senha:<input type="password" name="txt_senha" size="30" maxlength="16"/></p>

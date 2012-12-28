@@ -24,8 +24,7 @@ if($num == 0) {
 	//encerrar conexão
 	mysql_close($conn);
 	
-	//redireciona
-	header("Location:login_erro.php");
+	echo "erro no login, senha não bate ou algo do tipo";
 } else {
 	
 	//recuperando o tipo do usuário

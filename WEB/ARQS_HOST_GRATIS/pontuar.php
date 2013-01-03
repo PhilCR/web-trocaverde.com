@@ -8,18 +8,14 @@ session_start();
 $email = $_POST["txt_email"];
 $pontos = $_POST["txt_pontos"];
 	
-//conectando ao banco de dados
-$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
-
-//selecionando o BD
-if($conn){
-	mysql_select_db("u736022732_trocavrd", $conn);
+$mysqli = mysqli_init();	
+$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
+if (mysqli_connect_errno())
+{
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
 }
-
-//criando comando sql
-$sql = "call pontuar('$pontos','$email');";
 ?>
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -113,24 +109,23 @@ $sql = "call pontuar('$pontos','$email');";
        
 	<!-- Conteudo [X] -->
 	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
-	
 <?php
-//executando comando
-if(mysql_query($sql, $conn)) {
+if($mysqli->real_query ("CALL pontuar('$pontos','$email');"))
+{
 ?>
-
-		<p>Pontuação efetuada com sucesso.<br>
+        <p>Pontuação efetuada com sucesso.<br>
 		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='pontuador_index.php'"/></p>
-	
-<?php
-} else {
+<?php	
+}
+else{
 ?>
-
-		<p>Erro: não foi possivel completar a pontuação.<br>
+        <p>Erro: não foi possivel completar a pontuação.<br>
 		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='pontuador_index.php'"/></p>
-
 <?php
 }
+
+//encerrar conexão
+$mysqli->close();
 ?>
 	</div>        
 

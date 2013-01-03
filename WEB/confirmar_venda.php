@@ -67,18 +67,14 @@ $num = mysql_num_rows($rs);
 
 			<!-- Menu Usuário para Mobile [X] -->
 			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="btn-group">
-					 <div class="span2">
-						<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-							<div class="row-fluid">
-								<p align="right">Olá <?php echo $_SESSION['razao_social']; ?>
-							</div>
-							<div class="row-fluid">
-								<button type="submit" class="btn btn-info btn-small">Sair</button>
-							</div>
-						</form>
-					</div>                   
-                </div>
+				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
+					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
+						<div class="row-fluid">
+							Olá <?php echo $_SESSION['razao_social']; ?>
+							<button type="submit" class="btn btn-info btn-small">Sair</button>
+						</div>
+					</form>
+				</div>                   
             </div>
         </div>
 
@@ -92,12 +88,10 @@ $num = mysql_num_rows($rs);
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2">
+				 <div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<p align="right">Olá <?php echo $_SESSION['razao_social']; ?>
-						</div>
-						<div class="row-fluid">
+							Olá <?php echo $_SESSION['razao_social']; ?>
 							<button type="submit" class="btn btn-info btn-small">Sair</button>
 						</div>
 					</form>
@@ -106,12 +100,10 @@ $num = mysql_num_rows($rs);
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2">
+				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<p align="right">Olá <?php echo $_SESSION['razao_social']; ?>
-						</div>
-						<div class="row-fluid">
+							Olá <?php echo $_SESSION['razao_social']; ?>
 							<button type="submit" class="btn btn-info btn-small">Sair</button>
 						</div>
 					</form>
@@ -122,15 +114,15 @@ $num = mysql_num_rows($rs);
     </div>
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 		 		
 <?php
 if($num == 0) {
 	mysql_close($conn);
 ?>
 
-		<p>Cliente não encontrado.
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/></p>
+		<h3>Cliente não encontrado.</h3></br>
+		<input class="btn btn-small btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/>
 	
 <?php
 } else {
@@ -144,8 +136,8 @@ if($num == 0) {
 	if($pontos < $total) {
 ?>
 
-		<p>Cliente não tem trocados o suficiente.
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/></p>
+		<h3>Cliente não tem trocados o suficiente.</h3></br>
+		<input class="btn btn-small btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/>
 
 <?php
 	} else {
@@ -155,12 +147,12 @@ if($num == 0) {
 			<input type="hidden" name="txt_cod" value="<?php echo $cod ?>"/>
 			<input type="hidden" name="txt_qtde" value="<?php echo $qtde ?>"/>
 			<table>
-				<tr><td>Nome: <?php echo $nome ?> <?php echo $snome ?></td><td></td></tr>
-				<tr><td>Data de Nascimento: <?php echo $data ?></td><td></td></tr>
+				<tr><td><h4>Nome: <?php echo $nome ?> <?php echo $snome ?></h4></td><td></td></tr>
+				<tr><td><h4>Data de Nascimento: <?php echo $data ?></h4></td><td></td></tr>
 				<tr><td></td><td></td></tr>
-				<tr><td>Oferta: Coxinha 30% off</td><td></td></tr>
-				<tr><td>Quantidade: <?php echo $qtde ?></td><td>Total: <?php echo $total ?> trocados</td></tr>
-				<tr><td></td><td align="right"><input class="abutton" type="submit" name="btn_vender" value="Vender"/></td></tr>
+				<tr><td><h4>Oferta: Coxinha 30% off</h4></td><td></td></tr>
+				<tr><td><h4>Quantidade: <?php echo $qtde ?></h4></td><td><h4>Total: <?php echo $total ?> trocados</h4></td></tr>
+				<tr><td></td><td align="right"><input class="btn btn-small btn-info" type="submit" name="btn_vender" value="Vender"/></td></tr>
 			</table>
 		</form>	
 <?php

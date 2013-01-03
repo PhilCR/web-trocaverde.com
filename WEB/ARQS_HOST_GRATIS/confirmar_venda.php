@@ -13,23 +13,15 @@ $qtde = $_POST["txt_qtde"];
 //calculando total
 $total = $valor * $qtde;
 
-//conectando ao banco de dados
-$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
-
-//selecionando o BD
-if($conn){
-	mysql_select_db("u736022732_trocavrd", $conn);
+$mysqli = mysqli_init();	
+$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
+if (mysqli_connect_errno())
+{
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
 }
-
-//criando comando sql
-$sql = "CALL dados_cliente_por_cpf('$cpf');";
-
-//executando comando
-$rs = mysql_query($sql, $conn);
-
-//verifica o numero de linhas do resultado
-$num = mysql_num_rows($rs);
-?>
+if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
+{?>
 
 <!DOCTYPE html>
 
@@ -123,32 +115,35 @@ $num = mysql_num_rows($rs);
        
 	<!-- Conteudo [X] -->
 	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
-		 		
-<?php
-if($num == 0) {
-	mysql_close($conn);
+<?
+	if(!$objResult = $mysqli->store_result()){
+        $mysqli->close();
 ?>
 
 		<p>Cliente não encontrado.
 		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/></p>
 	
 <?php
-} else {
-	$rst = mysql_fetch_array($rs);
-	$nome = $rst["nome"];
-	$snome = $rst["snome"];
-	$data = $rst["data_nasc"];
-	$pontos = $rst["pontos"];
-	mysql_close($conn);
-	
-	if($pontos < $total) {
+        
+    }
+    else{
+        while($rst = $objResult->fetch_assoc()){
+            $nome = $rst["nome"];
+            $snome = $rst["snome"];
+            $data = $rst["data_nasc"];
+            $pontos = $rst["pontos"];
+            $mysqli->close();
+        }
+        $objResult->free_result();
+        if($pontos < $total) {
 ?>
 
 		<p>Cliente não tem trocados o suficiente.
 		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/></p>
 
 <?php
-	} else {
+        }
+        else{
 ?>	
 		<form action="verder.php" name="form_vender" method="post">
 			<input type="hidden" name="txt_cpf" value="<?php echo $cpf ?>"/>
@@ -164,7 +159,8 @@ if($num == 0) {
 			</table>
 		</form>	
 <?php
-	}
+        }
+    }
 }
 ?>    
 	</div>        

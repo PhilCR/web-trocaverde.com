@@ -9,16 +9,13 @@ $cpf = $_POST["txt_cpf"];
 $cod = $_POST["txt_cod"];
 $qtde = $_POST["txt_qtde"];
 
-//conectando ao banco de dados
-$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
-
-//selecionando o BD
-if($conn){
-	mysql_select_db("u736022732_trocavrd", $conn);
+$mysqli = mysqli_init();	
+$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
+if (mysqli_connect_errno())
+{
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
 }
-
-//criando comando sql
-$sql = "CALL compra('$cod','$qtde','$cpf');";
 ?>
 <!DOCTYPE html>
 
@@ -113,24 +110,22 @@ $sql = "CALL compra('$cod','$qtde','$cpf');";
        
 	<!-- Conteudo [X] -->
 	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
-				
 <?php
-//executando comando
-if(mysql_query($sql, $conn)) {
+if($mysqli->real_query ("CALL compra('$cod','$qtde','$cpf');"))
+{
 ?>
-
-		<p>Venda efetuada com sucesso.
+        <p>Venda efetuada com sucesso.
 		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/></p>
-
-<?php
-} else {
-?>
-
-		<p>Erro: venda não efetuada.
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/></p>
-	
 <?php
 }
+else{
+?>
+        <p>Erro: venda não efetuada.
+		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/></p>
+<?php
+}
+//encerrar conexão
+$mysqli->close();
 ?> 
 	</div>        
 

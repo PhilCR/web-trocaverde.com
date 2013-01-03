@@ -140,10 +140,15 @@
     </div>
 
        
-	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
+	<!-- Conteudo mobile [X] -->
+	<div id="content" class="container alert alert-info visible-phone hidden-desktop hidden-tablet" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
 		
 	</div>        
+	
+	<!-- Conteudo [X] -->
+	<div id="content" class="container alert alert-info visible-desktop visible-tablet hidden-phone" style="margin-bottom:0px; padding: 0px 0px 0px 0px; height-min: 300px; min-height: 300px;">
+		
+	</div>
 
 	<!-- Rodapé [X]-->
 	<div id="footer" class="container-fluid btn-large btn-success btn-block" style="border:1px solid #000;">

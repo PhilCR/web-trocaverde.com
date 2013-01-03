@@ -23,7 +23,7 @@
 			<input type="text" class="input-medium" id="txt_nome" name="txt_nome" maxlength="50" placeholder="Digite seu Nome" required><abbr title="Insira seu nome." required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 			<input type="text" class="input-large" id="txt_sobrenome" name="txt_sobrenome" maxlength="200" placeholder="Digite seu Sobrenome" required><abbr title="Insira seu sobrenome."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 			<input type="text" class="input-large" id="txt_cpf" name="txt_cpf" maxlength="14" placeholder="Digite seu C.P.F." required><abbr title="Insira seu CPF com pontos e hífen, ou seja, no formato 999.999.999-00"><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-			<input type="text" class="input-small" id="txt_nasc" name="txt_nasc" maxlength="8" placeholder="Data de Nasc." required><abbr title="Insira sua data de Nascimento no formato aaaa/mm/dd"><span class="add-on"><i class="icon-asterisk"></i></span></abbr><label class="text-warning">(aaa/mm/dd)</label></br>
+			<input type="text" class="input-small" id="txt_nasc" name="txt_nasc" maxlength="8" placeholder="Data de Nasc." required><abbr title="Insira sua data de Nascimento no formato aaaa/mm/dd"><span class="add-on"><i class="icon-asterisk"></i></span></abbr><label class="text-warning">(aaaa/mm/dd)</label></br>
 		</div>
 
 		<div class="content input-append">

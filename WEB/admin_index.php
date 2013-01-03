@@ -30,7 +30,6 @@ session_start();
 
         <!-- Habilitar Scripts Próprios -->
         <script type="text/javascript" src="js/troca.js"></script>
-
     </head>
 
 <body class="container">
@@ -39,15 +38,15 @@ session_start();
 
 		<div class="container-fluid">
 			<!-- Menu Usuário para Mobile [X] -->
-			<div class="span1 visible-phone hidden-desktop hidden-tablet hero-unit">
-				<div class="span2">
+			<div class="span1 visible-phone hidden-desktop hidden-tablet">
+				<div class="span2 hero-unit" style="background-color:#a0a0ff; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
 							Olá <?php echo $_SESSION['nome']; ?>
 							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
-				</div>                   
+				</div>                     
             </div>
         </div>
 
@@ -61,7 +60,7 @@ session_start();
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2 hero-unit background-color:#f00;">
+				 <div class="span2 hero-unit" style="background-color:#a0a0ff; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
 							Olá <?php echo $_SESSION['nome']; ?>
@@ -73,28 +72,31 @@ session_start();
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2 hero-unit">
+				<div class="span2 hero-unit" style="background-color:#a0a0ff; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<Olá <?php echo $_SESSION['nome']; ?>
+							Olá <?php echo $_SESSION['nome']; ?>
 							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
-				</div>
+				</div>     
 			</div>
 			
 		</div>
     </div>
 
+	<!-- Conteudo mobile [X] -->
+	<div id="content" class="container alert alert-info visible-phone hidden-desktop hidden-tablet" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
+		
+	</div>
        
 	<!-- Conteudo [X] -->
-	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
+	<div id="content" align="center" class="container alert alert-info visible-desktop visible-tablet hidden-phone" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 		<div class="btn-group">
 			<button class="btn btn-info btn-large" name="btn_cadastro" value="Cadastro" onclick="location.href='admin_cadastro.php'">Cadastro</button>
 			<button class="btn btn-info btn-large" name="btn_liberar_loja" value="Liberar Loja" onclick="location.href='???.php'"/>Liberar Loja</button>
 			<button class="btn btn-info btn-large" name="btn_liberar_ofertas" value="Liberar Ofertas" onclick="location.href='???.php'"/>Liberar Ofertas</button>
 			<button class="btn btn-info btn-large" name="btn_excluir" value="Excluir" onclick="location.href='???.php'"/>Excluir</button>
-
 		</div>
 	</div>        
 

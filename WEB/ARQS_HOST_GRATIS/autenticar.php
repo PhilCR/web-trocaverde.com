@@ -4,11 +4,11 @@ $email = $_POST['txt_email'];
 $senha = $_POST['txt_senha'];
 
 //conectando ao banco de dados
-$conn = mysql_connect("localhost", "semcadastro", "cadastro") or die("Impossivel conectar");
+$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
 
 //selecionando o BD
 if($conn){
-	mysql_select_db("trocaverde", $conn);
+	mysql_select_db("u736022732_trocavrd", $conn);
 }
 
 //criando comando sql
@@ -24,7 +24,8 @@ if($num == 0) {
 	//encerrar conexão
 	mysql_close($conn);
 	
-	echo "erro no login, senha não bate ou algo do tipo";
+	//redireciona
+	header("Location:login_erro.php");
 } else {
 	
 	//recuperando o tipo do usuário

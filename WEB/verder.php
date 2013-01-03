@@ -112,7 +112,7 @@ $sql = "CALL compra('$cod','$qtde','$cpf');";
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
+	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 				
 <?php
 //executando comando

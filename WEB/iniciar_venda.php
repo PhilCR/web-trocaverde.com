@@ -100,7 +100,7 @@ $valor = $_POST["txt_valor"];
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
+	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 		<form action="confirmar_venda.php" name="form_vender" method="post">
 			<table>
 			<tr><td><img src="img/coxinha.jpeg" class=""></td>

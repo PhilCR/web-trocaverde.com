@@ -125,7 +125,7 @@ session_start();
 				<h4>Informações Pessoais</h4>
 				<input type="text" class="input-large" name="txt_nome" size="50" maxlength="200" placeholder="Digite o Nome" required/><abbr title="Insira o nome." required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 				<input type="text" class="input-large" name="txt_snome" size="50" maxlength="50" placeholder="Digite o Sobrenome" required/><abbr title="Insira o sobrenome."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="text" class="input-large" name="txt_tel" size="50" maxlength="11" placeholder="Digite o Telefone" required/><abbr title="Insira o telefone no formato (00)9999-9999"><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<input type="text" class="input-large" name="txt_tel" size="50" maxlength="11" placeholder="Digite o Telefone" required/><abbr title="Insira o telefone, somente números"><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 				<input class="btn btn-info btn-small" type="submit" name="btn_cadastrar" value="Cadastrar"/>
 			</div>
 		</form></div>
@@ -144,7 +144,7 @@ session_start();
 				<h4>Informações Pessoais</h4>
 				<input type="text" class="input-large" name="txt_nome" size="50" maxlength="200" placeholder="Digite o Nome" required/><abbr title="Insira o nome." required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 				<input type="text" class="input-large" name="txt_snome" size="50" maxlength="50" placeholder="Digite o Sobrenome" required/><abbr title="Escolha uma senha de 6 à 16 dígitos. Prefira senha com números e letra, para maior segurança."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="text" class="input-large" name="txt_tel" size="50" maxlength="11" placeholder="Digite o Telefone" required/><abbr title="Digite novamente a senha escolhida."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<input type="text" class="input-large" name="txt_tel" size="50" maxlength="11" placeholder="Digite o Telefone" required/><abbr title="Insira o telefone, somente números"><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 				<input class="btn btn-info btn-small" type="submit" name="btn_cadastrar" value="Cadastrar"/>
 			</div>
 		</form></div>

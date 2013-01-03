@@ -39,7 +39,7 @@ $num = mysql_num_rows($rs);
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
         <meta name="keywords" content="descontos, coletivo, compra, reciclagem, shopping" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" lang="pt-BR" >
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -60,23 +60,17 @@ $num = mysql_num_rows($rs);
 <body class="container">
 	<!-- Cabeçalho [X] -->
 	<div id="header" class="container-fluid" style=" background-color:#a0cca0; border:1px solid #000000; border-radius:3px;z-index: 999;">
-
 		<div class="container-fluid">
-
 			<!-- Menu Usuário para Mobile [X] -->
 			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="btn-group">
-					 <div class="span2">
-						<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-							<div class="row-fluid">
-								<p align="right">Olá <?php echo $_SESSION['nome']; ?>
-							</div>
-							<div class="row-fluid">
-								<button type="submit" class="btn btn-info btn-small">Sair</button>
-							</div>
-						</form>
-					</div>                   
-                </div>
+				 <div class="span2 hero-unit" style="background-color:#ffa0a0; border-style:solid; border-width:3px; border-color:#000;">
+					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
+						<div class="row-fluid">
+							<p align="right">Olá <?php echo $_SESSION['nome']; ?>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
+						</div>
+					</form>
+				</div>                   
             </div>
         </div>
 
@@ -90,13 +84,11 @@ $num = mysql_num_rows($rs);
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2">
+				 <div class="span2 hero-unit" style="background-color:#ffa0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
 							<p align="right">Olá <?php echo $_SESSION['nome']; ?>
-						</div>
-						<div class="row-fluid">
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
 				</div>                
@@ -104,13 +96,11 @@ $num = mysql_num_rows($rs);
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2">
+				<div class="span2 hero-unit" style="background-color:#ffa0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
 							<p align="right">Olá <?php echo $_SESSION['nome']; ?>
-						</div>
-						<div class="row-fluid">
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
 				</div>
@@ -121,15 +111,15 @@ $num = mysql_num_rows($rs);
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
+	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 
 <?php
 if($num == 0) {
 	mysql_close($conn);
 ?>
 
-		<p>Cliente não encontrado
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='pontuador_index.php'"/></p>
+		<h3>Cliente não encontrado</h3></br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='pontuador_index.php'"/></p>
 	
 <?php
 } else {
@@ -145,11 +135,11 @@ if($num == 0) {
 			<input type="hidden" name="txt_email" value="<?php echo $email ?>"/>
 			<input type="hidden" name="txt_pontos" value="<?php echo $pontos ?>"/>
 			<table align="center">
-				<tr><td>Nome:</td><td><?php echo $nome ?> <?php echo $snome ?></td></tr>
-				<tr><td>Data de Nascimento:</td><td><?php echo $data ?></td></tr>
+				<tr><td><h4>Nome:</h4></td><td><h4><?php echo $nome ?> <?php echo $snome ?></h4></td></tr>
+				<tr><td><h4>Data de Nascimento:</h4></td><td><h4><?php echo $data ?></h4></td></tr>
 				<tr><td></td><td></td></tr>
-				<tr><td>Pontos:</td><td><?php echo $pontos ?></td></tr>
-				<tr><td></td><td align="right"><input class="abutton" type="submit" name="btn_pontuar" value="Confirmar Pontuação"/></td></tr>
+				<tr><td><h4>Trocados:</h4></td><td><h4><?php echo $pontos ?></h4></td></tr>
+				<tr><td></td><td align="right"><input class="btn btn-large btn-info" type="submit" name="btn_pontuar" value="Confirmar Pontuação"/></td></tr>
 			</table>
 		</form>
 

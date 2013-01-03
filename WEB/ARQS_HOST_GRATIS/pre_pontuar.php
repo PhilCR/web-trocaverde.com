@@ -11,24 +11,16 @@ $peso = $_POST["txt_peso"];
 //calcular pontos (ainda indefinida)
 $pontos = $peso;
 	
-//conectando ao banco de dados
-$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
-
-//selecionando o BD
-if($conn){
-	mysql_select_db("u736022732_trocavrd", $conn);
+$mysqli = mysqli_init();	
+$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
+if (mysqli_connect_errno())
+{
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
 }
-
-//criando comando sql
-$sql = "CALL dados_cliente_por_cpf('$cpf');";
-
-//executando comando
-$rs = mysql_query($sql, $conn);
-
-//verifica o numero de linhas do resultado
-$num = mysql_num_rows($rs);
+if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
+{
 ?>
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -122,23 +114,26 @@ $num = mysql_num_rows($rs);
        
 	<!-- Conteudo [X] -->
 	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
-
 <?php
-if($num == 0) {
-	mysql_close($conn);
+	if(!$objResult = $mysqli->store_result()){
+        //encerrar conexão
+        $mysqli->close();
 ?>
-
-		<p>Cliente não encontrado
+        <p>Cliente não encontrado
 		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='pontuador_index.php'"/></p>
-	
 <?php
-} else {
-	$rst = mysql_fetch_array($rs);
-	$email = $rst["email"];
-	$nome = $rst["nome"];
-	$snome = $rst["snome"];
-	$data = $rst["data_nasc"];
-	mysql_close($conn);
+    }
+    else{
+        while($rst = $objResult->fetch_assoc()){
+            $email = $rst["email"];
+            $nome = $rst["nome"];
+            $snome = $rst["snome"];
+            $data = $rst["data_nasc"];
+            $mysqli->close();
+        }
+        $objResult->free_result();
+    }
+}
 ?>	
 		
 		<form action="pontuar.php" name="form_pontuar" method="post">
@@ -152,10 +147,6 @@ if($num == 0) {
 				<tr><td></td><td align="right"><input class="abutton" type="submit" name="btn_pontuar" value="Confirmar Pontuação"/></td></tr>
 			</table>
 		</form>
-
-<?php
-}
-?>
 	</div>        
 
 	<!-- Rodapé [X]-->

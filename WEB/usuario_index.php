@@ -15,7 +15,7 @@ session_start();
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
         <meta name="keywords" content="descontos, coletivo, compra, reciclagem, shopping" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" lang="pt-BR" >
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -57,19 +57,15 @@ session_start();
 
 			<!-- Menu Usuário para Mobile [X] -->
 			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="btn-group">
-					 <div class="span2">
-						<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-							<div class="row-fluid">
-								<p>Olá <b> <?php echo $_SESSION['nome']; ?> </b>
-								<p>Saldo: <?php echo $_SESSION['pontos']; ?> trocados</p>
-							</div>
-							<div class="row-fluid">
-								<button type="submit" class="btn btn-info btn-small">Sair</button>
-							</div>
-						</form>
-					</div>                   
-                </div>
+				 <div class="span2 hero-unit" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
+					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
+						<div class="row-fluid">
+							Olá <b> <?php echo $_SESSION['nome']; ?> </b>
+							<button type="submit" class="btn btn-info btn-small">Sair</button></br>
+							Saldo: <?php echo $_SESSION['pontos']; ?> trocados
+						</div>
+					</form>
+				</div>                   
             </div>
         </div>
 
@@ -83,14 +79,12 @@ session_start();
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2">
+				 <div class="span2 hero-unit" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<p>Olá <b> <?php echo $_SESSION['nome']; ?> </b>
-							<p>Saldo: <?php echo $_SESSION['pontos']; ?> trocados</p>
-						</div>
-						<div class="row-fluid">
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
+							Olá <b> <?php echo $_SESSION['nome']; ?> </b>
+							<button type="submit" class="btn btn-info btn-small">Sair</button></br>
+							Saldo: <?php echo $_SESSION['pontos']; ?> trocados
 						</div>
 					</form>
 				</div>                
@@ -98,14 +92,12 @@ session_start();
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2">
+				<div class="span2 hero-unit" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<p>Olá <b> <?php echo $_SESSION['nome']; ?> </b>
-							<p>Saldo: <?php echo $_SESSION['pontos']; ?> trocados</p>
-						</div>
-						<div class="row-fluid">
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
+							Olá <b> <?php echo $_SESSION['nome']; ?> </b>
+							<button type="submit" class="btn btn-info btn-small">Sair</button></br>
+							Saldo: <?php echo $_SESSION['pontos']; ?> trocados
 						</div>
 					</form>
 				</div>

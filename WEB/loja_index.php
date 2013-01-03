@@ -15,7 +15,7 @@ session_start();
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
         <meta name="keywords" content="descontos, coletivo, compra, reciclagem, shopping" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" lang="pt-BR" >
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -41,18 +41,14 @@ session_start();
 
 			<!-- Menu Usuário para Mobile [X] -->
 			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="btn-group">
-					 <div class="span2">
-						<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-							<div class="row-fluid">
-								<p align="right">Olá <?php echo $_SESSION['razao_social']; ?>
-							</div>
-							<div class="row-fluid">
-								<button type="submit" class="btn btn-info btn-small">Sair</button>
-							</div>
-						</form>
-					</div>                   
-                </div>
+				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
+					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
+						<div class="row-fluid">
+							Olá <?php echo $_SESSION['razao_social']; ?>
+							<button type="submit" class="btn btn-info btn-small">Sair</button>
+						</div>
+					</form>
+				</div>                   
             </div>
         </div>
 
@@ -66,12 +62,10 @@ session_start();
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2">
+				 <div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<p align="right">Olá <?php echo $_SESSION['razao_social']; ?>
-						</div>
-						<div class="row-fluid">
+							Olá <?php echo $_SESSION['razao_social']; ?>
 							<button type="submit" class="btn btn-info btn-small">Sair</button>
 						</div>
 					</form>
@@ -80,12 +74,10 @@ session_start();
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2">
+				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<p align="right">Olá <?php echo $_SESSION['razao_social']; ?>
-						</div>
-						<div class="row-fluid">
+							Olá <?php echo $_SESSION['razao_social']; ?>
 							<button type="submit" class="btn btn-info btn-small">Sair</button>
 						</div>
 					</form>
@@ -98,63 +90,51 @@ session_start();
        
 	<!-- Conteudo [X] -->
 	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
-		<div class="mainofferbox" align="left"><form action="iniciar_venda.php" name="form_vender" method="post">
-				<table>
-				<tr><td><img src="img/imagem.png" class=""></td>
-				<td>
-					<p>Oferta 1</p>
-					<p>Cantina</p>
-					<input type="hidden" name="txt_cod" value="0"/>
-					<input type="hidden" name="txt_valor" value="0"/>
-					<p>descrição haiuhsasuidhasd sbduasbdui ad aisd asd asd asda dasj dasjk das dasm dam,s dasm,d am,sd sm
-					sdmamjsaiofb dfgddsajsna sndsjadnas iodsaiosd ns erewqwiwdqwdqwe we qwr qwe ewfw wefwe fewf ewf ewf nd
-					wdqwdwa qwe qedqw dw dq dqwq d wdqwdqwdqw d wqdqwd qqdqdqwdqwdqwdqwdqwdqwdqwdqwdwqedwed dwed wedqs</p>
-					<table width="100%">
-						<tr><td>Quantidade: 0</td><td>Vendidos: 0</td></tr>
-						<tr><td>Valor: 0 trocados</td>
-							<td align="right"><input class="abutton" type="submit" name="btn_vender" value="Vender"/></td></tr>
-					</table>
-				</td></tr>
-				</table>
-			</form></div>
-			<div class="mainofferbox" align="left"><form action="iniciar_venda.php" name="form_vender" method="post">
-				<table>
-				<tr><td><img src="img/coxinha.jpeg" class=""></td>
-				<td>
-					<p>Coxinha 30% off</p>
-					<p>Cantina</p>
-					<input type="hidden" name="txt_cod" value="2"/>
-					<input type="hidden" name="txt_valor" value="200"/>
-					<p>descrição haiuhsasuidhasd sbduasbdui ad aisd asd asd asda dasj dasjk das dasm dam,s dasm,d am,sd sm
-					sdmamjsaiofb dfgddsajsna sndsjadnas iodsaiosd ns erewqwiwdqwdqwe we qwr qwe ewfw wefwe fewf ewf ewf nd
-					wdqwdwa qwe qedqw dw dq dqwq d wdqwdqwdqw d wqdqwd qqdqdqwdqwdqwdqwdqwdqwdqwdqwdwqedwed dwed wedqs</p>
-					<table width="100%">
-						<tr><td>Quantidade: 1000</td><td>Vendidos: 0</td></tr>
-						<tr><td>Valor: 200 trocados</td>
-							<td align="right"><input class="abutton" type="submit" name="btn_vender" value="Vender"/></td></tr>
-					</table>
-				</td></tr>
-				</table>
-			</form></div>
-			<div class="mainofferbox" align="left"><form action="iniciar_venda.php" name="form_vender" method="post">
-				<table>
-				<tr><td><img src="img/imagem.png" class=""></td>
-				<td>
-					<p>Oferta 3</p>
-					<p>Cantina</p>
-					<input type="hidden" name="txt_cod" value="0"/>
-					<input type="hidden" name="txt_valor" value="0"/>
-					<p>descrição haiuhsasuidhasd sbduasbdui ad aisd asd asd asda dasj dasjk das dasm dam,s dasm,d am,sd sm
-					sdmamjsaiofb dfgddsajsna sndsjadnas iodsaiosd ns erewqwiwdqwdqwe we qwr qwe ewfw wefwe fewf ewf ewf nd
-					wdqwdwa qwe qedqw dw dq dqwq d wdqwdqwdqw d wqdqwd qqdqdqwdqwdqwdqwdqwdqwdqwdqwdwqedwed dwed wedqs</p>
-					<table width="100%">
-						<tr><td>Quantidade: 0</td><td>Vendidos: 0</td></tr>
-						<tr><td>Valor: 0 trocados</td>
-							<td align="right"><input class="abutton" type="submit" name="btn_vender" value="Vender"/></td></tr>
-					</table>
-				</td></tr>
-				</table>
-			</form></div>
+		<div class="row-fluid">
+			<ul class="thumbnails">
+				<li class="span4">
+					<div class="thumbnail">
+						<img src="img/imagem.png" alt="">
+						<div class="caption">
+							<h3>Thumbnail label</h3>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+							<p><a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn">Action</a></p>
+						</div>
+					</div>
+				</li>
+				<li class="span4">
+					<div class="thumbnail">
+						<img src="img/coxinha.jpeg" alt="">
+						<div class="caption">
+							<form action="iniciar_venda.php" name="form_vender" method="post">
+								<h3>Coxinha 30% off</h3>
+								<h4>Cantina</h4>
+								<input type="hidden" name="txt_cod" value="2"/>
+								<input type="hidden" name="txt_valor" value="200"/>
+								<p>descrição haiuhsasuidhasd sbduasbdui ad aisd asd asd asda dasj dasjk das dasm dam,s dasm,d am,sd sm
+								sdmamjsaiofb dfgddsajsna sndsjadnas iodsaiosd ns erewqwiwdqwdqwe we qwr qwe ewfw wefwe fewf ewf ewf nd
+								wdqwdwa qwe qedqw dw dq dqwq d wdqwdqwdqw d wqdqwd qqdqdqwdq wdqwdqwdqwdq qwdqwdwqedwed dwed wedqs</p>
+								<table width="100%">
+									<tr><td>Quantidade: 1000</td><td>Vendidos: 0</td></tr>
+									<tr><td>Valor: 200 trocados</td>
+										<td align="right"><input class="btn btn-small" type="submit" name="btn_vender" value="Vender"/></td></tr>
+								</table>
+							</form>
+						</div>
+					</div>
+				</li>
+				<li class="span4">
+					<div class="thumbnail">
+						<img src="img/imagem.png" alt="">
+						<div class="caption">
+							<h3>Thumbnail label</h3>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+							<p><a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn">Action</a></p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>        
 
 	<!-- Rodapé [X]-->

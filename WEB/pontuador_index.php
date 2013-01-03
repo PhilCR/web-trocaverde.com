@@ -15,7 +15,7 @@ session_start();
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
         <meta name="keywords" content="descontos, coletivo, compra, reciclagem, shopping" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" lang="pt-BR" >
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -41,18 +41,14 @@ session_start();
 
 			<!-- Menu Usuário para Mobile [X] -->
 			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="btn-group">
-					 <div class="span2">
-						<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-							<div class="row-fluid">
-								<p align="right">Olá <?php echo $_SESSION['nome']; ?>
-							</div>
-							<div class="row-fluid">
-								<button type="submit" class="btn btn-info btn-small">Sair</button>
-							</div>
-						</form>
-					</div>                   
-                </div>
+				 <div class="span2 hero-unit" style="background-color:#ffa0a0; border-style:solid; border-width:3px; border-color:#000;">
+					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
+						<div class="row-fluid">
+							<p align="right">Olá <?php echo $_SESSION['nome']; ?>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
+						</div>
+					</form>
+				</div>                   
             </div>
         </div>
 
@@ -66,13 +62,11 @@ session_start();
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2">
+				 <div class="span2 hero-unit" style="background-color:#ffa0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
 							<p align="right">Olá <?php echo $_SESSION['nome']; ?>
-						</div>
-						<div class="row-fluid">
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
 				</div>                
@@ -80,13 +74,11 @@ session_start();
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2">
+				<div class="span2 hero-unit" style="background-color:#ffa0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
 							<p align="right">Olá <?php echo $_SESSION['nome']; ?>
-						</div>
-						<div class="row-fluid">
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
 				</div>
@@ -97,13 +89,11 @@ session_start();
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
+	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 		<form action="pre_pontuar.php" name="form_pre_pontuar" method="post">
-			<table>
-				<tr><td>CPF:</td><td><input type="text" name="txt_cpf" size="50" maxlength="11"/></td></tr>
-				<tr><td>Peso(gramas):</td><td><input type="text" name="txt_peso" size="50" maxlength="6"/></td></tr>
-				<tr><td></td><td align="right"><input class="abutton" type="submit" name="btn_pontuar" value="Pontuar"/></td></tr>
-			</table>
+			<input class="input-large" type="text" name="txt_cpf" size="30" maxlength="11" placeholder="Digite o CPF" required/><br>
+			<input class="input-large" type="text" name="txt_peso" size="10" maxlength="6" placeholder="Digite o Peso (g)" required/><br>
+			<button class="btn btn-large btn-info" type="submit" name="btn_pontuar" value="Pontuar">Pontuar</button>
 		</form>
 	</div>        
 

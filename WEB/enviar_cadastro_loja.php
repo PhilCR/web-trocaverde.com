@@ -37,7 +37,7 @@ $sql = "CALL cadastro_loja('$cnpj','$rsocial','$nfantasia','$inscest','$tel','$e
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
         <meta name="keywords" content="descontos, coletivo, compra, reciclagem, shopping" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" lang="pt-BR" >
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -71,19 +71,19 @@ $sql = "CALL cadastro_loja('$cnpj','$rsocial','$nfantasia','$inscest','$tel','$e
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
+	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 <?php
 //executando comando
 if(mysql_query($sql, $conn)) {
 ?>
-		<p>Cadastro efetuado com sucesso.<br>
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/></p>
+		<h3>Cadastro efetuado com sucesso.</h3><br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/></p>
 
 <?php	
 } else {
 ?>
-		<p>Erro: cadastro não pode ser efetuado.<br>
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/></p>
+		<h3>Erro: cadastro não pode ser efetuado.</h3><br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/></p>
 
 <?
 }

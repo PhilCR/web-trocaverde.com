@@ -141,7 +141,7 @@
 
        
 	<!-- Conteudo mobile [X] -->
-	<div id="content" class="container alert alert-info visible-phone hidden-desktop hidden-tablet" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
+	<div id="content" class="container alert alert-info visible-phone hidden-desktop hidden-tablet" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 		
 	</div>        
 	

@@ -8,7 +8,7 @@
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
         <meta name="keywords" content="descontos, coletivo, compra, reciclagem, shopping" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" lang="pt-BR" >
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -31,25 +31,102 @@
 	<div id="header" class="container-fluid" style=" background-color:#a0cca0; border:1px solid #000000; border-radius:3px;z-index: 999;">
 
 		<div class="container-fluid">
+
+			<!-- Menu Usuário para Mobile [X] -->
+			<div class="span1 visible-phone hidden-desktop hidden-tablet">
+				<div class="btn-group">
+				<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i>
+					Entrar
+					<span class="caret"></span></a>
+					
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+						<li>
+							 <div class="span2">
+								<form class="form-horizontal" action="autenticar.php" name="form_login" method="post">
+									<div class="input-append">
+										<input class="input-medium" type="text" name="txt_email" placeholder="Digite seu Email">
+										<span class="add-on"><i class="icon-envelope"></i></span>
+									</div>
+									<div class="input-append">
+										<input class="input-medium" type="password" name="txt_senha" placeholder="Digite sua Senha">
+										<span class="add-on"><i class="icon-lock"></i></span>
+									</div>
+									<div class="row-fluid">
+										<label class="checkbox">
+											<input type="checkbox"> Lembrar-me
+										</label> 
+										<button type="submit" class="btn btn-info btn-small">Acesso</button>
+										<button type="button" class="btn btn-small" onclick=location.href='cadastro.php'>Cadastro</button>
+									</div>
+								</form>
+							</div>                   
+						</li>
+                    </ul>  
+                </div>
+            </div>
+        </div>
+
+
+		<div class="container-fluid">
 		
 			<!-- Logotipo [X] -->
 			<div class="span3">
 				<a href="index.php" ><img src="img/logo.png"></a>
 			</div>                  
+
+			<!-- Área de Acesso [X] -->
+			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
+				 <div class="span2">
+					<form class="form-horizontal" action="autenticar.php" name="form_login" method="post" disabled>
+						<div class="input-append">
+							<input class="input-medium" type="text" name="txt_email" placeholder="Digite seu Email">
+							<span class="add-on"><i class="icon-envelope"></i></span>
+						</div>
+						<div class="input-append">
+							<input class="input-medium" type="password" name="txt_senha" placeholder="Digite sua Senha">
+							<span class="add-on"><i class="icon-lock"></i></span>
+						</div>
+						<div class="row-fluid">
+							<label class="checkbox">
+								<input type="checkbox"> Lembrar-me
+							</label> 
+							<button type="submit" class="btn btn-info btn-small">Acesso</button>
+							<button type="button" class="btn btn-small" onclick=location.href='cadastro.php'>Cadastro</button>
+						</div>
+					</form>
+				</div>                
+			</div>
+
+			<!-- Área de Acesso [X] -->
+			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
+				<div class="span2">
+					<form class="form-horizontal" action="autenticar.php" name="form_login" method="post" disabled>
+						<div class="input-append">
+							<input class="input-medium" type="text" name="txt_email" placeholder="Digite seu Email">
+							<span class="add-on"><i class="icon-envelope"></i></span>
+						</div>
+						<div class="input-append">
+							<input class="input-medium" type="password" name="txt_senha" placeholder="Digite sua Senha">
+							<span class="add-on"><i class="icon-lock"></i></span>
+						</div>
+						<div class="row-fluid">
+							<label class="checkbox">
+								<input type="checkbox"> Lembrar-me
+							</label> 
+							<button type="submit" class="btn btn-info btn-small">Acesso</button>
+							<button type="button" class="btn btn-small" onclick=location.href='cadastro.php'>Cadastro</button>
+						</div>
+					</form>
+				</div>
+			</div>
 			
 		</div>
     </div>
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
-		 <p>Área somente para usuários cadastrados, faça o login.</p>
-		<form action="autenticar.php" name="form_login" method="post">
-			<p>E-mail:<input type="text" name="txt_email" size="30" maxlength="70"/><br>
-			Senha:<input type="password" name="txt_senha" size="30" maxlength="16"/></p>
-			<p><input class="abutton" type="submit" name="btn_entrar" value="Entrar"/>
-			<input class="abutton" type="button" name="btn_cadastro" value="Novo" onclick="location.href='cadastro.php'"></p>
-		</form>
+	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+		<h3>Área somente para usuários cadastrados, faça o login.</h3>
 	</div>        
 
 	<!-- Rodapé [X]-->

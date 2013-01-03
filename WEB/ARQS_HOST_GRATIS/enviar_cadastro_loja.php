@@ -15,18 +15,15 @@ $end_est = $_POST['txt_end_est'];
 $end_cep = $_POST['txt_end_cep'];
 $senha = $_POST['txt_senha'];
 
-//conectando ao banco de dados
-$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
 
-//selecionando o BD
-if($conn){
-	mysql_select_db("u736022732_trocavrd", $conn);
+$mysqli = mysqli_init();	
+$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
+if (mysqli_connect_errno())
+{
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
 }
-
-//criando comando sql
-$sql = "CALL cadastro_loja('$cnpj','$rsocial','$nfantasia','$inscest','$tel','$email','$end_rua','$end_num','$end_comp','$end_bar','$end_cid','$end_est','$end_cep','$senha');";
 ?>
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -73,23 +70,22 @@ $sql = "CALL cadastro_loja('$cnpj','$rsocial','$nfantasia','$inscest','$tel','$e
 	<!-- Conteudo [X] -->
 	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
 <?php
-//executando comando
-if(mysql_query($sql, $conn)) {
+if($mysqli->real_query ("CALL cadastro_loja('$cnpj','$rsocial','$nfantasia','$inscest','$tel','$email','$end_rua','$end_num','$end_comp','$end_bar','$end_cid','$end_est','$end_cep','$senha');"))
+{
 ?>
-		<p>Cadastro efetuado com sucesso.<br>
+        <p>Cadastro efetuado com sucesso.<br>
 		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/></p>
-
 <?php	
-} else {
+}
+else{
 ?>
-		<p>Erro: cadastro não pode ser efetuado.<br>
+        <p>Erro: cadastro não pode ser efetuado.<br>
 		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/></p>
-
-<?
+<?php
 }
 
 //encerrar conexão
-mysql_close($conn);
+$mysqli->close();
 ?>
 	</div>        
 

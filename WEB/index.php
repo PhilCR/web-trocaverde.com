@@ -182,7 +182,6 @@ $rs = mysql_query($sql, $conn);
 	
 	<!-- Conteudo [X] -->
 	<div id="content" class="container alert alert-info" style="margin-bottom:0px; padding: 0px 0px 0px 0px; height-min: 300px; min-height: 300px;">
-		<?php echo $local; ?>
 		<div class="row-fluid">
 			<ul class="thumbnails">
 <?php
@@ -208,7 +207,8 @@ $telefone = $rst["telefone"];
 							<table width="100%">
 								<tr><td>Quantidade: <?php echo $qtde_max; ?></td><td>Vendidos: <?php echo $qtde_vendida; ?></td></tr>
 								<tr><td>Valor: <?php echo $pontos; ?> trocados</td></tr>
-								
+								<tr><td>Validade: <?php echo $data_validade; ?></td></tr>
+								<tr><td>Telefone: <?php echo $telefone; ?></td></tr>
 							</table>
 						</div>
 					</div>
@@ -236,6 +236,8 @@ $telefone = $rst["telefone"];
 							<table width="100%">
 								<tr><td>Quantidade: <?php echo $qtde_max; ?></td><td>Vendidos: <?php echo $qtde_vendida; ?></td></tr>
 								<tr><td>Valor: <?php echo $pontos; ?> trocados</td></tr>
+								<tr><td>Validade: <?php echo $data_validade; ?></td></tr>
+								<tr><td>Telefone: <?php echo $telefone; ?></td></tr>
 							</table>
 						</div>
 					</div>
@@ -263,6 +265,8 @@ $telefone = $rst["telefone"];
 							<table width="100%">
 								<tr><td>Quantidade: <?php echo $qtde_max; ?></td><td>Vendidos: <?php echo $qtde_vendida; ?></td></tr>
 								<tr><td>Valor: <?php echo $pontos; ?> trocados</td></tr>
+								<tr><td>Validade: <?php echo $data_validade; ?></td></tr>
+								<tr><td>Telefone: <?php echo $telefone; ?></td></tr>
 							</table>
 						</div>
 					</div>

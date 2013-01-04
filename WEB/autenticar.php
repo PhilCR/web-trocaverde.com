@@ -71,18 +71,26 @@ if($num == 0) {
 	} else if($tipo == "2") {
 		$email = $rst["email"];
 		$razao_social = $rst["razao_social"];
+		$autorizada = $rst["autorizada"];
 		
-		session_start();
+		if($autorizada == "0") {
+			mysql_close($conn);
+			mysql_close($conn2);
+			header("Location:loja_esperando.php");
+		} else {		
+			session_start();
+			
+			$_SESSION["tipo"]	= $tipo;
+			$_SESSION["razao_social"]	= $razao_social;
+			$_SESSION["email"]	= $email;
 		
-		$_SESSION["tipo"]	= $tipo;
-		$_SESSION["razao_social"]	= $razao_social;
-		$_SESSION["email"]	= $email;
-	
-		//encerrar conexão
-		mysql_close($conn);
-		
-		//redireciona
-		header("Location:loja_index.php");
+			//encerrar conexão
+			mysql_close($conn);
+			mysql_close($conn2);
+			
+			//redireciona
+			header("Location:loja_index.php");
+		}
 	
 	} else if($tipo == "3") {
 		$nome = $rst["nome"];

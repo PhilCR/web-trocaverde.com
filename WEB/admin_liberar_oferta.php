@@ -3,6 +3,17 @@
 include_once("verifica_admin.php");
 
 session_start();
+
+//conectando ao banco de dados
+$conn = mysql_connect("localhost", "semcadastro", "cadastro") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("trocaverde", $conn);
+}
+
+//criando comando sql
+$sql = "select o.cod, o.nome_oferta, o.imagem, o.data_validade, o.pontos, o.descricao, o.qtde_max, o.qtde_vendida, l.nome_fantasia, l.telefone from loja l, ofertas o where l.ID = o.ID_loja and o.autorizada = 0;";
 ?>
 
 <!DOCTYPE html>
@@ -91,12 +102,70 @@ session_start();
 	</div>
        
 	<!-- Conteudo [X] -->
-	<div id="content" align="center" class="container alert alert-info visible-desktop visible-tablet hidden-phone" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
-		<div class="btn-group">
-			<button class="btn btn-info btn-large" name="btn_cadastro" value="Cadastro" onclick="location.href='admin_cadastro.php'">Cadastro</button>
-			<button class="btn btn-info btn-large" name="btn_liberar_loja" value="Liberar Loja" onclick="location.href='admin_liberar_loja.php'"/>Liberar Loja</button>
-			<button class="btn btn-info btn-large" name="btn_liberar_ofertas" value="Liberar Ofertas" onclick="location.href='admin_liberar_oferta.php'"/>Liberar Ofertas</button>
-			<button class="btn btn-info btn-large" name="btn_excluir" value="Excluir" onclick="location.href='???.php'"/>Excluir</button>
+	<div id="content" class="container alert alert-info visible-desktop visible-tablet hidden-phone" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+		<div class="row-fluid">
+			<ul class="thumbnails">
+<?php
+//executando comando
+$result = mysql_query($sql, $conn);
+
+if($result) {
+	$i = 0;
+
+	while($rst = mysql_fetch_array( $result )) {
+		$i = $i + 1;
+		
+		$cod = $rst["cod"];
+		$nome_oferta = $rst["nome_oferta"];
+		$imagem = $rst["imagem"];
+		$data_validade = $rst["data_validade"];
+		$pontos = $rst["pontos"];
+		$descricao = $rst["descricao"];
+		$qtde_max = $rst["qtde_max"];
+		$qtde_vendida = $rst["qtde_vendida"];
+		$nome_fantasia = $rst["nome_fantasia"];
+		$telefone = $rst["telefone"];
+?>
+				<li class="span4">
+					<div class="thumbnail">
+						<img src="<?php echo $imagem; ?>" alt="">
+						<div class="caption">
+							<form lass="row-fluid" action="admin_liberar_oferta2.php" name="form_liberar<?php echo $i; ?>" method="post">
+								<input type="hidden" name="txt_cod" value="<?php echo $cod; ?>" />
+								<h3><?php echo $nome_oferta; ?></h3>
+								<h4><?php echo $nome_fantasia; ?></h4>
+								<p><?php echo $descricao; ?></p>
+								<table width="100%">
+									<tr><td>Quantidade: <?php echo $qtde_max; ?></td><td>Vendidos: <?php echo $qtde_vendida; ?></td></tr>
+									<tr><td>Validade: <?php echo $data_validade; ?></td></tr>
+									<tr><td>Telefone: <?php echo $telefone; ?></td></tr>
+									<tr></tr>
+									<tr><td>Valor: <abbr title="Insira o valor da oferta."><input type="text" class="input-mini" id="txt_valor" name="txt_valor" maxlength="6" placeholder="" required></abbr> trocados</td>
+									<td><button class="btn btn-large btn-info" type="submit" name="btn_cadastrar">Liberar</button></td></tr>
+								</table>
+							</form>
+						</div>
+					</div>
+				</li>
+<?php
+	}
+	if($i == 0) {
+?>
+	<h3>Nenhuma oferta esperando liberação.</h3><br>
+	<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/>
+<?php
+	}
+} else {
+?>
+	<h3>Ocorreu um erro desconhecido.</h3><br>
+	<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/>
+<?php
+}
+
+//encerrar conexão
+mysql_close($conn);
+?>
+			</ul>
 		</div>
 	</div>        
 
@@ -122,3 +191,4 @@ session_start();
     
 </html>
 
+ 

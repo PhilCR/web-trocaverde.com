@@ -3,6 +3,17 @@
 include_once("verifica_admin.php");
 
 session_start();
+
+//conectando ao banco de dados
+$conn = mysql_connect("localhost", "admin", "projet02012") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("trocaverde", $conn);
+}
+
+//criando comando sql
+$sql = "SELECT * FROM loja WHERE autorizada = 0;";
 ?>
 
 <!DOCTYPE html>
@@ -91,13 +102,50 @@ session_start();
 	</div>
        
 	<!-- Conteudo [X] -->
-	<div id="content" align="center" class="container alert alert-info visible-desktop visible-tablet hidden-phone" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
-		<div class="btn-group">
-			<button class="btn btn-info btn-large" name="btn_cadastro" value="Cadastro" onclick="location.href='admin_cadastro.php'">Cadastro</button>
-			<button class="btn btn-info btn-large" name="btn_liberar_loja" value="Liberar Loja" onclick="location.href='admin_liberar_loja.php'"/>Liberar Loja</button>
-			<button class="btn btn-info btn-large" name="btn_liberar_ofertas" value="Liberar Ofertas" onclick="location.href='???.php'"/>Liberar Ofertas</button>
-			<button class="btn btn-info btn-large" name="btn_excluir" value="Excluir" onclick="location.href='???.php'"/>Excluir</button>
+	<div id="content" class="container alert alert-info visible-desktop visible-tablet hidden-phone" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+<?php
+//executando comando
+$result = mysql_query($sql, $conn);
+
+if($result) {
+	$i = 0;
+
+	while($row = mysql_fetch_array( $result )) {
+		$i = $i + 1;
+	
+		$razao_social = $row['razao_social'];
+		$nome_fantasia = $row['nome_fantasia']; 
+		$telefone = $row['telefone'];
+		$email = $row['email'];
+?>
+		<div class="span2 hero-unit" style="border-style:solid; border-width:1px; border-color:#000; font-size: 12px;">
+			<b>Razão Social:</b> <?php echo $razao_social; ?></br>
+			<b>Nome Fantasia:</b> <?php echo $nome_fantasia; ?></br>
+			<b>Telefone:</b> <?php echo $telefone; ?></br>
+			<b>Email:</b> <?php echo $email; ?></br>
+			<form lass="row-fluid" action="admin_liberar_loja_2.php" name="form_liberar<?php echo $i; ?>" method="post">
+				<input type="hidden" name="txt_email" value="<?php echo $email; ?>">
+				<button type="submit" class="btn btn-large btn-info" name="btn_liberar">Liberar</button>
+			</form>
 		</div>
+<?php
+	}
+	if($i == 0) {
+?>
+	<h3>Nenhuma loja esperando liberação.</h3><br>
+	<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/>
+<?php
+	}
+} else {
+?>
+	<h3>Ocorreu um erro desconhecido.</h3><br>
+	<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/>
+<?php
+}
+
+//encerrar conexão
+mysql_close($conn);
+?>
 	</div>        
 
 	<!-- Rodapé [X]-->

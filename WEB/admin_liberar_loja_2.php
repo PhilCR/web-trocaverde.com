@@ -1,8 +1,21 @@
-<?php
+ <?php
 //Inclui o arquivo de verificação
 include_once("verifica_admin.php");
 
 session_start();
+
+$email = $_POST["txt_email"];
+
+//conectando ao banco de dados
+$conn = mysql_connect("localhost", "admin", "projet02012") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("trocaverde", $conn);
+}
+
+//criando comando sql
+$sql = "CALL libera_loja('$email')";
 ?>
 
 <!DOCTYPE html>
@@ -92,12 +105,23 @@ session_start();
        
 	<!-- Conteudo [X] -->
 	<div id="content" align="center" class="container alert alert-info visible-desktop visible-tablet hidden-phone" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
-		<div class="btn-group">
-			<button class="btn btn-info btn-large" name="btn_cadastro" value="Cadastro" onclick="location.href='admin_cadastro.php'">Cadastro</button>
-			<button class="btn btn-info btn-large" name="btn_liberar_loja" value="Liberar Loja" onclick="location.href='admin_liberar_loja.php'"/>Liberar Loja</button>
-			<button class="btn btn-info btn-large" name="btn_liberar_ofertas" value="Liberar Ofertas" onclick="location.href='???.php'"/>Liberar Ofertas</button>
-			<button class="btn btn-info btn-large" name="btn_excluir" value="Excluir" onclick="location.href='???.php'"/>Excluir</button>
-		</div>
+<?php
+//executando comando
+if(mysql_query($sql, $conn)) {
+?>
+		<h3>Loja liberada.</h3><br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/>
+<?php
+} else {
+?>
+		<h3>Erro: não foi possivel liberar a loja.</h3><br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/>
+<?php
+}
+
+//encerrar conexão
+mysql_close($conn);
+?>
 	</div>        
 
 	<!-- Rodapé [X]-->

@@ -14,6 +14,7 @@ $end_cid = $_POST['txt_end_cid'];
 $end_est = $_POST['txt_end_est'];
 $end_cep = $_POST['txt_end_cep'];
 $senha = $_POST['txt_senha'];
+$regiao = $_POST['txt_regiao'];
 
 //conectando ao banco de dados
 $conn = mysql_connect("localhost", "semcadastro", "cadastro") or die("Impossivel conectar");
@@ -24,7 +25,7 @@ if($conn){
 }
 
 //criando comando sql
-$sql = "CALL cadastro_loja('$cnpj','$rsocial','$nfantasia','$inscest','$tel','$email','$end_rua','$end_num','$end_comp','$end_bar','$end_cid','$end_est','$end_cep','$senha');";
+$sql = "CALL cadastro_loja('$cnpj','$rsocial','$nfantasia','$inscest','$tel','$email','$end_rua','$end_num','$end_comp','$end_bar','$end_cid','$end_est','$end_cep','$senha','$regiao');";
 ?>
 
 <!DOCTYPE html>

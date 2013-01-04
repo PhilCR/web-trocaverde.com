@@ -177,6 +177,7 @@
 				<input type="text" class="input-large" name="txt_rsocial" size="50" maxlength="200" placeholder="Digite a Razão Social" required/><abbr title="Digite a sua Razão Social."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 				<input type="text" class="input-large" name="txt_cnpj" size="50" maxlength="14" placeholder="Digite o CNPJ" required/><abbr title="Digite o seu CNPJ, somente números."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 				<abbr title="Digite o número de sua Inscrição Estadual, somente números."><input type="text" class="input-large" name="txt_inscest" size="50" maxlength="50" placeholder="Digite a Inscrição Estadual" /></abbr></br>
+				<input type="text" class="input-large" name="txt_regiao" size="50" maxlength="100" placeholder="Digite sua região" required/><abbr title="Digite a sua região para que os clientes encontrem facilmente suas ofertas."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 			</div>
 			<div class="span3 input-append">
 				<h3>Informações de Contato</h3>

@@ -3,6 +3,30 @@
 include_once("verifica_usuario.php");
 
 session_start();
+
+$local = $_POST['txt_local'];
+
+if(empty($local)) {
+	$local = 'Sorocaba';
+}
+
+if($local == 'none') {
+	$local = 'Sorocaba';
+}
+
+//conectando ao banco de dados
+$conn = mysql_connect("localhost", "semcadastro", "cadastro") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("trocaverde", $conn);
+}
+
+//criando comando sql
+$sql = "select o.nome_oferta, o.imagem, o.data_validade, o.pontos, o.descricao, o.qtde_max, o.qtde_vendida, l.nome_fantasia, l.telefone from loja l, ofertas o where l.ID = o.ID_loja and regiao = '$local' and o.autorizada = 1;";
+
+//executando comando
+$rs = mysql_query($sql, $conn);
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +54,18 @@ session_start();
 
         <!-- Habilitar Scripts Próprios -->
         <script type="text/javascript" src="js/troca.js"></script>
+		
+		<script type="text/javascript">
+			function alterarLocal() {
+				var option_local = document.getElementById("regionlocation");
+				var local = option_local.options[option_local.selectedIndex].value;
+				
+				var txt_local = document.getElementById("txt_local");
+				txt_local.value = local;
+				
+				document.forms["form_local"].submit();
+			}
+		</script>
 
     </head>
 
@@ -45,13 +81,13 @@ session_start();
 				</div>
 				<div class="span1" >
 					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
-						<option value="none">Região</option>
+						<option value="none"  disabled="disabled" selected="selected">Região</option>
+						<option value="Sorocaba">Sorocaba</option>
+						<option value="Campinas">Campinas</option>
 					</select>
-				</div>
-				<div class="span1 offset1">
-					<select id="levlocation" name="lev" style="width:100px;" onChange="alterarLocal()">
-						<option value="none">L.E.V.</option>
-					</select></font>
+					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
+						<input type="text" name="txt_local" id="txt_local" value="" />
+					</form>
 				</div>
             </div>
 
@@ -109,7 +145,41 @@ session_start();
        
 	<!-- Conteudo [X] -->
 	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
-		
+		<div class="row-fluid">
+			<ul class="thumbnails">
+<?php
+while($rst = mysql_fetch_array( $rs )) {
+	$nome_oferta = $rst["nome_oferta"];
+	$imagem = $rst["imagem"];
+	$data_validade = $rst["data_validade"];
+	$pontos = $rst["pontos"];
+	$descricao = $rst["descricao"];
+	$qtde_max = $rst["qtde_max"];
+	$qtde_vendida = $rst["qtde_vendida"];
+	$nome_fantasia = $rst["nome_fantasia"];
+	$telefone = $rst["telefone"];
+?>
+				<li class="span4">
+					<div class="thumbnail">
+						<img src="<?php echo $imagem; ?>" alt="">
+						<div class="caption">
+							<h3><?php echo $nome_oferta; ?></h3>
+							<h4><?php echo $nome_fantasia; ?></h4>
+							<p><?php echo $descricao; ?></p>
+							<table width="100%">
+								<tr><td>Quantidade: <?php echo $qtde_max; ?></td><td>Vendidos: <?php echo $qtde_vendida; ?></td></tr>
+								<tr><td>Valor: <?php echo $pontos; ?> trocados</td></tr>
+								<tr><td>Validade: <?php echo $data_validade; ?></td></tr>
+								<tr><td>Telefone: <?php echo $telefone; ?></td></tr>
+							</table>
+						</div>
+					</div>
+				</li>
+<?php
+}
+?>
+			</ul>
+		</div>
 	</div>        
 
 	<!-- Rodapé [X]-->

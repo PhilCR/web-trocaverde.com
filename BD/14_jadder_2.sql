@@ -2,7 +2,7 @@ USE trocaverde;
 
 GRANT ALL PRIVILEGES ON trocaverde.* TO 'semcadastro'@'%';
 
-DROP PROCEDURE
+DROP PROCEDURE cadastro_loja;
 
 DELIMITER |
 

@@ -1,10 +1,16 @@
-<?php
+  <?php
 //Inclui o arquivo de verificação
 include_once("verifica_loja.php");
 
 session_start();
 
-$email = $_SESSION["email"];
+$nome_oferta = $_POST['txt_nome_oferta'];
+$qtde_max = $_POST['txt_qtde'];
+$data_validade = $_POST['txt_data'];
+$imagem = $_POST['txt_imagem'];
+$descricao = $_POST['txt_descricao'];
+$tag = $_POST['txt_tag'];
+$email = $_SESSION['email'];
 
 //conectando ao banco de dados
 $conn = mysql_connect("localhost", "semcadastro", "cadastro") or die("Impossivel conectar");
@@ -15,10 +21,7 @@ if($conn){
 }
 
 //criando comando sql
-$sql = "select o.cod, o.nome_oferta, o.imagem, o.data_validade, o.pontos, o.descricao, o.qtde_max, o.qtde_vendida, l.nome_fantasia, l.telefone, o.autorizada from loja l, ofertas o where l.ID = o.ID_loja and l.email='$email';";
-
-//executando comando
-$rs = mysql_query($sql, $conn);
+$sql = "CALL cadastro_oferta('$nome_oferta','$qtde_max','$data_validade','$imagem','$descricao','$tag','$email');";
 
 ?>
 
@@ -107,61 +110,25 @@ $rs = mysql_query($sql, $conn);
        
 	<!-- Conteudo [X] -->
 	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
-		<div  class="btn-group">
-			<button class="btn btn-info btn-large" name="btn_cadastro" value="Cadastro" onclick="location.href='cadastro_oferta.php'">Cadastrar Oferta</button>
-		</div>
+<?php
+//executando comando
+if(mysql_query($sql, $conn)) {
+?>
+		<h3>Cadastro efetuado com sucesso.</h3><br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/></p>
 
-		<div class="row-fluid">
-			<ul class="thumbnails">
-<?php
-while($rst = mysql_fetch_array( $rs )) {
-	$cod = $rst["cod"];
-	$nome_oferta = $rst["nome_oferta"];
-	$imagem = $rst["imagem"];
-	$data_validade = $rst["data_validade"];
-	$pontos = $rst["pontos"];
-	$descricao = $rst["descricao"];
-	$qtde_max = $rst["qtde_max"];
-	$qtde_vendida = $rst["qtde_vendida"];
-	$nome_fantasia = $rst["nome_fantasia"];
-	$telefone = $rst["telefone"];
-	$autorizada = $rst["autorizada"];
-?>
-				<li class="span4">
-					<div class="thumbnail">
-						<img src="<?php echo $imagem; ?>" alt="">
-						<div class="caption">
-							<form action="iniciar_venda.php" name="form_vender" method="post">
-								<input type="hidden" name="txt_cod" value="<?php echo $cod; ?>"/>
-								<input type="hidden" name="txt_valor" value="<?php echo $pontos; ?>"/>
-								<h3><?php echo $nome_oferta; ?></h3>
-								<h4><?php echo $nome_fantasia; ?></h4>
-								<p><?php echo $descricao; ?></p>
-								<table width="100%">
-									<tr><td>Quantidade: <?php echo $qtde_max; ?></td><td>Vendidos: <?php echo $qtde_vendida; ?></td></tr>
-									<tr><td>Valor: <?php echo $pontos; ?> trocados</td>
-<?php
-if($autorizada == '1') {
-?>
-									<td align="right"><input class="btn btn-small" type="submit" name="btn_vender" value="Vender"/></td></tr>
-<?php
+<?php	
 } else {
 ?>
-									<td align="right">Não Liberada!</td></tr>
+		<h3>Erro: cadastro não pode ser efetuado.</h3><br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/></p>
 
-<?php
+<?
 }
+
+//encerrar conexão
+mysql_close($conn);
 ?>
-								</table>
-							</form>
-						</div>
-					</div>
-				</li>
-<?php
-}
-?>
-			</ul>
-		</div>
 	</div>        
 
 	<!-- Rodapé [X]-->

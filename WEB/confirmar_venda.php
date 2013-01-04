@@ -9,6 +9,7 @@ $cpf = $_POST["txt_cpf"];
 $cod = $_POST["txt_cod"];
 $valor = $_POST["txt_valor"];
 $qtde = $_POST["txt_qtde"];
+$nome_oferta = $_POST["txt_nome_oferta"];
 
 //calculando total
 $total = $valor * $qtde;
@@ -150,7 +151,7 @@ if($num == 0) {
 				<tr><td><h4>Nome: <?php echo $nome ?> <?php echo $snome ?></h4></td><td></td></tr>
 				<tr><td><h4>Data de Nascimento: <?php echo $data ?></h4></td><td></td></tr>
 				<tr><td></td><td></td></tr>
-				<tr><td><h4>Oferta: Coxinha 30% off</h4></td><td></td></tr>
+				<tr><td><h4>Oferta: <?php echo $nome_oferta; ?></h4></td><td></td></tr>
 				<tr><td><h4>Quantidade: <?php echo $qtde ?></h4></td><td><h4>Total: <?php echo $total ?> trocados</h4></td></tr>
 				<tr><td></td><td align="right"><input class="btn btn-small btn-info" type="submit" name="btn_vender" value="Vender"/></td></tr>
 			</table>

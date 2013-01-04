@@ -6,6 +6,20 @@ session_start();
 
 $cod = $_POST["txt_cod"];
 $valor = $_POST["txt_valor"];
+
+//conectando ao banco de dados
+$conn = mysql_connect("localhost", "semcadastro", "cadastro") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("trocaverde", $conn);
+}
+
+//criando comando sql
+$sql = "select o.cod, o.nome_oferta, o.imagem, o.data_validade, o.pontos, o.descricao, o.qtde_max, o.qtde_vendida, l.nome_fantasia, l.telefone from loja l, ofertas o where l.ID = o.ID_loja and o.cod = '$cod';";
+
+//executando comando
+$rs = mysql_query($sql, $conn);
 ?>	
 
 <!DOCTYPE html>
@@ -92,30 +106,49 @@ $valor = $_POST["txt_valor"];
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
-		
-		<li class="span4">
-			<div class="thumbnail">
-				<img src="img/coxinha.jpeg" alt="">
-				<div class="caption">
-					<form action="confirmar_venda.php" name="form_vender" method="post">
-						<h3>Coxinha 30% off</h3>
-						<h4>Cantina</h4>
-						<input type="hidden" name="txt_cod" value="2"/>
-						<input type="hidden" name="txt_valor" value="200"/>
-						<p>descrição haiuhsasuidhasd sbduasbdui ad aisd asd asd asda dasj dasjk das dasm dam,s dasm,d am,sd sm
-						sdmamjsaiofb dfgddsajsna sndsjadnas iodsaiosd ns erewqwiwdqwdqwe we qwr qwe ewfw wefwe fewf ewf ewf nd
-						wdqwdwa qwe qedqw dw dq dqwq d wdqwdqwdqw d wqdqwd qqdqdqwdq wdqwdqwdqwdq qwdqwdwqedwed dwed wedqs</p>
-						<p>Quantidade: 1000</br>
-						Vendidos: 0</br>
-						Valor: 200 trocados</p>
-						<abbr title="Preencha com a quantidade que deseja vender."><input type="text" name="txt_qtde" size="5" maxlength="5" placeholder="Digite a quantidade" required /></abbr></br>
-						<abbr title="Preencha com o CPF do comprador."><input type="text" name="txt_cpf" size="50" maxlength="11" placeholder="Digite o CPF" required /></abbr></br>
-						<input class="btn btn-small btn-info" type="submit" name="btn_vender" value="Vender"/>
-					</form>
-				</div>
-			</div>
-		</li>
+	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">		
+		<div class="row-fluid">
+			<ul class="thumbnails">
+<?php
+while($rst = mysql_fetch_array( $rs )) {
+	$cod = $rst["cod"];
+	$nome_oferta = $rst["nome_oferta"];
+	$imagem = $rst["imagem"];
+	$data_validade = $rst["data_validade"];
+	$pontos = $rst["pontos"];
+	$descricao = $rst["descricao"];
+	$qtde_max = $rst["qtde_max"];
+	$qtde_vendida = $rst["qtde_vendida"];
+	$nome_fantasia = $rst["nome_fantasia"];
+	$telefone = $rst["telefone"];
+?>
+				<li class="span4">
+					<div class="thumbnail">
+						<img src="<?php echo $imagem; ?>" alt="">
+						<div class="caption">
+							<form action="confirmar_venda.php" name="form_vender" method="post">
+								<input type="hidden" name="txt_cod" value="2"/>
+								<input type="hidden" name="txt_valor" value="<?php echo $pontos; ?>"/>
+								<input type="hidden" name="txt_nome_oferta" value="<?php echo $nome_oferta; ?>"/>
+								<h3><?php echo $nome_oferta; ?></h3>
+								<h4><?php echo $nome_fantasia; ?></h4>
+								<p><?php echo $descricao; ?></p>
+								<table width="100%">
+									<tr><td>Quantidade: <?php echo $qtde_max; ?></td><td>Vendidos: <?php echo $qtde_vendida; ?></td></tr>
+									<tr><td>Valor: <?php echo $pontos; ?> trocados</td></tr>
+								</table>
+								<abbr title="Preencha com a quantidade que deseja vender."><input type="text" name="txt_qtde" size="5" maxlength="5" placeholder="Digite a quantidade" required /></abbr></br>
+								<abbr title="Preencha com o CPF do comprador."><input type="text" name="txt_cpf" size="50" maxlength="11" placeholder="Digite o CPF" required /></abbr></br>
+								<input class="btn btn-small btn-info" type="submit" name="btn_vender" value="Vender"/>
+							</form>
+						</div>
+					</div>
+				</li>
+<?php
+}
+?>
+			</ul>
+		</div>
 		
 	</div>        
 

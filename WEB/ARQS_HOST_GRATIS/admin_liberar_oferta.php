@@ -1,18 +1,8 @@
 <?php
 //Inclui o arquivo de verificação
-include_once("verifica_usuario.php");
+include_once("verifica_admin.php");
 
 session_start();
-
-$local = $_POST['txt_local'];
-
-if(empty($local)) {
-	$local = 'Sorocaba';
-}
-
-if($local == 'none') {
-	$local = 'Sorocaba';
-}
 
 $mysqli = mysqli_init();	
 $mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
@@ -21,11 +11,6 @@ if (mysqli_connect_errno())
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
 }
-
-$mysqli->real_query ("select o.nome_oferta, o.imagem, o.data_validade, o.pontos, o.descricao, o.qtde_max, o.qtde_vendida, l.nome_fantasia, l.telefone from loja l, ofertas o where l.ID = o.ID_loja and regiao = '$local' and o.autorizada = 1;");
-
-//executando comando
-$rs = $mysqli->store_result();
 ?>
 
 <!DOCTYPE html>
@@ -53,19 +38,6 @@ $rs = $mysqli->store_result();
 
         <!-- Habilitar Scripts Próprios -->
         <script type="text/javascript" src="js/troca.js"></script>
-		
-		<script type="text/javascript">
-			function alterarLocal() {
-				var option_local = document.getElementById("regionlocation");
-				var local = option_local.options[option_local.selectedIndex].value;
-				
-				var txt_local = document.getElementById("txt_local");
-				txt_local.value = local;
-				
-				document.forms["form_local"].submit();
-			}
-		</script>
-
     </head>
 
 <body class="container">
@@ -73,34 +45,16 @@ $rs = $mysqli->store_result();
 	<div id="header" class="container-fluid" style=" background-color:#a0cca0; border:1px solid #000000; border-radius:3px;z-index: 999;">
 
 		<div class="container-fluid">
-			<!-- Formulário de Localização de Ofertas [X] -->
-			<div class="container-fluid span6 offset2 btn-info" style="border:1px solid #004400; border-radius:1px;">
-				<div class="span2">
-					<i class="icon-map-marker icon-white"></i><b>Local</b>
-				</div>
-				<div class="span1" >
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
-						<option value="none"  disabled="disabled" selected="selected">Região</option>
-						<option value="Sorocaba">Sorocaba</option>
-						<option value="Campinas">Campinas</option>
-					</select>
-					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
-						<input type="text" name="txt_local" id="txt_local" value="" />
-					</form>
-				</div>
-            </div>
-
 			<!-- Menu Usuário para Mobile [X] -->
 			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				 <div class="span2 hero-unit" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
+				<div class="span2 hero-unit" style="background-color:#a0a0ff; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							Olá <b> <?php echo $_SESSION['nome']; ?> </b>
-							<button type="submit" class="btn btn-info btn-small">Sair</button></br>
-							Saldo: <?php echo $_SESSION['pontos']; ?> trocados
+							Olá <?php echo $_SESSION['nome']; ?>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
-				</div>                   
+				</div>                     
             </div>
         </div>
 
@@ -114,13 +68,11 @@ $rs = $mysqli->store_result();
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2 hero-unit" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
+				 <div class="span2 hero-unit" style="background-color:#a0a0ff; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							Olá <b> <?php echo $_SESSION['nome']; ?> </b>
-							<button type="submit" class="btn btn-info btn-small">Sair</button></br>
-							Saldo: <?php echo $_SESSION['pontos']; ?> trocados</br>
-							<a href="usuario_alterar_cadastro.php">Editar Perfil</a>
+							Olá <?php echo $_SESSION['nome']; ?>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
 				</div>                
@@ -128,56 +80,87 @@ $rs = $mysqli->store_result();
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2 hero-unit" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
+				<div class="span2 hero-unit" style="background-color:#a0a0ff; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							Olá <b> <?php echo $_SESSION['nome']; ?> </b>
-							<button type="submit" class="btn btn-info btn-small">Sair</button></br>
-							Saldo: <?php echo $_SESSION['pontos']; ?> trocados
+							Olá <?php echo $_SESSION['nome']; ?>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
-				</div>
+				</div>     
 			</div>
 			
 		</div>
     </div>
 
+	<!-- Conteudo mobile [X] -->
+	<div id="content" class="container alert alert-info visible-phone hidden-desktop hidden-tablet" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
+		
+	</div>
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+	<div id="content" class="container alert alert-info visible-desktop visible-tablet hidden-phone" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 		<div class="row-fluid">
 			<ul class="thumbnails">
 <?php
-while($rst = $rs->fetch_assoc()) {
-	$nome_oferta = $rst["nome_oferta"];
-	$imagem = $rst["imagem"];
-	$data_validade = $rst["data_validade"];
-	$pontos = $rst["pontos"];
-	$descricao = $rst["descricao"];
-	$qtde_max = $rst["qtde_max"];
-	$qtde_vendida = $rst["qtde_vendida"];
-	$nome_fantasia = $rst["nome_fantasia"];
-	$telefone = $rst["telefone"];
+//executando comando
+$mysqli->real_query ("select o.cod, o.nome_oferta, o.imagem, o.data_validade, o.pontos, o.descricao, o.qtde_max, o.qtde_vendida, l.nome_fantasia, l.telefone from loja l, ofertas o where l.ID = o.ID_loja and o.autorizada = 0;");
+$result = $mysqli->store_result();
+
+if($result) {
+	$i = 0;
+
+	while($rst = $rs->fetch_assoc()) {
+		$i = $i + 1;
+		
+		$cod = $rst["cod"];
+		$nome_oferta = $rst["nome_oferta"];
+		$imagem = $rst["imagem"];
+		$data_validade = $rst["data_validade"];
+		$pontos = $rst["pontos"];
+		$descricao = $rst["descricao"];
+		$qtde_max = $rst["qtde_max"];
+		$qtde_vendida = $rst["qtde_vendida"];
+		$nome_fantasia = $rst["nome_fantasia"];
+		$telefone = $rst["telefone"];
 ?>
 				<li class="span4">
 					<div class="thumbnail">
 						<img src="<?php echo $imagem; ?>" alt="">
 						<div class="caption">
-							<h3><?php echo $nome_oferta; ?></h3>
-							<h4><?php echo $nome_fantasia; ?></h4>
-							<p><?php echo $descricao; ?></p>
-							<table width="100%">
-								<tr><td>Quantidade: <?php echo $qtde_max; ?></td><td>Vendidos: <?php echo $qtde_vendida; ?></td></tr>
-								<tr><td>Valor: <?php echo $pontos; ?> trocados</td></tr>
-								<tr><td>Validade: <?php echo $data_validade; ?></td></tr>
-								<tr><td>Telefone: <?php echo $telefone; ?></td></tr>
-							</table>
+							<form lass="row-fluid" action="admin_liberar_oferta2.php" name="form_liberar<?php echo $i; ?>" method="post">
+								<input type="hidden" name="txt_cod" value="<?php echo $cod; ?>" />
+								<h3><?php echo $nome_oferta; ?></h3>
+								<h4><?php echo $nome_fantasia; ?></h4>
+								<p><?php echo $descricao; ?></p>
+								<table width="100%">
+									<tr><td>Quantidade: <?php echo $qtde_max; ?></td><td>Vendidos: <?php echo $qtde_vendida; ?></td></tr>
+									<tr><td>Validade: <?php echo $data_validade; ?></td></tr>
+									<tr><td>Telefone: <?php echo $telefone; ?></td></tr>
+									<tr></tr>
+									<tr><td>Valor: <abbr title="Insira o valor da oferta."><input type="text" class="input-mini" id="txt_valor" name="txt_valor" maxlength="6" placeholder="" required></abbr> trocados</td>
+									<td><button class="btn btn-large btn-info" type="submit" name="btn_cadastrar">Liberar</button></td></tr>
+								</table>
+							</form>
 						</div>
 					</div>
 				</li>
 <?php
+	}
+	if($i == 0) {
+?>
+	<h3>Nenhuma oferta esperando liberação.</h3><br>
+	<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/>
+<?php
+	}
+} else {
+?>
+	<h3>Ocorreu um erro desconhecido.</h3><br>
+	<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/>
+<?php
 }
 
+//encerrar conexão
 $mysqli->close();
 ?>
 			</ul>
@@ -205,3 +188,5 @@ $mysqli->close();
 </body>
     
 </html>
+
+ 

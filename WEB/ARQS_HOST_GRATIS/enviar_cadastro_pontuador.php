@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 //recebendo dados
 $nome = $_POST['txt_nome'];
 $snome = $_POST['txt_snome'];
@@ -14,6 +16,7 @@ if (mysqli_connect_errno())
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -24,7 +27,7 @@ if (mysqli_connect_errno())
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
         <meta name="keywords" content="descontos, coletivo, compra, reciclagem, shopping" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" lang="pt-BR" >
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -49,18 +52,14 @@ if (mysqli_connect_errno())
 		<div class="container-fluid">
 			<!-- Menu Usuário para Mobile [X] -->
 			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="btn-group">
-					 <div class="span2">
-						<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-							<div class="row-fluid">
-								<p align="right">Olá <?php echo $_SESSION['nome']; ?>
-							</div>
-							<div class="row-fluid">
-								<button type="submit" class="btn btn-info btn-small">Sair</button>
-							</div>
-						</form>
-					</div>                   
-                </div>
+				<div class="span2 hero-unit" style="background-color:#a0a0ff; border-style:solid; border-width:3px; border-color:#000;">
+					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
+						<div class="row-fluid">
+							Olá <?php echo $_SESSION['nome']; ?>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
+						</div>
+					</form>
+				</div>                     
             </div>
         </div>
 
@@ -74,13 +73,11 @@ if (mysqli_connect_errno())
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2">
+				 <div class="span2 hero-unit" style="background-color:#a0a0ff; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<p align="right">Olá <?php echo $_SESSION['nome']; ?>
-						</div>
-						<div class="row-fluid">
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
+							Olá <?php echo $_SESSION['nome']; ?>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
 				</div>                
@@ -88,16 +85,14 @@ if (mysqli_connect_errno())
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2">
+				<div class="span2 hero-unit" style="background-color:#a0a0ff; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<p align="right">Olá <?php echo $_SESSION['nome']; ?>
-						</div>
-						<div class="row-fluid">
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
+							Olá <?php echo $_SESSION['nome']; ?>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
-				</div>
+				</div>     
 			</div>
 			
 		</div>
@@ -105,20 +100,22 @@ if (mysqli_connect_errno())
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
-<?php
-if($mysqli->real_query ("CALL cadastro_pontuador('$nome','$snome','$tel','$email','$senha');"))
-{
+	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+
+	<?php
+//executando comando
+if($mysqli->real_query ("CALL cadastro_pontuador('$nome','$snome','$tel','$email','$senha');")) {
 ?>
-        <p>Cadastro efetuado com sucesso.<br>
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/></p>
-<?php
-}
-else{
+		<h3>Cadastro efetuado com sucesso.</h3><br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/>
+
+<?php	
+} else {
 ?>
-        <p>Erro: cadastro não pode ser efetuado.<br>
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/></p>
-<?php
+		<h3>Erro: cadastro não pode ser efetuado.</h3><br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/>
+
+<?
 }
 
 //encerrar conexão

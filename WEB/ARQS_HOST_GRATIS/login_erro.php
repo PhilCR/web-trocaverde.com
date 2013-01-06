@@ -8,7 +8,7 @@
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
         <meta name="keywords" content="descontos, coletivo, compra, reciclagem, shopping" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" lang="pt-BR" >
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -125,14 +125,8 @@
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
-		<p>Email e/ou senha inválidos, tente novamente.</p>
-		<form action="autenticar.php" name="form_login" method="post">
-			<p>E-mail:<input type="text" name="txt_email" size="30" maxlength="70"/><br>
-			Senha:<input type="password" name="txt_senha" size="30" maxlength="16"/></p>
-			<p><input class="abutton" type="submit" name="btn_entrar" value="Entrar"/>
-			<input class="abutton" type="button" name="btn_cadastro" value="Novo" onclick="location.href='cadastro.php'"></p>
-		</form>
+	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+		<h3>Email e/ou senha inválidos, tente novamente.</h3>
 	</div>        
 
 	<!-- Rodapé [X]-->

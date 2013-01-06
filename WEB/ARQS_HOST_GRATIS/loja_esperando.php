@@ -126,7 +126,7 @@
        
 	<!-- Conteudo [X] -->
 	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
-		<h3>Área somente para usuários cadastrados, faça o login.</h3>
+		<h3>Aguardando liberação dos Administradores.</h3>
 	</div>        
 
 	<!-- Rodapé [X]-->

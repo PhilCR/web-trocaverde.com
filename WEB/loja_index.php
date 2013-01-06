@@ -109,6 +109,7 @@ $rs = mysql_query($sql, $conn);
 	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 		<div  class="btn-group">
 			<button class="btn btn-info btn-large" name="btn_cadastro" value="Cadastro" onclick="location.href='cadastro_oferta.php'">Cadastrar Oferta</button>
+			<button class="btn btn-info btn-large" name="btn_alterar" value="Alterar" onclick="location.href='loja_alterar_cadastro.php'">Alterar Cadastro</button>
 		</div>
 
 		<div class="row-fluid">

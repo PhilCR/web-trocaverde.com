@@ -120,7 +120,8 @@ $rs = mysql_query($sql, $conn);
 						<div class="row-fluid">
 							Olá <b> <?php echo $_SESSION['nome']; ?> </b>
 							<button type="submit" class="btn btn-info btn-small">Sair</button></br>
-							Saldo: <?php echo $_SESSION['pontos']; ?> trocados
+							Saldo: <?php echo $_SESSION['pontos']; ?> trocados</br>
+							<a href="usuario_alterar_cadastro.php">Editar Perfil</a>
 						</div>
 					</form>
 				</div>                

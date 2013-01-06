@@ -14,7 +14,7 @@ $end_cid = $_POST['txt_end_cid'];
 $end_est = $_POST['txt_end_est'];
 $end_cep = $_POST['txt_end_cep'];
 $senha = $_POST['txt_senha'];
-
+$regiao = $_POST['txt_regiao'];
 
 $mysqli = mysqli_init();	
 $mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
@@ -24,6 +24,7 @@ if (mysqli_connect_errno())
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -34,7 +35,7 @@ if (mysqli_connect_errno())
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
         <meta name="keywords" content="descontos, coletivo, compra, reciclagem, shopping" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" lang="pt-BR" >
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -68,20 +69,21 @@ if (mysqli_connect_errno())
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
+	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 <?php
-if($mysqli->real_query ("CALL cadastro_loja('$cnpj','$rsocial','$nfantasia','$inscest','$tel','$email','$end_rua','$end_num','$end_comp','$end_bar','$end_cid','$end_est','$end_cep','$senha');"))
-{
+//executando comando
+if($mysqli->real_query ("CALL cadastro_loja('$cnpj','$rsocial','$nfantasia','$inscest','$tel','$email','$end_rua','$end_num','$end_comp','$end_bar','$end_cid','$end_est','$end_cep','$senha','$regiao');")) {
 ?>
-        <p>Cadastro efetuado com sucesso.<br>
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/></p>
+		<h3>Cadastro efetuado com sucesso.</h3><br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/></p>
+
 <?php	
-}
-else{
+} else {
 ?>
-        <p>Erro: cadastro não pode ser efetuado.<br>
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/></p>
-<?php
+		<h3>Erro: cadastro não pode ser efetuado.</h3><br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/></p>
+
+<?
 }
 
 //encerrar conexão

@@ -126,7 +126,9 @@
        
 	<!-- Conteudo [X] -->
 	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
-		<h3>Área somente para usuários cadastrados, faça o login.</h3>
+		<h3>Localização dos l.E.V.s (Local de Entrega Voluntária);</h3></br></br>
+		<h5>Estacionamento Shopping Sorocaba - Sorocaba</h5>
+		<h5>Estacionamento Shopping Dom Pedro - Campinas</h5>
 	</div>        
 
 	<!-- Rodapé [X]-->
@@ -150,3 +152,4 @@
 </body>
     
 </html>
+ 

@@ -1,3 +1,34 @@
+<?php
+session_start();
+
+$email1 = $_SESSION["email"];
+
+//recebendo dados
+$nome = $_POST['txt_nome'];	
+$snome = $_POST['txt_snome'];
+$tel = $_POST['txt_tel'];
+$cel = $_POST['txt_cel'];
+$nasc = $_POST['txt_data'];	
+$email2 = $_POST['txt_email'];
+$cpf = $_POST['txt_cpf'];
+$end_rua = $_POST['txt_end_rua'];
+$end_num = $_POST['txt_end_num'];
+$end_comp = $_POST['txt_end_comp'];
+$end_bar = $_POST['txt_end_bar'];
+$end_cid = $_POST['txt_end_cid'];
+$end_est = $_POST['txt_end_est'];
+$end_cep = $_POST['txt_end_cep'];
+$senha = $_POST['txt_senha'];
+
+$mysqli = mysqli_init();	
+$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
+if (mysqli_connect_errno())
+{
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -43,7 +74,26 @@
        
 	<!-- Conteudo [X] -->
 	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
-		 <h1>Área permitida a apenas usuario clientes.</h1>
+<?php
+//executando comando
+if($mysqli->real_query ("CALL atualiza_cliente('$email1', '$nome', '$snome', '$tel', '$cel', '$nasc', '$email2', '$cpf', '$end_rua', '$end_num', '$end_comp', '$end_bar', '$end_cid', '$end_est', '$end_cep', '$senha');")) {
+?>
+		<h3>Alteração efetuada com sucesso.</h3><br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Sair" onclick="location.href='sair.php'"/>
+
+<?php	
+} else {
+//echo mysql_errno($conn) . ": " . mysql_error($conn) . "\n";
+?>
+		<h3>Erro: alteração não pode ser efetuada.</h3><br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/>
+
+<?
+}
+
+//encerrar conexão
+$mysqli->close();
+?>
 	</div>        
 
 	<!-- Rodapé [X]-->

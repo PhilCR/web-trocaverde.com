@@ -6,6 +6,19 @@ session_start();
 
 $cod = $_POST["txt_cod"];
 $valor = $_POST["txt_valor"];
+
+$mysqli = mysqli_init();	
+$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
+if (mysqli_connect_errno())
+{
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
+
+$mysqli->real_query ("select o.cod, o.nome_oferta, o.imagem, o.data_validade, o.pontos, o.descricao, o.qtde_max, o.qtde_vendida, l.nome_fantasia, l.telefone from loja l, ofertas o where l.ID = o.ID_loja and o.cod = '$cod';");
+
+//executando comando
+$rs = $mysqli->store_result();
 ?>	
 
 <!DOCTYPE html>
@@ -18,7 +31,7 @@ $valor = $_POST["txt_valor"];
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
         <meta name="keywords" content="descontos, coletivo, compra, reciclagem, shopping" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" lang="pt-BR" >
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -44,18 +57,14 @@ $valor = $_POST["txt_valor"];
 
 			<!-- Menu Usuário para Mobile [X] -->
 			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="btn-group">
-					 <div class="span2">
-						<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-							<div class="row-fluid">
-								<p align="right">Olá <?php echo $_SESSION['razao_social']; ?>
-							</div>
-							<div class="row-fluid">
-								<button type="submit" class="btn btn-info btn-small">Sair</button>
-							</div>
-						</form>
-					</div>                   
-                </div>
+				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
+					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
+						<div class="row-fluid">
+							Olá <?php echo $_SESSION['razao_social']; ?>
+							<button type="submit" class="btn btn-info btn-small">Sair</button>
+						</div>
+					</form>
+				</div>                   
             </div>
         </div>
 
@@ -69,12 +78,10 @@ $valor = $_POST["txt_valor"];
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2">
+				 <div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<p align="right">Olá <?php echo $_SESSION['razao_social']; ?>
-						</div>
-						<div class="row-fluid">
+							Olá <?php echo $_SESSION['razao_social']; ?>
 							<button type="submit" class="btn btn-info btn-small">Sair</button>
 						</div>
 					</form>
@@ -83,12 +90,10 @@ $valor = $_POST["txt_valor"];
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2">
+				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<p align="right">Olá <?php echo $_SESSION['razao_social']; ?>
-						</div>
-						<div class="row-fluid">
+							Olá <?php echo $_SESSION['razao_social']; ?>
 							<button type="submit" class="btn btn-info btn-small">Sair</button>
 						</div>
 					</form>
@@ -100,28 +105,51 @@ $valor = $_POST["txt_valor"];
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
-		<form action="confirmar_venda.php" name="form_vender" method="post">
-			<table>
-			<tr><td><img src="img/coxinha.jpeg" class=""></td>
-			<td>
-				<p>Coxinha 30% off</p>
-				<p>Cantina</p>
-				<input type="hidden" name="txt_cod" value="2"/>
-				<input type="hidden" name="txt_valor" value="200"/>
-				<p>descrição haiuhsasuidhasd sbduasbdui ad aisd asd asd asda dasj dasjk das dasm dam,s dasm,d am,sd sm
-				sdmamjsaiofb dfgddsajsna sndsjadnas iodsaiosd ns erewqwiwdqwdqwe we qwr qwe ewfw wefwe fewf ewf ewf nd
-				wdqwdwa qwe qedqw dw dq dqwq d wdqwdqwdqw d wqdqwd qqdqdqwdqwdqwdqwdqwdqwdqwdqwdwqedwed dwed wedqs</p>
-				<table width="100%">
-					<tr><td>Quantidade: 1000</td><td>Vendidos: 0</td></tr>
-					<tr><td>Valor: 200 trocados</td><td></td></tr>
-					<tr><td>Quantidade:</td><td><input type="text" name="txt_qtde" size="5" maxlength="5"/></td></tr>
-					<tr><td>CPF:</td><td><input type="text" name="txt_cpf" size="50" maxlength="11"/></td></tr>
-					<tr><td></td><td align="right"><input class="abutton" type="submit" name="btn_vender" value="Vender"/></td></tr>
-				</table>
-			</td></tr>
-			</table>
-		</form>
+	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">		
+		<div class="row-fluid">
+			<ul class="thumbnails">
+<?php
+while($rst = $rs->fetch_assoc()) {
+	$cod = $rst["cod"];
+	$nome_oferta = $rst["nome_oferta"];
+	$imagem = $rst["imagem"];
+	$data_validade = $rst["data_validade"];
+	$pontos = $rst["pontos"];
+	$descricao = $rst["descricao"];
+	$qtde_max = $rst["qtde_max"];
+	$qtde_vendida = $rst["qtde_vendida"];
+	$nome_fantasia = $rst["nome_fantasia"];
+	$telefone = $rst["telefone"];
+?>
+				<li class="span4">
+					<div class="thumbnail">
+						<img src="<?php echo $imagem; ?>" alt="">
+						<div class="caption">
+							<form action="confirmar_venda.php" name="form_vender" method="post">
+								<input type="hidden" name="txt_cod" value="2"/>
+								<input type="hidden" name="txt_valor" value="<?php echo $pontos; ?>"/>
+								<input type="hidden" name="txt_nome_oferta" value="<?php echo $nome_oferta; ?>"/>
+								<h3><?php echo $nome_oferta; ?></h3>
+								<h4><?php echo $nome_fantasia; ?></h4>
+								<p><?php echo $descricao; ?></p>
+								<table width="100%">
+									<tr><td>Quantidade: <?php echo $qtde_max; ?></td><td>Vendidos: <?php echo $qtde_vendida; ?></td></tr>
+									<tr><td>Valor: <?php echo $pontos; ?> trocados</td></tr>
+								</table>
+								<abbr title="Preencha com a quantidade que deseja vender."><input type="text" name="txt_qtde" size="5" maxlength="5" placeholder="Digite a quantidade" required /></abbr></br>
+								<abbr title="Preencha com o CPF do comprador."><input type="text" name="txt_cpf" size="50" maxlength="11" placeholder="Digite o CPF" required /></abbr></br>
+								<input class="btn btn-small btn-info" type="submit" name="btn_vender" value="Vender"/>
+							</form>
+						</div>
+					</div>
+				</li>
+<?php
+}
+$mysqli->close();
+?>
+			</ul>
+		</div>
+		
 	</div>        
 
 	<!-- Rodapé [X]-->

@@ -9,6 +9,7 @@ $cpf = $_POST["txt_cpf"];
 $cod = $_POST["txt_cod"];
 $valor = $_POST["txt_valor"];
 $qtde = $_POST["txt_qtde"];
+$nome_oferta = $_POST["txt_nome_oferta"];
 
 //calculando total
 $total = $valor * $qtde;
@@ -20,8 +21,16 @@ if (mysqli_connect_errno())
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
 }
-if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
-{?>
+
+$mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');");
+
+
+//executando comando
+$rs = $mysqli->store_result();
+
+//verifica o numero de linhas do resultado
+$num = $mysqli->affected_rows;
+?>
 
 <!DOCTYPE html>
 
@@ -33,7 +42,7 @@ if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
         <meta name="keywords" content="descontos, coletivo, compra, reciclagem, shopping" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" lang="pt-BR" >
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -59,18 +68,14 @@ if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
 
 			<!-- Menu Usuário para Mobile [X] -->
 			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="btn-group">
-					 <div class="span2">
-						<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-							<div class="row-fluid">
-								<p align="right">Olá <?php echo $_SESSION['razao_social']; ?>
-							</div>
-							<div class="row-fluid">
-								<button type="submit" class="btn btn-info btn-small">Sair</button>
-							</div>
-						</form>
-					</div>                   
-                </div>
+				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
+					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
+						<div class="row-fluid">
+							Olá <?php echo $_SESSION['razao_social']; ?>
+							<button type="submit" class="btn btn-info btn-small">Sair</button>
+						</div>
+					</form>
+				</div>                   
             </div>
         </div>
 
@@ -84,12 +89,10 @@ if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2">
+				 <div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<p align="right">Olá <?php echo $_SESSION['razao_social']; ?>
-						</div>
-						<div class="row-fluid">
+							Olá <?php echo $_SESSION['razao_social']; ?>
 							<button type="submit" class="btn btn-info btn-small">Sair</button>
 						</div>
 					</form>
@@ -98,12 +101,10 @@ if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2">
+				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
-							<p align="right">Olá <?php echo $_SESSION['razao_social']; ?>
-						</div>
-						<div class="row-fluid">
+							Olá <?php echo $_SESSION['razao_social']; ?>
 							<button type="submit" class="btn btn-info btn-small">Sair</button>
 						</div>
 					</form>
@@ -114,53 +115,49 @@ if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
     </div>
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
-<?
-	if(!$objResult = $mysqli->store_result()){
-        $mysqli->close();
+	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+		 		
+<?php
+if($num == 0) {
+	$mysqli->close();
 ?>
 
-		<p>Cliente não encontrado.
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/></p>
+		<h3>Cliente não encontrado.</h3></br>
+		<input class="btn btn-small btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/>
 	
 <?php
-        
-    }
-    else{
-        while($rst = $objResult->fetch_assoc()){
-            $nome = $rst["nome"];
-            $snome = $rst["snome"];
-            $data = $rst["data_nasc"];
-            $pontos = $rst["pontos"];
-            $mysqli->close();
-        }
-        $objResult->free_result();
-        if($pontos < $total) {
+} else {
+	$rst = $rs->fetch_assoc();
+	$nome = $rst["nome"];
+	$snome = $rst["snome"];
+	$data = $rst["data_nasc"];
+	$pontos = $rst["pontos"];
+	$mysqli->close();
+	
+	if($pontos < $total) {
 ?>
 
-		<p>Cliente não tem trocados o suficiente.
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/></p>
+		<h3>Cliente não tem trocados o suficiente.</h3></br>
+		<input class="btn btn-small btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='loja_index.php'"/>
 
 <?php
-        }
-        else{
+	} else {
 ?>	
 		<form action="verder.php" name="form_vender" method="post">
 			<input type="hidden" name="txt_cpf" value="<?php echo $cpf ?>"/>
 			<input type="hidden" name="txt_cod" value="<?php echo $cod ?>"/>
 			<input type="hidden" name="txt_qtde" value="<?php echo $qtde ?>"/>
 			<table>
-				<tr><td>Nome: <?php echo $nome ?> <?php echo $snome ?></td><td></td></tr>
-				<tr><td>Data de Nascimento: <?php echo $data ?></td><td></td></tr>
+				<tr><td><h4>Nome: <?php echo $nome ?> <?php echo $snome ?></h4></td><td></td></tr>
+				<tr><td><h4>Data de Nascimento: <?php echo $data ?></h4></td><td></td></tr>
 				<tr><td></td><td></td></tr>
-				<tr><td>Oferta: Coxinha 30% off</td><td></td></tr>
-				<tr><td>Quantidade: <?php echo $qtde ?></td><td>Total: <?php echo $total ?> trocados</td></tr>
-				<tr><td></td><td align="right"><input class="abutton" type="submit" name="btn_vender" value="Vender"/></td></tr>
+				<tr><td><h4>Oferta: <?php echo $nome_oferta; ?></h4></td><td></td></tr>
+				<tr><td><h4>Quantidade: <?php echo $qtde ?></h4></td><td><h4>Total: <?php echo $total ?> trocados</h4></td></tr>
+				<tr><td></td><td align="right"><input class="btn btn-small btn-info" type="submit" name="btn_vender" value="Vender"/></td></tr>
 			</table>
 		</form>	
 <?php
-        }
-    }
+	}
 }
 ?>    
 	</div>        

@@ -18,9 +18,16 @@ if (mysqli_connect_errno())
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
 }
-if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
-{
+
+$mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');");
+
+//executando comando
+$rs = $mysqli->store_result();
+
+//verifica o numero de linhas do resultado
+$num =   $mysqli->affected_rows;
 ?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -31,7 +38,7 @@ if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
         <meta name="keywords" content="descontos, coletivo, compra, reciclagem, shopping" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt-BR" >
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" lang="pt-BR" >
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -52,23 +59,17 @@ if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
 <body class="container">
 	<!-- Cabeçalho [X] -->
 	<div id="header" class="container-fluid" style=" background-color:#a0cca0; border:1px solid #000000; border-radius:3px;z-index: 999;">
-
 		<div class="container-fluid">
-
 			<!-- Menu Usuário para Mobile [X] -->
 			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="btn-group">
-					 <div class="span2">
-						<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-							<div class="row-fluid">
-								<p align="right">Olá <?php echo $_SESSION['nome']; ?>
-							</div>
-							<div class="row-fluid">
-								<button type="submit" class="btn btn-info btn-small">Sair</button>
-							</div>
-						</form>
-					</div>                   
-                </div>
+				 <div class="span2 hero-unit" style="background-color:#ffa0a0; border-style:solid; border-width:3px; border-color:#000;">
+					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
+						<div class="row-fluid">
+							<p align="right">Olá <?php echo $_SESSION['nome']; ?>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
+						</div>
+					</form>
+				</div>                   
             </div>
         </div>
 
@@ -82,13 +83,11 @@ if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2">
+				 <div class="span2 hero-unit" style="background-color:#ffa0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
 							<p align="right">Olá <?php echo $_SESSION['nome']; ?>
-						</div>
-						<div class="row-fluid">
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
 				</div>                
@@ -96,13 +95,11 @@ if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
 
 			<!-- Área de Acesso [X] -->
 			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2">
+				<div class="span2 hero-unit" style="background-color:#ffa0a0; border-style:solid; border-width:3px; border-color:#000;">
 					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
 						<div class="row-fluid">
 							<p align="right">Olá <?php echo $_SESSION['nome']; ?>
-						</div>
-						<div class="row-fluid">
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
+							<button type="submit" class="btn btn-info btn-mini">Sair</button>
 						</div>
 					</form>
 				</div>
@@ -113,40 +110,41 @@ if($mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');"))
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
+	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+
 <?php
-	if(!$objResult = $mysqli->store_result()){
-        //encerrar conexão
-        $mysqli->close();
+if($num == 0) {
+	$mysqli->close();
 ?>
-        <p>Cliente não encontrado
-		<input class="abutton" type="button" name="btn_voltar" value="Voltar" onclick="location.href='pontuador_index.php'"/></p>
+
+		<h3>Cliente não encontrado</h3></br>
+		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='pontuador_index.php'"/></p>
+	
 <?php
-    }
-    else{
-        while($rst = $objResult->fetch_assoc()){
-            $email = $rst["email"];
-            $nome = $rst["nome"];
-            $snome = $rst["snome"];
-            $data = $rst["data_nasc"];
-            $mysqli->close();
-        }
-        $objResult->free_result();
-    }
-}
+} else {
+	$rst = $rs->fetch_assoc();
+	$email = $rst["email"];
+	$nome = $rst["nome"];
+	$snome = $rst["snome"];
+	$data = $rst["data_nasc"];
+	$mysqli->close();
 ?>	
 		
 		<form action="pontuar.php" name="form_pontuar" method="post">
 			<input type="hidden" name="txt_email" value="<?php echo $email ?>"/>
 			<input type="hidden" name="txt_pontos" value="<?php echo $pontos ?>"/>
 			<table align="center">
-				<tr><td>Nome:</td><td><?php echo $nome ?> <?php echo $snome ?></td></tr>
-				<tr><td>Data de Nascimento:</td><td><?php echo $data ?></td></tr>
+				<tr><td><h4>Nome:</h4></td><td><h4><?php echo $nome ?> <?php echo $snome ?></h4></td></tr>
+				<tr><td><h4>Data de Nascimento:</h4></td><td><h4><?php echo $data ?></h4></td></tr>
 				<tr><td></td><td></td></tr>
-				<tr><td>Pontos:</td><td><?php echo $pontos ?></td></tr>
-				<tr><td></td><td align="right"><input class="abutton" type="submit" name="btn_pontuar" value="Confirmar Pontuação"/></td></tr>
+				<tr><td><h4>Trocados:</h4></td><td><h4><?php echo $pontos ?></h4></td></tr>
+				<tr><td></td><td align="right"><input class="btn btn-large btn-info" type="submit" name="btn_pontuar" value="Confirmar Pontuação"/></td></tr>
 			</table>
 		</form>
+
+<?php
+}
+?>
 	</div>        
 
 	<!-- Rodapé [X]-->

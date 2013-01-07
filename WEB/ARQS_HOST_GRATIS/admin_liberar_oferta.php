@@ -110,7 +110,7 @@ $result = $mysqli->store_result();
 if($result) {
 	$i = 0;
 
-	while($rst = $rs->fetch_assoc()) {
+	while($rst = $result->fetch_assoc()) {
 		$i = $i + 1;
 		
 		$cod = $rst["cod"];

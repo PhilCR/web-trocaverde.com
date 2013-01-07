@@ -1,4 +1,4 @@
- <?php
+<?php
 //Inclui o arquivo de verificação
 include_once("verifica_loja.php");
 

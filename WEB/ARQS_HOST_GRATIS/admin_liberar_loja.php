@@ -105,11 +105,15 @@ if (mysqli_connect_errno())
 $mysqli->real_query ("SELECT * FROM loja WHERE autorizada = 0;");
 $result = $mysqli->store_result();
 
+$qtde = $mysqli->affected_rows;
+
 if($result) {
 	$i = 0;
 
-	while($row = $rs->fetch_assoc()) {
+	while($qtde > 0) {
+		$row = $result->fetch_assoc();
 		$i = $i + 1;
+		$qtde = $qtde - 1;
 	
 		$razao_social = $row['razao_social'];
 		$nome_fantasia = $row['nome_fantasia']; 

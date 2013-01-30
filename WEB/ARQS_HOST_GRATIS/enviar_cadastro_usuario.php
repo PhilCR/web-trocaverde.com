@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 //recebendo dados
 $nome = $_POST['txt_nome'];	
 $snome = $_POST['txt_snome'];
@@ -17,14 +18,16 @@ $end_est = $_POST['txt_end_est'];
 $end_cep = $_POST['txt_end_cep'];
 $senha = $_POST['txt_senha'];
 
-$mysqli = mysqli_init();	
-$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
-if (mysqli_connect_errno())
-{
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
+//conectando ao banco de dados
+$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("u736022732_trocavrd", $conn);
 }
 
+//criando comando sql
+$sql = "CALL cadastro_cliente('$nome','$snome','$tel','$cel','$nasc','$email',$pontos,'$cpf','$end_rua','$end_num','$end_comp','$end_bar','$end_cid','$end_est','$end_cep','$senha');";
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +77,7 @@ if (mysqli_connect_errno())
 	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 <?php
 //executando comando
-if($mysqli->real_query ("CALL cadastro_cliente('$nome','$snome','$tel','$cel','$nasc','$email',$pontos,'$cpf','$end_rua','$end_num','$end_comp','$end_bar','$end_cid','$end_est','$end_cep','$senha');")) {
+if(mysql_query($sql, $conn)) {
 ?>
 		<h3>Cadastro efetuado com sucesso.</h3><br>
 		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/>
@@ -89,7 +92,7 @@ if($mysqli->real_query ("CALL cadastro_cliente('$nome','$snome','$tel','$cel','$
 }
 
 //encerrar conexão
-$mysqli->close();
+mysql_close($conn);
 ?>
 	</div>        
 
@@ -99,15 +102,15 @@ $mysqli->close();
 			&copy; 2012 - All Rights Reserved.
 		</div>
 		<div class="span2 offset1">
-			<a href="contato.html" target="blank" title="Contate-nos" class="btn-success">Contate-nos</a>
+			<a href="contato.php" title="Contate-nos" class="btn-success">Contate-nos</a>
 		</div>
 
 		<div class="span2">
-			<a href="termos.html" target="blank" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
+			<a href="termos.php" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
 		</div>
 
 		<div class="span3">
-			<a href="levs.php" target="blank" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
+			<a href="levs.php" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
 		</div>
 
 	</div>

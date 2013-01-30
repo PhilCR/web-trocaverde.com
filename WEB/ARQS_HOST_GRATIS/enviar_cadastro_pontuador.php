@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 session_start();
 
 //recebendo dados
@@ -8,13 +9,16 @@ $tel = $_POST['txt_tel'];
 $email = $_POST['txt_email'];
 $senha = $_POST['txt_senha'];
 
-$mysqli = mysqli_init();	
-$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
-if (mysqli_connect_errno())
-{
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
+//conectando ao banco de dados
+$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("u736022732_trocavrd", $conn);
 }
+
+//criando comando sql
+$sql = "CALL cadastro_pontuador('$nome','$snome','$tel','$email','$senha');";
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +108,7 @@ if (mysqli_connect_errno())
 
 	<?php
 //executando comando
-if($mysqli->real_query ("CALL cadastro_pontuador('$nome','$snome','$tel','$email','$senha');")) {
+if(mysql_query($sql, $conn)) {
 ?>
 		<h3>Cadastro efetuado com sucesso.</h3><br>
 		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='admin_index.php'"/>
@@ -119,7 +123,7 @@ if($mysqli->real_query ("CALL cadastro_pontuador('$nome','$snome','$tel','$email
 }
 
 //encerrar conexão
-$mysqli->close();
+mysql_close($conn);
 ?>
 
 	</div>        
@@ -130,15 +134,15 @@ $mysqli->close();
 			&copy; 2012 - All Rights Reserved.
 		</div>
 		<div class="span2 offset1">
-			<a href="contato.html" target="blank" title="Contate-nos" class="btn-success">Contate-nos</a>
+			<a href="contato.php" title="Contate-nos" class="btn-success">Contate-nos</a>
 		</div>
 
 		<div class="span2">
-			<a href="termos.html" target="blank" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
+			<a href="termos.php" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
 		</div>
 
 		<div class="span3">
-			<a href="levs.php" target="blank" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
+			<a href="levs.php" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
 		</div>
 
 	</div>

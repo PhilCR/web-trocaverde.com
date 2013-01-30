@@ -1,30 +1,29 @@
 <?php
+error_reporting(0);
+
 include_once("redireciona.php");
 
 $local = $_POST['txt_local'];
 
 if(empty($local)) {
 	$local = 'Sorocaba';
-}
-
-session_start();
-
-if($local == 'none') {
+} else if($local == 'none') {
 	$local = 'Sorocaba';
 }
 
-$mysqli = mysqli_init();	
-$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
-if (mysqli_connect_errno())
-{
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
+//conectando ao banco de dados
+$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("u736022732_trocavrd", $conn);
 }
 
-$mysqli->real_query ("select o.nome_oferta, o.imagem, o.data_validade, o.pontos, o.descricao, o.qtde_max, o.qtde_vendida, l.nome_fantasia, l.telefone from loja l, ofertas o where l.ID = o.ID_loja and regiao = '$local' and o.autorizada = 1;");
+//criando comando sql
+$sql = "select o.nome_oferta, o.imagem, DATE_FORMAT(o.data_validade, '%d/%m/%Y')  as data_validade, o.pontos, o.descricao, o.qtde_max, o.qtde_vendida, l.nome_fantasia, l.telefone from loja l, ofertas o where l.ID = o.ID_loja and regiao = '$local' and o.autorizada = 1;";
 
 //executando comando
-$rs = $mysqli->store_result();
+$rs = mysql_query($sql, $conn);
 	
 ?>
 
@@ -32,7 +31,7 @@ $rs = $mysqli->store_result();
 
 <html lang="en">
     <head>
-        <title>TrocaVerde.com - Seu lixo reciclado como desconto para você!</title> 
+        <title>TrocaVerde.com - Seu lixo reciclado como desconto para voc�!</title> 
 
         <!-- Metas descritivas -->
         <meta name="description" content="Site de compras coletivas utilizando pontos para obtenção de descontos." />
@@ -80,7 +79,7 @@ $rs = $mysqli->store_result();
 				</div>
 				<div class="span1" >
 					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
-						<option value="none"  disabled="disabled" selected="selected">Região</option>
+						<option value="none"  disabled="disabled" selected="selected">Regi�o</option>
 						<option value="Sorocaba">Sorocaba</option>
 						<option value="Campinas">Campinas</option>
 					</select>
@@ -186,7 +185,7 @@ $rs = $mysqli->store_result();
 		<div class="row-fluid">
 			<ul class="thumbnails">
 <?php
-$rst = $rs->fetch_assoc();
+$rst = mysql_fetch_array($rs);
 
 $nome_oferta = $rst["nome_oferta"];
 $imagem = $rst["imagem"];
@@ -215,7 +214,7 @@ $telefone = $rst["telefone"];
 					</div>
 				</li>
 <?php
-$rst = $rs->fetch_assoc();
+$rst = mysql_fetch_array($rs);
 
 $nome_oferta = $rst["nome_oferta"];
 $imagem = $rst["imagem"];
@@ -244,7 +243,7 @@ $telefone = $rst["telefone"];
 					</div>
 				</li>
 <?php
-$rst = $rs->fetch_assoc();
+$rst = mysql_fetch_array($rs);
 
 $nome_oferta = $rst["nome_oferta"];
 $imagem = $rst["imagem"];
@@ -255,7 +254,6 @@ $qtde_max = $rst["qtde_max"];
 $qtde_vendida = $rst["qtde_vendida"];
 $nome_fantasia = $rst["nome_fantasia"];
 $telefone = $rst["telefone"];
-$mysqli->close();
 ?>
 				<li class="span4">
 					<div class="thumbnail">
@@ -283,15 +281,15 @@ $mysqli->close();
 			&copy; 2012 - All Rights Reserved.
 		</div>
 		<div class="span2 offset1">
-			<a href="contato.html" target="blank" title="Contate-nos" class="btn-success">Contate-nos</a>
+			<a href="contato.php" title="Contate-nos" class="btn-success">Contate-nos</a>
 		</div>
 
 		<div class="span2">
-			<a href="termos.html" target="blank" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
+			<a href="termos.php" title="Termos e Políticas" class="btn-success">Termos e Pol�ticas</a>
 		</div>
 
 		<div class="span3">
-			<a href="levs.php" target="blank" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
+			<a href="levs.php" title="Localização dos L.E.V.s" class="btn-success">Localiza��o dos L.E.V.s</a>
 		</div>
 
 	</div>

@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 //Inclui o arquivo de verificação
 include_once("verifica_loja.php");
 
@@ -14,22 +15,22 @@ $nome_oferta = $_POST["txt_nome_oferta"];
 //calculando total
 $total = $valor * $qtde;
 
-$mysqli = mysqli_init();	
-$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
-if (mysqli_connect_errno())
-{
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
+//conectando ao banco de dados
+$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("u736022732_trocavrd", $conn);
 }
 
-$mysqli->real_query ("CALL dados_cliente_por_cpf('$cpf');");
-
+//criando comando sql
+$sql = "CALL dados_cliente_por_cpf('$cpf');";
 
 //executando comando
-$rs = $mysqli->store_result();
+$rs = mysql_query($sql, $conn);
 
 //verifica o numero de linhas do resultado
-$num = $mysqli->affected_rows;
+$num = mysql_num_rows($rs);
 ?>
 
 <!DOCTYPE html>
@@ -119,7 +120,7 @@ $num = $mysqli->affected_rows;
 		 		
 <?php
 if($num == 0) {
-	$mysqli->close();
+	mysql_close($conn);
 ?>
 
 		<h3>Cliente não encontrado.</h3></br>
@@ -127,12 +128,12 @@ if($num == 0) {
 	
 <?php
 } else {
-	$rst = $rs->fetch_assoc();
+	$rst = mysql_fetch_array($rs);
 	$nome = $rst["nome"];
 	$snome = $rst["snome"];
 	$data = $rst["data_nasc"];
 	$pontos = $rst["pontos"];
-	$mysqli->close();
+	mysql_close($conn);
 	
 	if($pontos < $total) {
 ?>
@@ -168,15 +169,15 @@ if($num == 0) {
 			&copy; 2012 - All Rights Reserved.
 		</div>
 		<div class="span2 offset1">
-			<a href="contato.html" target="blank" title="Contate-nos" class="btn-success">Contate-nos</a>
+			<a href="contato.php" title="Contate-nos" class="btn-success">Contate-nos</a>
 		</div>
 
 		<div class="span2">
-			<a href="termos.html" target="blank" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
+			<a href="termos.php" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
 		</div>
 
 		<div class="span3">
-			<a href="levs.php" target="blank" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
+			<a href="levs.php" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
 		</div>
 
 	</div>

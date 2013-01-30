@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 //Inclui o arquivo de verificação
 include_once("verifica_pontuador.php");
 
@@ -91,8 +92,10 @@ session_start();
 	<!-- Conteudo [X] -->
 	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 		<form action="pre_pontuar.php" name="form_pre_pontuar" method="post">
+			<br>
 			<input class="input-large" type="text" name="txt_cpf" size="30" maxlength="11" placeholder="Digite o CPF" required/><br>
-			<input class="input-large" type="text" name="txt_peso" size="10" maxlength="6" placeholder="Digite o Peso (g)" required/><br>
+			<input class="input-large" type="text" name="txt_qtde" size="10" maxlength="6" placeholder="Quantidade de Sacolas Troca Verde" required/><br>
+			<h4>Indice Troca Verde: 0,901</h4><br><br>
 			<button class="btn btn-large btn-info" type="submit" name="btn_pontuar" value="Pontuar">Pontuar</button>
 		</form>
 	</div>        
@@ -103,15 +106,15 @@ session_start();
 			&copy; 2012 - All Rights Reserved.
 		</div>
 		<div class="span2 offset1">
-			<a href="contato.html" target="blank" title="Contate-nos" class="btn-success">Contate-nos</a>
+			<a href="contato.php" title="Contate-nos" class="btn-success">Contate-nos</a>
 		</div>
 
 		<div class="span2">
-			<a href="termos.html" target="blank" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
+			<a href="termos.php" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
 		</div>
 
 		<div class="span3">
-			<a href="levs.php" target="blank" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
+			<a href="levs.php" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
 		</div>
 
 	</div>

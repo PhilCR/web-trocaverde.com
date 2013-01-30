@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 //Inclui o arquivo de verificação
 include_once("verifica_loja.php");
 
@@ -9,12 +10,12 @@ $cpf = $_POST["txt_cpf"];
 $cod = $_POST["txt_cod"];
 $qtde = $_POST["txt_qtde"];
 
-$mysqli = mysqli_init();	
-$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
-if (mysqli_connect_errno())
-{
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
+//conectando ao banco de dados
+$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("u736022732_trocavrd", $conn);
 }
 
 //criando comando sql
@@ -108,7 +109,7 @@ $sql = "CALL compra('$cod','$qtde','$cpf');";
 				
 <?php
 //executando comando
-if($mysqli->real_query ("CALL compra('$cod','$qtde','$cpf');")) {
+if(mysql_query($sql, $conn)) {
 ?>
 
 		<h3>Venda efetuada com sucesso.</h3><br>
@@ -123,8 +124,6 @@ if($mysqli->real_query ("CALL compra('$cod','$qtde','$cpf');")) {
 	
 <?php
 }
-
-$mysqli->close();
 ?> 
 	</div>        
 
@@ -134,15 +133,15 @@ $mysqli->close();
 			&copy; 2012 - All Rights Reserved.
 		</div>
 		<div class="span2 offset1">
-			<a href="contato.html" target="blank" title="Contate-nos" class="btn-success">Contate-nos</a>
+			<a href="contato.php" title="Contate-nos" class="btn-success">Contate-nos</a>
 		</div>
 
 		<div class="span2">
-			<a href="termos.html" target="blank" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
+			<a href="termos.php" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
 		</div>
 
 		<div class="span3">
-			<a href="levs.php" target="blank" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
+			<a href="levs.php" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
 		</div>
 
 	</div>

@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 //Inclui o arquivo de verificação
 include_once("verifica_admin.php");
 
@@ -87,7 +88,7 @@ session_start();
 
 	<!-- Conteudo mobile [X] -->
 	<div id="content" class="container alert alert-info visible-phone hidden-desktop hidden-tablet" style="margin-bottom:0px;padding: 0px 0px 0px 0px;">
-		
+		<h3>Administrador não disponível em versão mobile.</h3>
 	</div>
        
 	<!-- Conteudo [X] -->
@@ -96,7 +97,6 @@ session_start();
 			<button class="btn btn-info btn-large" name="btn_cadastro" value="Cadastro" onclick="location.href='admin_cadastro.php'">Cadastro</button>
 			<button class="btn btn-info btn-large" name="btn_liberar_loja" value="Liberar Loja" onclick="location.href='admin_liberar_loja.php'"/>Liberar Loja</button>
 			<button class="btn btn-info btn-large" name="btn_liberar_ofertas" value="Liberar Ofertas" onclick="location.href='admin_liberar_oferta.php'"/>Liberar Ofertas</button>
-			<button class="btn btn-info btn-large" name="btn_excluir" value="Excluir" onclick="location.href='???.php'"/>Excluir</button>
 		</div>
 	</div>        
 
@@ -106,15 +106,15 @@ session_start();
 			&copy; 2012 - All Rights Reserved.
 		</div>
 		<div class="span2 offset1">
-			<a href="contato.html" target="blank" title="Contate-nos" class="btn-success">Contate-nos</a>
+			<a href="contato.php" title="Contate-nos" class="btn-success">Contate-nos</a>
 		</div>
 
 		<div class="span2">
-			<a href="termos.html" target="blank" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
+			<a href="termos.php" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
 		</div>
 
 		<div class="span3">
-			<a href="levs.php" target="blank" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
+			<a href="levs.php" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
 		</div>
 
 	</div>

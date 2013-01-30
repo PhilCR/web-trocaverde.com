@@ -1,16 +1,19 @@
 <?php
+error_reporting(0);
 //Inclui o arquivo de verificação
 include_once("verifica_admin.php");
 
 session_start();
 
-$mysqli = mysqli_init();	
-$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
-if (mysqli_connect_errno())
-{
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
+//conectando ao banco de dados
+$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("u736022732_trocavrd", $conn);
 }
+//criando comando sql
+$sql = "SELECT * FROM loja WHERE autorizada = 0;";
 ?>
 
 <!DOCTYPE html>
@@ -99,21 +102,21 @@ if (mysqli_connect_errno())
 	</div>
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info visible-desktop visible-tablet hidden-phone" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+	<div id="content" align="center" class="container alert alert-info visible-desktop visible-tablet hidden-phone" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+		<div class="btn-group">
+			<button class="btn btn-info btn-large" name="btn_cadastro" value="Cadastro" onclick="location.href='admin_cadastro.php'">Cadastro</button>
+			<button class="btn btn-info btn-large" name="btn_liberar_loja" value="Liberar Loja" onclick="location.href='admin_liberar_loja.php'"/>Liberar Loja</button>
+			<button class="btn btn-info btn-large" name="btn_liberar_ofertas" value="Liberar Ofertas" onclick="location.href='admin_liberar_oferta.php'"/>Liberar Ofertas</button>
+		</div><br>
 <?php
 //executando comando
-$mysqli->real_query ("SELECT * FROM loja WHERE autorizada = 0;");
-$result = $mysqli->store_result();
-
-$qtde = $mysqli->affected_rows;
+$result = mysql_query($sql, $conn);
 
 if($result) {
 	$i = 0;
 
-	while($qtde > 0) {
-		$row = $result->fetch_assoc();
+	while($row = mysql_fetch_array( $result )) {
 		$i = $i + 1;
-		$qtde = $qtde - 1;
 	
 		$razao_social = $row['razao_social'];
 		$nome_fantasia = $row['nome_fantasia']; 
@@ -146,7 +149,7 @@ if($result) {
 }
 
 //encerrar conexão
-$mysqli->close();
+mysql_close($conn);
 ?>
 	</div>        
 
@@ -156,15 +159,15 @@ $mysqli->close();
 			&copy; 2012 - All Rights Reserved.
 		</div>
 		<div class="span2 offset1">
-			<a href="contato.html" target="blank" title="Contate-nos" class="btn-success">Contate-nos</a>
+			<a href="contato.php" title="Contate-nos" class="btn-success">Contate-nos</a>
 		</div>
 
 		<div class="span2">
-			<a href="termos.html" target="blank" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
+			<a href="termos.php" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
 		</div>
 
 		<div class="span3">
-			<a href="levs.php" target="blank" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
+			<a href="levs.php" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
 		</div>
 
 	</div>

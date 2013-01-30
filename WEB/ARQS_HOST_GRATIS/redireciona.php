@@ -1,4 +1,8 @@
 <?php
+error_reporting(0);
+//Inicia a sessão
+session_start();
+
 //Verifica se há dados ativos na sessão
 if(empty($_SESSION["tipo"])) {
 	

@@ -1,23 +1,27 @@
 <?php
+error_reporting(0);
 //Inclui o arquivo de verificação
 include_once("verifica_usuario.php");
 
 session_start();
 
-$mysqli = mysqli_init();	
-$mysqli->real_connect('mysql.1freehosting.com', 'u736022732_admin', 'projet02012', 'u736022732_trocavrd');
-if (mysqli_connect_errno())
-{
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
+$email = $_SESSION["email"];
+
+//conectando ao banco de dados
+$conn = mysql_connect("mysql.1freehosting.com", "u736022732_admin", "projet02012") or die("Impossivel conectar");
+
+//selecionando o BD
+if($conn){
+	mysql_select_db("u736022732_trocavrd", $conn);
 }
 
-$mysqli->real_query ("select *  from cliente where email = '$email'");
+//criando comando sql
+$sql = "select *  from cliente where email = '$email'";
 
 //executando comando
-$rs = $mysqli->store_result();
+$rs = mysql_query($sql, $conn);
 
-$rst = $rs->fetch_assoc();
+$rst = mysql_fetch_array( $rs );
 
 $nome = $rst["nome"];
 $snome = $rst["snome"];
@@ -32,8 +36,6 @@ $bairro = $rst["bairro"];
 $cidade = $rst["cidade"];
 $cep = $rst["cep"];
 $estado = $rst["estado"];
-
-$mysqli->close();
 ?>
 
 <!DOCTYPE html>
@@ -202,15 +204,15 @@ $mysqli->close();
 			&copy; 2012 - All Rights Reserved.
 		</div>
 		<div class="span2 offset1">
-			<a href="contato.html" target="blank" title="Contate-nos" class="btn-success">Contate-nos</a>
+			<a href="contato.php" title="Contate-nos" class="btn-success">Contate-nos</a>
 		</div>
 
 		<div class="span2">
-			<a href="termos.html" target="blank" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
+			<a href="termos.php" title="Termos e Políticas" class="btn-success">Termos e Políticas</a>
 		</div>
 
 		<div class="span3">
-			<a href="levs.php" target="blank" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
+			<a href="levs.php" title="Localização dos L.E.V.s" class="btn-success">Localização dos L.E.V.s</a>
 		</div>
 
 	</div>

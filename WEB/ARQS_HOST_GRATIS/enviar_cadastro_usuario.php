@@ -63,11 +63,105 @@ $sql = "CALL cadastro_cliente('$nome','$snome','$tel','$cel','$nasc','$email',$p
 	<div id="header" class="container-fluid" style=" background-color:#a0cca0; border:1px solid #000000; border-radius:3px;z-index: 999;">
 
 		<div class="container-fluid">
+			<!-- FormulÃ¡rio de LocalizaÃ§Ã£o de Ofertas [X] -->
+			<div class="row btn-info" style="border:1px solid #004400; border-radius:1px;">
+				<div class="span1">
+					<a href="index.php" style="color:#ffffff;"><b>Home</b></a>
+				</div>
+				<div class="span2 offset2 hidden-desktop visible-tablet hidden-phone" align="center">
+
+				</div>
+				<div class="span2 offset3 visible-desktop hidden-tablet hidden-phone" align="center">
+
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+
+				</div>
+				<div align="right" class="span4 offset1 visible-desktop visible-tablet hidden-phone">
+					<a href="termos.php" style="color:#ffffff;"><b>O quê é Troca Verde?</b></a>
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+					<a href="termos.php" style="color:#ffffff;"><b>O quê é Troca Verde?</b></a>
+				</div>
+            </div>
+
+			<div align="center" class="span1 visible-phone hidden-desktop hidden-tablet">
+				<div class="span2">
+					</br>
+					<form class="form-horizontal" action="autenticar.php" name="form_login" method="post" disabled>
+						<div class="input-append">
+							<input class="input-large" type="text" name="txt_email" placeholder="Digite seu Email">
+							<span class="add-on"><i class="icon-envelope"></i></span>
+						</div>
+						<div class="input-append">
+							<input class="input-large" type="password" name="txt_senha" placeholder="Digite sua Senha">
+							<span class="add-on"><i class="icon-lock"></i></span>
+						</div>
+						<div class="row-fluid">
+							<label class="checkbox">
+								<input type="checkbox"> Lembrar-me
+							</label> 
+							<button type="submit" class="btn btn-info btn-small">Acesso</button>
+							<button type="button" class="btn btn-small" onclick=location.href='cadastro.php'>Cadastro</button>
+						</div>
+					</form>
+				</div>   
+            </div>
+        </div>
+
+
+		<div class="container-fluid">
 		
 			<!-- Logotipo [X] -->
-			<div class="span3">
+			<div class="span4">
 				<a href="index.php" ><img src="img/logo.png"></a>
 			</div>                  
+
+			<!-- Ãrea de Acesso [X] -->
+			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
+				 <div class="span2">
+					<form class="form-horizontal" action="autenticar.php" name="form_login" method="post" disabled>
+						<div class="input-append">
+							<input class="input-medium" type="text" name="txt_email" placeholder="Digite seu Email">
+							<span class="add-on"><i class="icon-envelope"></i></span>
+						</div>
+						<div class="input-append">
+							<input class="input-medium" type="password" name="txt_senha" placeholder="Digite sua Senha">
+							<span class="add-on"><i class="icon-lock"></i></span>
+						</div>
+						<div class="row-fluid">
+							<label class="checkbox">
+								<input type="checkbox"> Lembrar-me
+							</label> 
+							<button type="submit" class="btn btn-info btn-small">Acesso</button>
+							<button type="button" class="btn btn-small" onclick=location.href='cadastro.php'>Cadastro</button>
+						</div>
+					</form>
+				</div>                
+			</div>
+
+			<!-- Ãrea de Acesso [X] -->
+			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
+				<div class="span2">
+					<form class="form-horizontal" action="autenticar.php" name="form_login" method="post" disabled>
+						<div class="input-append">
+							<input class="input-medium" type="text" name="txt_email" placeholder="Digite seu Email">
+							<span class="add-on"><i class="icon-envelope"></i></span>
+						</div>
+						<div class="input-append">
+							<input class="input-medium" type="password" name="txt_senha" placeholder="Digite sua Senha">
+							<span class="add-on"><i class="icon-lock"></i></span>
+						</div>
+						<div class="row-fluid">
+							<label class="checkbox">
+								<input type="checkbox"> Lembrar-me
+							</label> 
+							<button type="submit" class="btn btn-info btn-small">Acesso</button>
+							<button type="button" class="btn btn-small" onclick=location.href='cadastro.php'>Cadastro</button>
+						</div>
+					</form>
+				</div>
+			</div>
 			
 		</div>
     </div>

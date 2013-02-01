@@ -74,11 +74,11 @@ $rs = mysql_query($sql, $conn);
 
 		<div class="container-fluid">
 			<!-- Formulário de Localização de Ofertas [X] -->
-			<div class="container-fluid span6 offset2 btn-info" style="border:1px solid #004400; border-radius:1px;">
-				<div class="span2">
-					<i class="icon-map-marker icon-white"></i><b>Local</b>
+			<div class="row btn-info" style="border:1px solid #004400; border-radius:1px;">
+				<div class="span1">
+					<a href="index.php" style="color:#ffffff;"><b>Home</b></a>
 				</div>
-				<div class="span1" >
+				<div class="span2 offset1 hidden-desktop visible-tablet hidden-phone" align="center">
 					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
 						<option value="none"  disabled="disabled" selected="selected">Região</option>
 						<option value="Sorocaba">Sorocaba</option>
@@ -88,18 +88,41 @@ $rs = mysql_query($sql, $conn);
 						<input type="text" name="txt_local" id="txt_local" value="" />
 					</form>
 				</div>
+				<div class="span2 offset2 visible-desktop hidden-tablet hidden-phone" align="center">
+					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+						<option value="none"  disabled="disabled" selected="selected">Região</option>
+						<option value="Sorocaba">Sorocaba</option>
+						<option value="Campinas">Campinas</option>
+					</select>
+					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
+						<input type="text" name="txt_local" id="txt_local" value="" />
+					</form>
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+						<option value="none"  disabled="disabled" selected="selected">Região</option>
+						<option value="Sorocaba">Sorocaba</option>
+						<option value="Campinas">Campinas</option>
+					</select>
+					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
+						<input type="text" name="txt_local" id="txt_local" value="" />
+					</form>
+				</div>
+				<div align="right" class="span4 offset1 visible-desktop hidden-tablet hidden-phone">
+					Olá <b> <?php echo $_SESSION['nome']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
+				<div align="right" class="span4 offset1 hiden-desktop visible-tablet hiden-phone">
+					Olá <b> <?php echo $_SESSION['nome']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+					Olá <b> <?php echo $_SESSION['nome']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
             </div>
 
 			<!-- Menu Usuário para Mobile [X] -->
 			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				 <div class="span2 hero-unit" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
-					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-						<div class="row-fluid">
-							Olá <b> <?php echo $_SESSION['nome']; ?> </b>
-							<button type="submit" class="btn btn-info btn-small">Sair</button></br>
-							Saldo: <?php echo $_SESSION['pontos']; ?> trocados
-						</div>
-					</form>
+				 <div align="center"class="span2 btn-large" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
+						</br>Saldo: <?php echo $_SESSION['pontos']; ?> trocados</br></br>
 				</div>                   
             </div>
         </div>
@@ -108,35 +131,18 @@ $rs = mysql_query($sql, $conn);
 		<div class="container-fluid">
 		
 			<!-- Logotipo [X] -->
-			<div class="span3">
+			<div class="span4">
 				<a href="index.php" ><img src="img/logo.png"></a>
 			</div>                  
 
 			<!-- Área de Acesso [X] -->
-			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2 hero-unit" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
-					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-						<div class="row-fluid">
-							Olá <b> <?php echo $_SESSION['nome']; ?> </b>
-							<button type="submit" class="btn btn-info btn-small">Sair</button></br>
-							Saldo: <?php echo $_SESSION['pontos']; ?> trocados</br>
-							<a href="usuario_alterar_cadastro.php">Editar Perfil</a>
-						</div>
-					</form>
-				</div>                
+			<div id="login" class="span2 offset4 btn-large visible-desktop hidden-tablet hidden-phone" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
+				Saldo: <?php echo $_SESSION['pontos']; ?> trocados</br>                
 			</div>
 
 			<!-- Área de Acesso [X] -->
-			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2 hero-unit" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
-					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-						<div class="row-fluid">
-							Olá <b> <?php echo $_SESSION['nome']; ?> </b>
-							<button type="submit" class="btn btn-info btn-small">Sair</button></br>
-							Saldo: <?php echo $_SESSION['pontos']; ?> trocados
-						</div>
-					</form>
-				</div>
+			<div id="login" class="span2 offset3 btn-large hidden-desktop visible-tablet hidden-phone" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
+				Saldo: <?php echo $_SESSION['pontos']; ?> trocados</br>                
 			</div>
 			
 		</div>

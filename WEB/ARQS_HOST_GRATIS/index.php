@@ -73,53 +73,69 @@ $rs = mysql_query($sql, $conn);
 
 		<div class="container-fluid">
 			<!-- FormulÃ¡rio de LocalizaÃ§Ã£o de Ofertas [X] -->
-			<div class="container-fluid span6 offset2 btn-info" style="border:1px solid #004400; border-radius:1px;">
-				<div class="span2">
-					<i class="icon-map-marker icon-white"></i><b>Local</b>
+			<div class="row btn-info" style="border:1px solid #004400; border-radius:1px;">
+				<div class="span1">
+					<a href="index.php" style="color:#ffffff;"><b>Home</b></a>
 				</div>
-				<div class="span1" >
+				<div class="span2 offset2 hidden-desktop visible-tablet hidden-phone" align="center">
 					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
 						<option value="none"  disabled="disabled" selected="selected">Região</option>
 						<option value="Sorocaba">Sorocaba</option>
 						<option value="Campinas">Campinas</option>
 					</select>
-					<form style="display: none;" action="index.php" id="form_local" name="form_local" method="post">
+					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
 						<input type="text" name="txt_local" id="txt_local" value="" />
 					</form>
 				</div>
+				<div class="span2 offset3 visible-desktop hidden-tablet hidden-phone" align="center">
+					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+						<option value="none"  disabled="disabled" selected="selected">Região</option>
+						<option value="Sorocaba">Sorocaba</option>
+						<option value="Campinas">Campinas</option>
+					</select>
+					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
+						<input type="text" name="txt_local" id="txt_local" value="" />
+					</form>
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+						<option value="none"  disabled="disabled" selected="selected">Região</option>
+						<option value="Sorocaba">Sorocaba</option>
+						<option value="Campinas">Campinas</option>
+					</select>
+					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
+						<input type="text" name="txt_local" id="txt_local" value="" />
+					</form>
+				</div>
+				<div align="right" class="span4 offset1 visible-desktop visible-tablet hidden-phone">
+					<a href="termos.php" style="color:#ffffff;"><b>O quê é Troca Verde?</b></a>
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+					<a href="termos.php" style="color:#ffffff;"><b>O quê é Troca Verde?</b></a>
+				</div>
             </div>
 
-			<!-- Menu UsuÃ¡rio para Mobile [X] -->
-			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="btn-group">
-				<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i>
-					Entrar
-					<span class="caret"></span></a>
-					
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-						<li>
-							 <div class="span2">
-								<form class="form-horizontal" action="autenticar.php" name="form_login" method="post">
-									<div class="input-append">
-										<input class="input-medium" type="text" name="txt_email" placeholder="Digite seu Email">
-										<span class="add-on"><i class="icon-envelope"></i></span>
-									</div>
-									<div class="input-append">
-										<input class="input-medium" type="password" name="txt_senha" placeholder="Digite sua Senha">
-										<span class="add-on"><i class="icon-lock"></i></span>
-									</div>
-									<div class="row-fluid">
-										<label class="checkbox">
-											<input type="checkbox"> Lembrar-me
-										</label> 
-										<button type="submit" class="btn btn-info btn-small">Acesso</button>
-										<button type="button" class="btn btn-small" onclick=location.href='cadastro.php'>Cadastro</button>
-									</div>
-								</form>
-							</div>                   
-						</li>
-                    </ul>  
-                </div>
+			<div align="center" class="span1 visible-phone hidden-desktop hidden-tablet">
+				<div class="span2">
+					</br>
+					<form class="form-horizontal" action="autenticar.php" name="form_login" method="post" disabled>
+						<div class="input-append">
+							<input class="input-large" type="text" name="txt_email" placeholder="Digite seu Email">
+							<span class="add-on"><i class="icon-envelope"></i></span>
+						</div>
+						<div class="input-append">
+							<input class="input-large" type="password" name="txt_senha" placeholder="Digite sua Senha">
+							<span class="add-on"><i class="icon-lock"></i></span>
+						</div>
+						<div class="row-fluid">
+							<label class="checkbox">
+								<input type="checkbox"> Lembrar-me
+							</label> 
+							<button type="submit" class="btn btn-info btn-small">Acesso</button>
+							<button type="button" class="btn btn-small" onclick=location.href='cadastro.php'>Cadastro</button>
+						</div>
+					</form>
+				</div>   
             </div>
         </div>
 

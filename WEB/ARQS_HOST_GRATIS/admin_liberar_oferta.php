@@ -14,7 +14,7 @@ if($conn){
 }
 
 //criando comando sql
-$sql = "select o.cod, o.nome_oferta, o.imagem, o.data_validade, o.pontos, o.descricao, o.qtde_max, o.qtde_vendida, l.nome_fantasia, l.telefone from loja l, ofertas o where l.ID = o.ID_loja and o.autorizada = 0;";
+$sql = "select o.cod, o.nome_oferta, o.imagem, DATE_FORMAT(o.data_validade, '%d/%m/%Y')  as data_validade, o.pontos, o.descricao, o.qtde_max, o.qtde_vendida, l.nome_fantasia, l.telefone from loja l, ofertas o where l.ID = o.ID_loja and o.autorizada = 0;";
 ?>
 
 <!DOCTYPE html>

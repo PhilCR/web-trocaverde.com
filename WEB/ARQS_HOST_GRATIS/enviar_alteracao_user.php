@@ -66,11 +66,77 @@ $sql = "CALL atualiza_cliente('$email1', '$nome', '$snome', '$tel', '$cel', '$na
 	<div id="header" class="container-fluid" style=" background-color:#a0cca0; border:1px solid #000000; border-radius:3px;z-index: 999;">
 
 		<div class="container-fluid">
+			<!-- Formulário de Localização de Ofertas [X] -->
+			<div class="row btn-info" style="border:1px solid #004400; border-radius:1px;">
+				<div class="span1">
+					<a href="index.php" style="color:#ffffff;"><b>Home</b></a>
+				</div>
+				<div class="span2 offset1 hidden-desktop visible-tablet hidden-phone" align="center">
+					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+						<option value="none"  disabled="disabled" selected="selected">Região</option>
+						<option value="Sorocaba">Sorocaba</option>
+						<option value="Campinas">Campinas</option>
+					</select>
+					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
+						<input type="text" name="txt_local" id="txt_local" value="" />
+					</form>
+				</div>
+				<div class="span2 offset2 visible-desktop hidden-tablet hidden-phone" align="center">
+					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+						<option value="none"  disabled="disabled" selected="selected">Região</option>
+						<option value="Sorocaba">Sorocaba</option>
+						<option value="Campinas">Campinas</option>
+					</select>
+					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
+						<input type="text" name="txt_local" id="txt_local" value="" />
+					</form>
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+						<option value="none"  disabled="disabled" selected="selected">Região</option>
+						<option value="Sorocaba">Sorocaba</option>
+						<option value="Campinas">Campinas</option>
+					</select>
+					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
+						<input type="text" name="txt_local" id="txt_local" value="" />
+					</form>
+				</div>
+				<div align="right" class="span4 offset1 visible-desktop hidden-tablet hidden-phone">
+					Olá <b> <?php echo $_SESSION['nome']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
+				<div align="right" class="span4 offset1 hiden-desktop visible-tablet hiden-phone">
+					Olá <b> <?php echo $_SESSION['nome']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+					Olá <b> <?php echo $_SESSION['nome']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
+            </div>
+
+			<!-- Menu Usuário para Mobile [X] -->
+			<div class="span1 visible-phone hidden-desktop hidden-tablet">
+				 <div align="center"class="span2 btn-large" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
+						</br>Saldo: <?php echo $_SESSION['pontos']; ?> trocados</br></br>
+				</div>                   
+            </div>
+        </div>
+
+
+		<div class="container-fluid">
 		
 			<!-- Logotipo [X] -->
-			<div class="span3">
+			<div class="span4">
 				<a href="index.php" ><img src="img/logo.png"></a>
 			</div>                  
+
+			<!-- Área de Acesso [X] -->
+			<div id="login" class="span2 offset4 btn-large visible-desktop hidden-tablet hidden-phone" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
+				Saldo: <?php echo $_SESSION['pontos']; ?> trocados</br>                
+			</div>
+
+			<!-- Área de Acesso [X] -->
+			<div id="login" class="span2 offset3 btn-large hidden-desktop visible-tablet hidden-phone" style="background-color:#a0ffa0; border-style:solid; border-width:3px; border-color:#000;">
+				Saldo: <?php echo $_SESSION['pontos']; ?> trocados</br>                
+			</div>
 			
 		</div>
     </div>

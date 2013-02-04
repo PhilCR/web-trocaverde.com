@@ -139,7 +139,12 @@
 		<h3>O <font color="00f000">Troca Verde</font> é um sistema onde seu lixo reciclado como desconto para você.</h3>
 		<br>
 		<br>
-		
+		O Troca Verde é um site onde você pode consultar ofertas e descontos de produtos, disponíveis pelas lojas parceiras. 
+		Para usufruir de nosso serviço e ter acesso a todas as ofertas, você deve se cadastrar. Para poder comprar as ofertas, 
+		você deve levar seu "lixo" reciclável em algum L.E.V. mais próximo de você para adquirir os Trocados (sistema de pontos 
+		do nosso site). Os Trocados serão adicionados à sua conta do site e você poderá usá-los para comprar as ofertas que 
+		deseje nas lojas. Atenção: o Troca Verde não realiza vendas. Para comprar uma oferta anunciada em nosso site, dirija-se 
+		à loja responsável.
 		<br>
 		O lixo reciclável deve ser entregue pelo consumidor nas sacolas padronizadas do Sistema Troca Verde.
 		As sacolas padronizadas são totalmente customizadas e tem volume determinado de 50l.

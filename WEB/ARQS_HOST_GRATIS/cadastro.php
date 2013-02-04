@@ -23,6 +23,7 @@
 
         <!-- Habilitar Scripts Próprios -->
         <script type="text/javascript" src="js/troca.js"></script>
+		<script type="text/javascript" src="js/ValidaRegistro.js"></script>
 		
 		<script type="text/javascript">
 			function mostrar(qual) {
@@ -178,28 +179,31 @@
 		<form class="row-fluid" action="enviar_cadastro_loja.php" name="form_cadastro_loja" method="post">
 			<div class="span3 input-append">
 				<h3>Informações de Acesso</h3>
-				<input type="text" class="input-large" name="txt_email" size="50" maxlength="70" placeholder="Digite o Email" required/><abbr title="Preencha com seu e-mail padrão no formato email@dominio.ext."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="password" class="input-large" name="txt_senha" size="50" maxlength="16" placeholder="Digite a Senha" required/><abbr title="Escolha uma senha de 6 à 16 dígitos. Prefira senha com números e letra, para maior segurança."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="password" class="input-large" name="txt_re_senha" size="50" maxlength="16" placeholder="Digite novamente sua senha" required/><abbr title="Digite novamente a senha escolhida."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Preencha com seu e-mail padrão no formato email@dominio.ext."><input type="text" class="input-large" name="txt_email" id="txt_email1" size="50" maxlength="70" placeholder="Digite o Email" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Escolha uma senha de 6 à 16 dígitos. Prefira senha com números e letra, para maior segurança."><input type="password" class="input-large" name="txt_senha" id="txt_senha1" size="50" maxlength="16" placeholder="Digite a Senha" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Digite novamente a senha escolhida."><input type="password" class="input-large" name="txt_re_senha" id="txt_re_senha1" size="50" maxlength="16" placeholder="Digite novamente sua senha" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 			</div>
 			<div class="span5 input-append">
 				<h3>Informações Comerciais</h3>
-				<input type="text" class="input-large" name="txt_nfantasia" size="50" maxlength="200" placeholder="Digite o Nome Fantasia" required/><abbr title="Digite o Nome Fantasia"><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="text" class="input-large" name="txt_rsocial" size="50" maxlength="200" placeholder="Digite a Razão Social" required/><abbr title="Digite a sua Razão Social."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="text" class="input-large" name="txt_cnpj" size="50" maxlength="14" placeholder="Digite o CNPJ" required/><abbr title="Digite o seu CNPJ, somente números."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<abbr title="Digite o número de sua Inscrição Estadual, somente números."><input type="text" class="input-large" name="txt_inscest" size="50" maxlength="50" placeholder="Digite a Inscrição Estadual" /></abbr></br>
-				<input type="text" class="input-large" name="txt_regiao" size="50" maxlength="100" placeholder="Digite sua região" required/><abbr title="Digite a sua região para que os clientes encontrem facilmente suas ofertas."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<table>
+				<tr><td><abbr title="Digite o Nome Fantasia"><input type="text" class="input-large" name="txt_nfantasia" id="txt_nfantasia" size="50" maxlength="200" placeholder="Digite o Nome Fantasia" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+				<tr><td><abbr title="Digite a sua Razão Social."><input type="text" class="input-large" name="txt_rsocial" id="txt_rsocial" size="50" maxlength="200" placeholder="Digite a Razão Social" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+				<tr><td><abbr title="Digite o seu CNPJ, somente números."><input type="text" class="input-large" name="txt_cnpj" id="txt_cnpj" size="50" maxlength="14" placeholder="Digite o CNPJ" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+				<tr><td><abbr title="Digite o número de sua Inscrição Estadual, somente números."><input type="text" class="input-large" name="txt_inscest" id="txt_inscest" value="" size="50" maxlength="50" placeholder="Digite a Inscrição Estadual" /></abbr></br></td></tr>
+				<tr><td><abbr title="Digite a sua região para que os clientes encontrem facilmente suas ofertas."><input type="text" class="input-large" name="txt_regiao" id="txt_regiao" size="50" maxlength="100" placeholder="Digite sua região" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+				</table>
 			</div>
 			<div class="span3 input-append">
 				<h3>Informações de Contato</h3>
-				<abbr title="Insira seu telefone no formato (00)9999-9999"><input type="text" class="input-large" name="txt_tel" size="50" maxlength="11" placeholder="Digite o Telefone"/></abbr></br>
-				<label>Endereço:</label>
-				<input type="text" class="input-large" name="txt_end_rua" size="50" maxlength="200" placeholder="Digite a Rua" required/><abbr title="Digite o nome da rua."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<abbr title="Digite o número."><input type="text" class="input-mini" name="txt_end_num" size="10" maxlength="6" placeholder="Digite o Número" /></span></abbr>
-				<abbr title="Insira o Complemento."><input type="text" class="input-small" name="txt_end_comp" size="30" maxlength="20" placeholder="Digite o Complemento"/></abbr></br>
-				<input type="text" class="input-large" name="txt_end_bar" size="50" maxlength="30" placeholder="Digite o Bairro" required/><abbr title="Digite onome do seu Bairro."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="text" class="input-large" name="txt_end_cid" size="50" maxlength="20" placeholder="Digite a Cidade" required/><abbr title="Digite o nome de sua Cidade."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<select class="span5" id="txt_end_est" name="txt_end_est" required>
+				<table>
+				<tr><td><abbr title="Insira seu telefone no formato (00)9999-9999"><input type="text" class="input-large" name="txt_tel" id="txt_tel1" size="50" maxlength="11" placeholder="Digite o Telefone"/></abbr></br></td></tr>
+				<tr><td><label>Endereço:</label></td></tr>
+				<tr><td><abbr title="Digite o nome da rua."><input type="text" class="input-large" name="txt_end_rua" id="txt_end_rua1" size="50" maxlength="200" placeholder="Digite a Rua" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+				<tr><td><abbr title="Digite o número."><input type="text" class="input-mini" name="txt_end_num" id="txt_end_num1" size="10" maxlength="6" placeholder="Digite o Número" /></span></abbr>
+				<abbr title="Insira o Complemento."><input type="text" class="input-small" name="txt_end_comp" id="txt_end_comp1" size="30" maxlength="20" placeholder="Digite o Complemento"/></abbr></br></td></tr>
+				<tr><td><abbr title="Digite onome do seu Bairro."><input type="text" class="input-large" name="txt_end_bar" id="txt_end_bar1" size="50" maxlength="30" placeholder="Digite o Bairro" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+				<tr><td><abbr title="Digite o nome de sua Cidade."><input type="text" class="input-large" name="txt_end_cid" id="txt_end_cid1" size="50" maxlength="20" placeholder="Digite a Cidade" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+				<tr><td><select class="span5" id="txt_end_est1" name="txt_end_est" required>
 						<option value="" disabled="disabled" selected="selected">Estado</option>
 						<option value="AC">Acre</option>
 						<option value="AL">Alagoas</option>
@@ -228,12 +232,13 @@
 						<option value="SE">Sergipe</option>
 						<option value="SP">São Paulo</option>
 						<option value="TO">Tocantins</option>
-					</select><abbr title="Selecione se estado."></abbr></br>
-				<input type="text" class="input-small" name="txt_end_cep" size="50" maxlength="10" placeholder="Digite o CEP" required /><abbr title="Insira o CEP, somente números"><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+					</select><abbr title="Selecione se estado."></abbr>
+				<abbr title="Insira o CEP, somente números"><input type="text" class="input-small" name="txt_end_cep" id="txt_end_cep1" size="50" maxlength="10" placeholder="Digite o CEP" required /><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+				</table>
 			</div>
 			<div class="span8">
 				<div class="span4">
-					<button class="btn btn-large btn-info btn-block" type="submit" name="btn_cadastrar">Cadastrar</button>
+					<input class="btn btn-large btn-info btn-block" type="submit" name="btn_cadastrar" value="Cadastrar" onclick="validarCadLoja();return false;"/>
 				</div>
 			</div>
 
@@ -242,20 +247,22 @@
 
 		<div id="div_u" style="display:none;">
 		<b>Campos com <i class="icon-asterisk"></i> possuem preenchimento obrigatório.</b>
-		<form class="row-fluid" action="enviar_cadastro_usuario.php" id="form_cadastro_usuario" name="form_cadastro_usuario" method="post">
+		<form class="row-fluid" action="enviar_cadastro_usuario.php" name="form_cadastro_usuario" id="form_cadastro_usuario" method="post">
 			<div class="span3 input-append">
 				<h3>Informações de Acesso</h3>
-				<input type="email" class="input-large" id="txt_email" name="txt_email" maxlength="70" placeholder="Digite seu Email" required><abbr title="Preencha com seu e-mail padrão no formato email@dominio.ext."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="password" class="input-large" id="txt_senha" name="txt_senha" maxlength="16" placeholder="Digite sua Senha" required><abbr title="Escolha uma senha de 6 à 16 dígitos. Prefira senha com números e letra, para maior segurança."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="password" class="input-large" id="txt_re_senha" name="txt_re_senha" maxlength="16" placeholder="Digite novamente sua senha" required><abbr title="Digite novamente a senha escolhida."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Preencha com seu e-mail padrão no formato email@dominio.ext."><input type="email" class="input-large" id="txt_email" name="txt_email" maxlength="70" placeholder="Digite seu Email" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Escolha uma senha de 6 à 16 dígitos. Prefira senha com números e letra, para maior segurança."><input type="password" class="input-large" id="txt_senha" name="txt_senha" maxlength="16" placeholder="Digite sua Senha" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Digite novamente a senha escolhida."><input type="password" class="input-large" id="txt_re_senha" name="txt_re_senha" maxlength="16" placeholder="Digite novamente sua senha" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 			</div>
 
 			<div class="span5 input-append">
 				<h3>Informações Pessoais</h3>
-				<input type="text" class="input-medium" id="txt_nome" name="txt_nome" maxlength="50" placeholder="Digite seu Nome" required><abbr title="Insira seu nome." required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="text" class="input-large" id="txt_snome" name="txt_snome" maxlength="200" placeholder="Digite seu Sobrenome" required><abbr title="Insira seu sobrenome."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="text" class="input-large" id="txt_cpf" name="txt_cpf" maxlength="14" placeholder="Digite seu C.P.F." required><abbr title="Insira seu CPF, somente números"><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="hidden" class="input-small" id="txt_nasc" name="txt_nasc" maxlength="8" placeholder="Data de Nasc." required>
+				<table>
+				<tr><td><abbr title="Insira seu nome." required><input type="text" class="input-large" id="txt_nome" name="txt_nomeu" maxlength="50" placeholder="Digite seu Nome" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+				<tr><td><abbr title="Insira seu sobrenome."><input type="text" class="input-large" id="txt_snome" name="txt_snomeu" maxlength="200" placeholder="Digite seu Sobrenome" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+				<tr><td><abbr title="Insira seu CPF, somente números"><input type="text" class="input-large" id="txt_cpf" name="txt_cpf" maxlength="14" placeholder="Digite seu C.P.F." required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+				</table>
+				<input type="hidden" class="input-small" id="txt_nasc" name="txt_nasc" value="" maxlength="8" placeholder="Data de Nasc." required>
 				<select class="span2"  name="DateOfBirth_Day" id="DateOfBirth_Day">
 					<option value="" disabled="disabled" selected="selected">Dia</option>
 					<option value="1">1</option>
@@ -370,25 +377,22 @@
 					<option value="1952">1952</option>
 					<option value="1951">1951</option>
 					<option value="1950">1950</option>
-				</select><abbr title="Selecione sua data de nascimento"><span class="add-on"><i class="icon-asterisk"></i></span></abbr>				
+				</select><abbr title="Selecione sua data de nascimento"><span class="add-on"><i class="icon-asterisk"></i></span></abbr>
 			</div>
 
 			<div class="content input-append">
 				<h3>Informações de Contato</h3>
 				<div class="span3">
-					<abbr title="Insira seu telefone residencial, somente números"><input type="text" class="input-medium" id="txt_tel" name="txt_tel" maxlength="30" placeholder="Digite seu Telefone Residencial"></abbr></br>
-					<abbr title="Insira seu telefone, somente números"><input type="text" class="input-medium" id="txt_cel" name="txt_cel" maxlength="30" placeholder="Digite seu Telefone Celular"></abbr></br>
-				</div>
-				
-				<div class="span3">
-					<label>Endereço:</label>
-					<input type="text" class="input-xlarge" id="txt_end_rua" name="txt_end_rua" maxlength="100" placeholder="Digite seu Logadouro" required><abbr title="Insira seu Logadouro, ou seja, a Rua, Avenida, Estrada e afins do seu endereço."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-					<abbr title="Insira o Número da sua residência."><input type="text" class="input-mini" id="txt_end_num" name="txt_end_num" maxlength="6" placeholder="Número"></abbr>
-					<abbr title="Insira o Complemento da sua residência. Ex.: Casa1, Apto. 31, Fundos, etc.."><input type="text" class="input-small" id="txt_end_comp" name="txt_end_comp" maxlength="10" placeholder="Complemento"></abbr></br>
-					<input type="text" class="input-medium" id="txt_end_bar" name="txt_end_bar" maxlength="30" placeholder="Bairro"required><abbr title="Insira o Bairro da sua residência."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-					<input type="text" class="input-small" id="txt_end_cep" name="txt_end_cep" maxlength="10" placeholder="CEP" required><abbr title="Insira o CEP da sua residência somente números."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-					<input type="text" class="input-medium" id="txt_end_cid" name="txt_end_cid" maxlength="50" placeholder="Cidade"required><abbr title="Insira a Cidade da sua residência."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-					<select class="span5" id="txt_end_est" name="txt_end_est" required>
+					<table>
+					<tr><td><abbr title="Insira seu telefone residencial, somente números"><input type="text" class="input-large" id="txt_tel" name="txt_tel" maxlength="30" placeholder="Digite seu Telefone Residencial"></abbr></br></td></tr>
+					<tr><td><abbr title="Insira seu telefone, somente números"><input type="text" class="input-large" id="txt_cel" name="txt_cel" maxlength="30" placeholder="Digite seu Telefone Celular"></abbr></br></td></tr>
+					<tr><td><label>Endereço:</label></td></tr>
+					<tr><td><abbr title="Insira seu Logadouro, ou seja, a Rua, Avenida, Estrada e afins do seu endereço."><input type="text" class="input-large" id="txt_end_rua" name="txt_end_rua" maxlength="100" placeholder="Digite seu Logadouro" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+					<tr><td><abbr title="Insira o Número da sua residência."><input type="text" class="input-mini" id="txt_end_num" name="txt_end_num" maxlength="6" placeholder="Número"></abbr>
+					<abbr title="Insira o Complemento da sua residência. Ex.: Casa1, Apto. 31, Fundos, etc.."><input type="text" class="input-small" id="txt_end_comp" name="txt_end_comp" maxlength="10" placeholder="Complemento"></abbr></br></td></tr>
+					<tr><td><abbr title="Insira o Bairro da sua residência."><input type="text" class="input-large" id="txt_end_bar" name="txt_end_bar" maxlength="30" placeholder="Bairro"required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+					<tr><td><abbr title="Insira a Cidade da sua residência."><input type="text" class="input-large" id="txt_end_cid" name="txt_end_cid" maxlength="50" placeholder="Cidade"required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+					<tr><td><select class="span5" id="txt_end_est" name="txt_end_est" required>
 						<option value="" disabled="disabled" selected="selected">Estado</option>
 						<option value="AC">Acre</option>
 						<option value="AL">Alagoas</option>
@@ -417,19 +421,22 @@
 						<option value="SE">Sergipe</option>
 						<option value="SP">São Paulo</option>
 						<option value="TO">Tocantins</option>
-					</select><abbr title="Selecione se estado."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+					</select><abbr title="Selecione se estado."><span class="add-on"><i class="icon-asterisk"></i></span></abbr>
+					<abbr title="Insira o CEP da sua residência somente números."><input type="text" class="input-small" id="txt_end_cep" name="txt_end_cep" maxlength="10" placeholder="CEP" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br></td></tr>
+					</table>
 				</div>
 			</div>
 
 			<div class="span8">
 				<div class="span4">
-					<button class="btn btn-large btn-info btn-block" type="button" onclick="enviar_fisica()" name="btn_verificar">Cadastrar</button>
-					<button style="display:none;" type="submit" id="btn_cadastrar2" name="btn_cadastrar"></button>
+					<input class="btn btn-large btn-info btn-block" type="submit" name="btn_cadastrar2" value="Cadastrar" onclick="validarCadCliente();return false;"/>
+					<!--<button class="btn btn-large btn-info btn-block" type="button" onclick="enviar_fisica()" name="btn_verificar">Cadastrar</button>-->
+					<!--<button style="display:none;" type="submit" id="btn_cadastrar3" name="btn_cadastrar3"></button>-->
 				</div>
 			</div>
 		</form>
 		</div>
-	</div>        
+	</div>                
 
 	<!-- Rodapé [X]-->
 	<div id="footer" class="container-fluid btn-large btn-success btn-block" style="border:1px solid #000;">

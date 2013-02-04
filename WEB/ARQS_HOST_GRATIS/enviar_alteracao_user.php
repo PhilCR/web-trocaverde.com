@@ -72,34 +72,13 @@ $sql = "CALL atualiza_cliente('$email1', '$nome', '$snome', '$tel', '$cel', '$na
 					<a href="index.php" style="color:#ffffff;"><b>Home</b></a>
 				</div>
 				<div class="span2 offset1 hidden-desktop visible-tablet hidden-phone" align="center">
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
-						<option value="none"  disabled="disabled" selected="selected">Região</option>
-						<option value="Sorocaba">Sorocaba</option>
-						<option value="Campinas">Campinas</option>
-					</select>
-					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
-						<input type="text" name="txt_local" id="txt_local" value="" />
-					</form>
+
 				</div>
 				<div class="span2 offset2 visible-desktop hidden-tablet hidden-phone" align="center">
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
-						<option value="none"  disabled="disabled" selected="selected">Região</option>
-						<option value="Sorocaba">Sorocaba</option>
-						<option value="Campinas">Campinas</option>
-					</select>
-					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
-						<input type="text" name="txt_local" id="txt_local" value="" />
-					</form>
+
 				</div>
 				<div class="span2 hiden-desktop hiden-tablet visible-phone">
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
-						<option value="none"  disabled="disabled" selected="selected">Região</option>
-						<option value="Sorocaba">Sorocaba</option>
-						<option value="Campinas">Campinas</option>
-					</select>
-					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
-						<input type="text" name="txt_local" id="txt_local" value="" />
-					</form>
+
 				</div>
 				<div align="right" class="span4 offset1 visible-desktop hidden-tablet hidden-phone">
 					Olá <b> <?php echo $_SESSION['nome']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
@@ -153,7 +132,6 @@ if(mysql_query($sql, $conn)) {
 
 <?php	
 } else {
-//echo mysql_errno($conn) . ": " . mysql_error($conn) . "\n";
 ?>
 		<h3>Erro: alteração não pode ser efetuada.</h3><br>
 		<input class="btn btn-large btn-info" type="button" name="btn_voltar" value="Voltar" onclick="location.href='index.php'"/>

@@ -69,52 +69,40 @@ $cep = $rst["cep"];
 	<div id="header" class="container-fluid" style=" background-color:#a0cca0; border:1px solid #000000; border-radius:3px;z-index: 999;">
 
 		<div class="container-fluid">
+			<!-- Formulário de Localização de Ofertas [X] -->
+			<div class="row btn-info" style="background-color:#ffd0a0; color:#ffd0a0; border:1px solid #004400; border-radius:1px;">
+				<div class="span1">
+					<a href="index.php" style="color:#ffffff;"><b>Home</b></a>
+				</div>
+				<div class="span2 offset1 hidden-desktop visible-tablet hidden-phone" align="center">
 
-			<!-- Menu Usuário para Mobile [X] -->
-			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
-					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-						<div class="row-fluid">
-							Olá <?php echo $_SESSION['razao_social']; ?>
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
-						</div>
-					</form>
-				</div>                   
+				</div>
+				<div class="span2 offset2 visible-desktop hidden-tablet hidden-phone" align="center">
+
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+
+				</div>
+				<div align="right" class="span4 offset1 visible-desktop hidden-tablet hidden-phone">
+					Olá <b> <?php echo $_SESSION['razao_social']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
+				<div align="right" class="span4 offset1 hiden-desktop visible-tablet hiden-phone">
+					Olá <b> <?php echo $_SESSION['razao_social']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+					Olá <b> <?php echo $_SESSION['razao_social']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
             </div>
+
         </div>
 
 
 		<div class="container-fluid">
 		
 			<!-- Logotipo [X] -->
-			<div class="span3">
+			<div class="span4">
 				<a href="index.php" ><img src="img/logo.png"></a>
-			</div>                  
-
-			<!-- Área de Acesso [X] -->
-			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
-					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-						<div class="row-fluid">
-							Olá <?php echo $_SESSION['razao_social']; ?>
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
-						</div>
-					</form>
-				</div>                
-			</div>
-
-			<!-- Área de Acesso [X] -->
-			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
-					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-						<div class="row-fluid">
-							Olá <?php echo $_SESSION['razao_social']; ?>
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
-						</div>
-					</form>
-				</div>
-			</div>
-			
+			</div>                			
 		</div>
     </div>
 
@@ -125,14 +113,14 @@ $cep = $rst["cep"];
 		<form class="row-fluid" action="enviar_alteracao_loja.php" name="form_cadastro_loja" method="post">
 			<div class="span3 input-append">
 				<h3>Informações de Acesso</h3>
-				<input type="text" class="input-large" name="txt_email" size="50" maxlength="70" value="<?php echo $email ; ?>" required/><abbr title="Preencha com seu e-mail padrão no formato email@dominio.ext."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="password" class="input-large" name="txt_senha" size="50" maxlength="16" placeholder="Digite a Senha" required/><abbr title="Escolha uma senha de 6 à 16 dígitos. Prefira senha com números e letra, para maior segurança."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="password" class="input-large" name="txt_re_senha" size="50" maxlength="16" placeholder="Digite novamente sua senha" required/><abbr title="Digite novamente a senha escolhida."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Preencha com seu e-mail padrão no formato email@dominio.ext."><input type="text" class="input-large" name="txt_email" size="50" maxlength="70" value="<?php echo $email ; ?>" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Escolha uma senha de 6 à 16 dígitos. Prefira senha com números e letra, para maior segurança."><input type="password" class="input-large" name="txt_senha" size="50" maxlength="16" placeholder="Digite a Senha" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Digite novamente a senha escolhida."><input type="password" class="input-large" name="txt_re_senha" size="50" maxlength="16" placeholder="Digite novamente sua senha" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 			</div>
 			<div align="center" class="span5 input-append">
 				<h3>Informações Comerciais</h3>
-				<input type="text" class="input-large" name="txt_nfantasia" size="50" maxlength="200" value="<?php echo $nome_fantasia ; ?>" required/><abbr title="Digite o Nome Fantasia"><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="text" class="input-large" name="txt_rsocial" size="50" maxlength="200" value="<?php echo $razao_social ; ?>" required/><abbr title="Digite a sua Razão Social."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Digite o Nome Fantasia"><input type="text" class="input-large" name="txt_nfantasia" size="50" maxlength="200" value="<?php echo $nome_fantasia ; ?>" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Digite a sua Razão Social."><input type="text" class="input-large" name="txt_rsocial" size="50" maxlength="200" value="<?php echo $razao_social ; ?>" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 				<input type="hidden" class="input-large" name="txt_cnpj" size="50" maxlength="14" value="<?php echo $CNPJ ; ?>" required/><abbr title="Digite o seu CNPJ, somente números.">
 				<input type="hidden" class="input-large" name="txt_inscest" size="50" maxlength="50" value="<?php echo $insc_estadual ; ?>" />
 			</div>
@@ -140,11 +128,11 @@ $cep = $rst["cep"];
 				<h3>Informações de Contato</h3>
 				<abbr title="Insira seu telefone no formato (00)9999-9999"><input type="text" class="input-large" name="txt_tel" size="50" maxlength="11" value="<?php echo $telefone ; ?>"/></abbr></br>
 				<label>Endereço:</label>
-				<input type="text" class="input-large" name="txt_end_rua" size="50" maxlength="200" value="<?php echo $rua ; ?>" required/><abbr title="Digite o nome da rua."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Digite o nome da rua."><input type="text" class="input-large" name="txt_end_rua" size="50" maxlength="200" value="<?php echo $rua ; ?>" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 				<abbr title="Digite o número."><input type="text" class="input-mini" name="txt_end_num" size="10" maxlength="6" value="<?php echo $numero ; ?>" /></span></abbr>
 				<abbr title="Insira o Complemento."><input type="text" class="input-small" name="txt_end_comp" size="30" maxlength="20" value="<?php echo $complemento ; ?>"/></abbr></br>
-				<input type="text" class="input-large" name="txt_end_bar" size="50" maxlength="30" value="<?php echo $bairro ; ?>" required/><abbr title="Digite onome do seu Bairro."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="text" class="input-large" name="txt_end_cid" size="50" maxlength="20" value="<?php echo $cidade ; ?>" required/><abbr title="Digite o nome de sua Cidade."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Digite onome do seu Bairro."><input type="text" class="input-large" name="txt_end_bar" size="50" maxlength="30" value="<?php echo $bairro ; ?>" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Digite o nome de sua Cidade."><input type="text" class="input-large" name="txt_end_cid" size="50" maxlength="20" value="<?php echo $cidade ; ?>" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 				<select class="span5" id="txt_end_est" name="txt_end_est" required>
 						<option value="<?php echo $estado ; ?>" disabled="disabled" selected="selected">Estado</option>
 						<option value="AC">Acre</option>
@@ -174,8 +162,8 @@ $cep = $rst["cep"];
 						<option value="SE">Sergipe</option>
 						<option value="SP">São Paulo</option>
 						<option value="TO">Tocantins</option>
-					</select><abbr title="Selecione se estado."></abbr></br>
-				<input type="text" class="input-small" name="txt_end_cep" size="50" maxlength="10" value="<?php echo $cep ; ?>" required /><abbr title="Insira o CEP, somente números"><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+					</select><abbr title="Selecione se estado."></abbr>
+				<abbr title="Insira o CEP, somente números"><input type="text" class="input-small" name="txt_end_cep" size="50" maxlength="10" value="<?php echo $cep ; ?>" required /><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 			</div>
 			<div class="span8">
 				<div class="span4">

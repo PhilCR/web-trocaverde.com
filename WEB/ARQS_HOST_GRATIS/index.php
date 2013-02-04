@@ -54,8 +54,8 @@ $rs = mysql_query($sql, $conn);
         <script type="text/javascript" src="js/troca.js"></script>
 		
 		<script type="text/javascript">
-			function alterarLocal() {
-				var option_local = document.getElementById("regionlocation");
+			function alterarLocal(i) {
+				var option_local = document.getElementById("regionlocation"+i);
 				var local = option_local.options[option_local.selectedIndex].value;
 				
 				var txt_local = document.getElementById("txt_local");
@@ -77,35 +77,29 @@ $rs = mysql_query($sql, $conn);
 				<div class="span1">
 					<a href="index.php" style="color:#ffffff;"><b>Home</b></a>
 				</div>
-				<div class="span2 offset2 hidden-desktop visible-tablet hidden-phone" align="center">
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+				<div class="span2 offset1 hidden-desktop visible-tablet hidden-phone" align="center">
+					<select id="regionlocation1" name="regiao" style="width:150px;" onChange="alterarLocal('1')">
 						<option value="none"  disabled="disabled" selected="selected">Região</option>
 						<option value="Sorocaba">Sorocaba</option>
 						<option value="Campinas">Campinas</option>
 					</select>
-					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
+					<form style="display: none;" action="index.php" id="form_local" name="form_local" method="post">
 						<input type="text" name="txt_local" id="txt_local" value="" />
 					</form>
 				</div>
-				<div class="span2 offset3 visible-desktop hidden-tablet hidden-phone" align="center">
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+				<div class="span2 offset2 visible-desktop hidden-tablet hidden-phone" align="center">
+					<select id="regionlocation2" name="regiao" style="width:150px;" onChange="alterarLocal('2')">
 						<option value="none"  disabled="disabled" selected="selected">Região</option>
 						<option value="Sorocaba">Sorocaba</option>
 						<option value="Campinas">Campinas</option>
 					</select>
-					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
-						<input type="text" name="txt_local" id="txt_local" value="" />
-					</form>
 				</div>
 				<div class="span2 hiden-desktop hiden-tablet visible-phone">
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+					<select id="regionlocation3" name="regiao" style="width:150px;" onChange="alterarLocal('3')">
 						<option value="none"  disabled="disabled" selected="selected">Região</option>
 						<option value="Sorocaba">Sorocaba</option>
 						<option value="Campinas">Campinas</option>
 					</select>
-					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
-						<input type="text" name="txt_local" id="txt_local" value="" />
-					</form>
 				</div>
 				<div align="right" class="span4 offset1 visible-desktop visible-tablet hidden-phone">
 					<a href="termos.php" style="color:#ffffff;"><b>O quê é Troca Verde?</b></a>

@@ -1,8 +1,8 @@
 <?php
 error_reporting(0);
 //recebendo dados
-$nome = $_POST['txt_nome'];	
-$snome = $_POST['txt_snome'];
+$nome = $_POST['txt_nomeu'];	
+$snome = $_POST['txt_snomeu'];
 $tel = $_POST['txt_tel'];
 $cel = $_POST['txt_cel'];
 $nasc = $_POST['txt_nasc'];	
@@ -113,7 +113,7 @@ $sql = "CALL cadastro_cliente('$nome','$snome','$tel','$cel','$nasc','$email',$p
 		<div class="container-fluid">
 		
 			<!-- Logotipo [X] -->
-			<div class="span4">
+			<div class="span3">
 				<a href="index.php" ><img src="img/logo.png"></a>
 			</div>                  
 

@@ -31,25 +31,9 @@ session_start();
 
         <!-- Habilitar Scripts Próprios -->
         <script type="text/javascript" src="js/troca.js"></script>
+		<script type="text/javascript" src="js/ValidaOferta.js"></script>
 		
 		<script type="text/javascript">
-			function enviar() {
-				var d  = document.getElementById('dia');
-				var m  = document.getElementById('mes');
-				var a = document.getElementById('ano');
-				
-				var dia = d.options[d.selectedIndex].value;
-				var mes =  m.options[m.selectedIndex].value;
-				var ano = a.options[a.selectedIndex].value;
-				
-				var txt_data = document.getElementById('txt_data');
-				
-				var data = ano + mes + dia;
-				
-				txt_data.value = data;
-				
-				document.getElementById("btn_cadastrar2").click();
-			}
 		</script>
 
     </head>
@@ -59,52 +43,40 @@ session_start();
 	<div id="header" class="container-fluid" style=" background-color:#a0cca0; border:1px solid #000000; border-radius:3px;z-index: 999;">
 
 		<div class="container-fluid">
+			<!-- Formulário de Localização de Ofertas [X] -->
+			<div class="row btn-info" style="background-color:#ffd0a0; color:#ffd0a0; border:1px solid #004400; border-radius:1px;">
+				<div class="span1">
+					<a href="index.php" style="color:#ffffff;"><b>Home</b></a>
+				</div>
+				<div class="span2 offset1 hidden-desktop visible-tablet hidden-phone" align="center">
 
-			<!-- Menu Usuário para Mobile [X] -->
-			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
-					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-						<div class="row-fluid">
-							Olá <?php echo $_SESSION['razao_social']; ?>
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
-						</div>
-					</form>
-				</div>                   
+				</div>
+				<div class="span2 offset2 visible-desktop hidden-tablet hidden-phone" align="center">
+
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+
+				</div>
+				<div align="right" class="span4 offset1 visible-desktop hidden-tablet hidden-phone">
+					Olá <b> <?php echo $_SESSION['razao_social']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
+				<div align="right" class="span4 offset1 hiden-desktop visible-tablet hiden-phone">
+					Olá <b> <?php echo $_SESSION['razao_social']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+					Olá <b> <?php echo $_SESSION['razao_social']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
             </div>
+
         </div>
 
 
 		<div class="container-fluid">
 		
 			<!-- Logotipo [X] -->
-			<div class="span3">
+			<div class="span4">
 				<a href="index.php" ><img src="img/logo.png"></a>
-			</div>                  
-
-			<!-- Área de Acesso [X] -->
-			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
-					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-						<div class="row-fluid">
-							Olá <?php echo $_SESSION['razao_social']; ?>
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
-						</div>
-					</form>
-				</div>                
-			</div>
-
-			<!-- Área de Acesso [X] -->
-			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
-					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-						<div class="row-fluid">
-							Olá <?php echo $_SESSION['razao_social']; ?>
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
-						</div>
-					</form>
-				</div>
-			</div>
-			
+			</div>                			
 		</div>
     </div>
 
@@ -114,15 +86,15 @@ session_start();
 		<h2>Cadastro de Ofertas</h2>
 		<form class="row-fluid" action="cadastrar_oferta.php" name="form_cadastro_oferta" method="post">
 			<div class="span3 input-append">
-				<input type="text" class="input-large" name="txt_nome_oferta" size="50" maxlength="70" placeholder="Digite o Nome da Oferta" required/><abbr title="Preencha com onome da oferta que você deseja cadastrar."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="text" class="input-large" name="txt_imagem" size="200" maxlength="200" placeholder="Imagem" required/><abbr title="Preencha com link da imagem, esta já deve estar cadastrada em um servidor externo."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Preencha com onome da oferta que você deseja cadastrar."><input type="text" class="input-large" name="txt_nome_oferta" size="50" maxlength="70" placeholder="Digite o Nome da Oferta" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Preencha com link da imagem, esta já deve estar cadastrada em um servidor externo."><input type="text" class="input-large" name="txt_imagem" size="200" maxlength="200" placeholder="Imagem" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 			</div>
 			<div class="span5 input-append">
-				<input type="text" class="input-large" name="txt_descricao"  size="50" maxlength="70" placeholder="Descrição" required/><abbr title="Preencha com a descrição da oferta que irá cadastrar."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="text" class="input-large" name="txt_tag" size="50" maxlength="70" placeholder="Digite as tags" required/><abbr title="Preencha com tags para sua oferta."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Preencha com a descrição da oferta que irá cadastrar."><input type="text" class="input-large" name="txt_descricao"  size="50" maxlength="70" placeholder="Descrição" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Preencha com tags para sua oferta."><input type="text" class="input-large" name="txt_tag" size="50" maxlength="70" placeholder="Digite as tags" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 			</div>
 			<div class="span3 input-append">
-				<input type="text" class="input-large" name="txt_qtde" size="50" maxlength="70" placeholder="Digite a Quantidade" required/><abbr title="Preencha com a quantidade disponivel da oferta que deseja cadastrar."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Preencha com a quantidade disponivel da oferta que deseja cadastrar."><input type="text" class="input-large" name="txt_qtde" id="txt_qtde" size="50" maxlength="70" placeholder="Digite a Quantidade" required/><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 				<label>Data de Termino</label>
 				<input type="hidden" class="input-small" id="txt_data" name="txt_data" maxlength="8" required>
 				<select class="span3"  name="dia" id="dia">
@@ -180,12 +152,13 @@ session_start();
 					<option value="2011">2014</option>
 					<option value="2010">2015</option>
 					<option value="2009">2016</option>
-				</select><abbr title="Selecione sua data de nascimento"><span class="add-on"><i class="icon-asterisk"></i></span></abbr>
+				</select><abbr title="Selecione a data"><span class="add-on"><i class="icon-asterisk"></i></span></abbr>
 			</div>
 			<div class="span8">
 				<div class="span4">
-					<button class="btn btn-large btn-info btn-block" type="button" onclick="enviar()" name="btn_verificar">Cadastrar</button>
-					<button style="display:none;" type="submit" id="btn_cadastrar2" name="btn_cadastrar"></button>
+					<button class="btn btn-large btn-info btn-block" type="submit" id="btn_cadastrar2" name="btn_cadastrar" onclick="enviar();return false;">Cadastrar</button>
+					<!--<button class="btn btn-large btn-info btn-block" type="button" onclick="enviar()" name="btn_verificar">Cadastrar</button>
+					<button style="display:none;" type="submit" id="btn_cadastrar2" name="btn_cadastrar"></button>-->
 				</div>
 			</div>
 		</form>

@@ -63,6 +63,7 @@ $estado = $rst["estado"];
 
         <!-- Habilitar Scripts Próprios -->
         <script type="text/javascript" src="js/troca.js"></script>
+		<script type="text/javascript" src="js/ValidaRegistro.js"></script>
 		
 		<script type="text/javascript">
 		</script>
@@ -80,34 +81,13 @@ $estado = $rst["estado"];
 					<a href="index.php" style="color:#ffffff;"><b>Home</b></a>
 				</div>
 				<div class="span2 offset1 hidden-desktop visible-tablet hidden-phone" align="center">
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
-						<option value="none"  disabled="disabled" selected="selected">Região</option>
-						<option value="Sorocaba">Sorocaba</option>
-						<option value="Campinas">Campinas</option>
-					</select>
-					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
-						<input type="text" name="txt_local" id="txt_local" value="" />
-					</form>
+
 				</div>
 				<div class="span2 offset2 visible-desktop hidden-tablet hidden-phone" align="center">
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
-						<option value="none"  disabled="disabled" selected="selected">Região</option>
-						<option value="Sorocaba">Sorocaba</option>
-						<option value="Campinas">Campinas</option>
-					</select>
-					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
-						<input type="text" name="txt_local" id="txt_local" value="" />
-					</form>
+
 				</div>
 				<div class="span2 hiden-desktop hiden-tablet visible-phone">
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
-						<option value="none"  disabled="disabled" selected="selected">Região</option>
-						<option value="Sorocaba">Sorocaba</option>
-						<option value="Campinas">Campinas</option>
-					</select>
-					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
-						<input type="text" name="txt_local" id="txt_local" value="" />
-					</form>
+
 				</div>
 				<div align="right" class="span4 offset1 visible-desktop hidden-tablet hidden-phone">
 					Olá <b> <?php echo $_SESSION['nome']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
@@ -153,34 +133,36 @@ $estado = $rst["estado"];
 	<!-- Conteudo [X] -->
 	<div id="content" align="center" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 		<b>Campos com <i class="icon-asterisk"></i> possuem preenchimento obrigatório.</b>
-		<form class="row-fluid" action="enviar_alteracao_user.php" id="form_cadastro_usuario" name="form_cadastro_usuario" method="post">
+		<form class="row-fluid" action="enviar_alteracao_user.php" name="form_cadastro_usuario" id="form_cadastro_usuario" method="post">
 			<div class="span3 input-append">
 				<h3>Informações de Acesso</h3>
-				<input type="email" class="input-large" id="txt_email" name="txt_email" maxlength="70" value="<?php echo $email; ?>" required><abbr title="Preencha com seu e-mail padrão no formato email@dominio.ext."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="password" class="input-large" id="txt_senha" name="txt_senha" maxlength="16" placeholder="Digite sua Senha" required><abbr title="Escolha uma senha de 6 à 16 dígitos. Prefira senha com números e letra, para maior segurança."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="password" class="input-large" id="txt_re_senha" name="txt_re_senha" maxlength="16" placeholder="Digite novamente sua senha" required><abbr title="Digite novamente a senha escolhida."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Preencha com seu e-mail padrão no formato email@dominio.ext."><input type="email" class="input-large" id="txt_email" name="txt_email" maxlength="70" value="<?php echo $email; ?>" placeholder="Digite seu Email" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Escolha uma senha de 6 à 16 dígitos. Prefira senha com números e letra, para maior segurança."><input type="password" class="input-large" id="txt_senha" name="txt_senha" maxlength="16" placeholder="Digite sua Senha" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Digite novamente a senha escolhida."><input type="password" class="input-large" id="txt_re_senha" name="txt_re_senha" maxlength="16" placeholder="Digite novamente sua senha" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 			</div>
 
-			<div align="left" class="span5 input-append">
+			<div class="span5 input-append">
 				<h3>Informações Pessoais</h3>
-				<input type="text" class="input-medium" id="txt_nome" name="txt_nome" maxlength="50" value="<?php echo $nome; ?>" required><abbr title="Insira seu nome." required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-				<input type="text" class="input-large" id="txt_snome" name="txt_snome" maxlength="200" value="<?php echo $snome; ?>" required><abbr title="Insira seu sobrenome."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Insira seu nome." required><input type="text" class="input-large" id="txt_nome" name="txt_nome"  value="<?php echo $nome; ?>" maxlength="50" placeholder="Digite seu Nome" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				<abbr title="Insira seu sobrenome."><input type="text" class="input-large" id="txt_snome" name="txt_snome" value="<?php echo $snome; ?>" maxlength="200" placeholder="Digite seu Sobrenome" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>				
 			</div>
-				
-			<div align="left" class="span3 input-append">
+
+			<div class="content input-append">
 				<h3>Informações de Contato</h3>
-					<abbr title="Insira seu telefone residencial, somente números"><input type="text" class="input-medium" id="txt_tel" name="txt_tel" maxlength="30" value="<?php echo $telefone; ?>"></abbr></br>
-					<abbr title="Insira seu telefone, somente números"><input type="text" class="input-medium" id="txt_cel" name="txt_cel" maxlength="30" value="<?php echo $celular; ?>"></abbr></br>
+				<div class="span3">
+					<abbr title="Insira seu telefone residencial, somente números"><input type="text" class="input-large" id="txt_tel" value="<?php echo $telefone; ?>" name="txt_tel" maxlength="30" placeholder="Digite seu Telefone Residencial"></abbr></br>
+					<abbr title="Insira seu telefone, somente números"><input type="text" class="input-large" id="txt_cel" value="<?php echo $celular; ?>" name="txt_cel" maxlength="30" placeholder="Digite seu Telefone Celular"></abbr></br>
+				</div>
 				
+				<div class="span3">
 					<label>Endereço:</label>
-					<input type="text" class="input-xlarge" id="txt_end_rua" name="txt_end_rua" maxlength="100" value="<?php echo $rua; ?>" required><abbr title="Insira seu Logadouro, ou seja, a Rua, Avenida, Estrada e afins do seu endereço."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-					<abbr title="Insira o Número da sua residência."><input type="text" class="input-mini" id="txt_end_num" name="txt_end_num" maxlength="6" value="<?php echo $num; ?>"></abbr>
-					<abbr title="Insira o Complemento da sua residência. Ex.: Casa1, Apto. 31, Fundos, etc.."><input type="text" class="input-small" id="txt_end_comp" name="txt_end_comp" maxlength="10" value="<?php echo $complemento; ?>"></abbr></br>
-					<input type="text" class="input-medium" id="txt_end_bar" name="txt_end_bar" maxlength="30" value="<?php echo $bairro; ?>" required><abbr title="Insira o Bairro da sua residência."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-					<input type="text" class="input-small" id="txt_end_cep" name="txt_end_cep" maxlength="10" value="<?php echo $cep; ?>" required><abbr title="Insira o CEP da sua residência somente números."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
-					<input type="text" class="input-medium" id="txt_end_cid" name="txt_end_cid" maxlength="50" value="<?php echo $cidade; ?>" required><abbr title="Insira a Cidade da sua residência."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+					<abbr title="Insira seu Logadouro, ou seja, a Rua, Avenida, Estrada e afins do seu endereço."><input type="text" class="input-large" id="txt_end_rua" name="txt_end_rua" value="<?php echo $rua; ?>" maxlength="100" placeholder="Digite seu Logadouro" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+					<abbr title="Insira o Número da sua residência."><input type="text" class="input-mini" id="txt_end_num" name="txt_end_num" value="<?php echo $num; ?>" maxlength="6" placeholder="Número"></abbr>
+					<abbr title="Insira o Complemento da sua residência. Ex.: Casa1, Apto. 31, Fundos, etc.."><input type="text" class="input-small" id="txt_end_comp" name="txt_end_comp" maxlength="10" placeholder="Complemento" value="<?php echo $complemento; ?>"></abbr></br>
+					<abbr title="Insira o Bairro da sua residência."><input type="text" class="input-large" id="txt_end_bar" name="txt_end_bar" value="<?php echo $bairro; ?>" maxlength="30" placeholder="Bairro"required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+					<abbr title="Insira a Cidade da sua residência."><input type="text" class="input-large" id="txt_end_cid" name="txt_end_cid"  value="<?php echo $cidade; ?>" maxlength="50" placeholder="Cidade"required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
 					<select class="span5" id="txt_end_est" name="txt_end_est" required>
-						<option value="<?php echo $estado; ?>" disabled="disabled" selected="selected">Estado</option>
+						<option value="" disabled="disabled" selected="selected">Estado</option>
 						<option value="AC">Acre</option>
 						<option value="AL">Alagoas</option>
 						<option value="AM">Amazonas</option>
@@ -208,15 +190,16 @@ $estado = $rst["estado"];
 						<option value="SE">Sergipe</option>
 						<option value="SP">São Paulo</option>
 						<option value="TO">Tocantins</option>
-					</select><abbr title="Selecione se estado."><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+					</select><abbr title="Selecione se estado."><span class="add-on"><i class="icon-asterisk"></i></span></abbr>
+					<abbr title="Insira o CEP da sua residência somente números."><input type="text" class="input-small" id="txt_end_cep" name="txt_end_cep" value="<?php echo $cep; ?>" maxlength="10" placeholder="CEP" required><span class="add-on"><i class="icon-asterisk"></i></span></abbr></br>
+				</div>
 			</div>
-			
 			<input type="hidden" name="txt_cpf" value="<?php echo $CPF; ?>" />
 			<input type="hidden" name="txt_data" value="<?php echo $data_nasc; ?>" />
 
 			<div class="span8">
 				<div class="span4">
-					<button class="btn btn-large btn-info btn-block" type="submit" name="btn_verificar">Cadastrar</button>
+					<input class="btn btn-large btn-info btn-block" type="submit" name="btn_cadastrar2" value="Cadastrar" onclick="validarEditarCli();return false;"/>
 				</div>
 			</div>
 		</form>

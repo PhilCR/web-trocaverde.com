@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 //Inicia a sessão
 session_start();
 
@@ -7,24 +7,25 @@ session_start();
 $tipo = $_SESSION["tipo"];
 
 if($tipo = "3") {
-	session_unregister($_SESSION['tipo']);
-	session_unregister($_SESSION['nome']);
-	session_unregister($_SESSION['snome']);
-	session_unregister($_SESSION['email']);
+	session_destroy($_SESSION['tipo']);
+	session_destroy($_SESSION['nome']);
+	session_destroy($_SESSION['snome']);
+	session_destroy($_SESSION['email']);
+	
 } else if($tipo = "2") {
-	session_unregister($_SESSION['tipo']);
-	session_unregister($_SESSION['razao_social']);
-	session_unregister($_SESSION['email']);
+	session_destroy($_SESSION['tipo']);
+	session_destroy($_SESSION['razao_social']);
+	session_destroy($_SESSION['email']);
 } else if($tipo = "1") {
-	session_unregister($_SESSION['tipo']);
-	session_unregister($_SESSION['nome']);
-	session_unregister($_SESSION['snome']);
-	session_unregister($_SESSION['email']);
+	session_destroy($_SESSION['tipo']);
+	session_destroy($_SESSION['nome']);
+	session_destroy($_SESSION['snome']);
+	session_destroy($_SESSION['email']);
 } else if($tipo = "0") {
-	session_unregister($_SESSION['tipo']);
-	session_unregister($_SESSION['nome']);
-	session_unregister($_SESSION['snome']);
-	session_unregister($_SESSION['email']);
+	session_destroy($_SESSION['tipo']);
+	session_destroy($_SESSION['nome']);
+	session_destroy($_SESSION['snome']);
+	session_destroy($_SESSION['email']);
 }
  
 //Encerra a sessão

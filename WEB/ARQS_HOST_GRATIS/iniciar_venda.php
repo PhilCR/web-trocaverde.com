@@ -56,52 +56,40 @@ $rs = mysql_query($sql, $conn);
 	<div id="header" class="container-fluid" style=" background-color:#a0cca0; border:1px solid #000000; border-radius:3px;z-index: 999;">
 
 		<div class="container-fluid">
+			<!-- Formulário de Localização de Ofertas [X] -->
+			<div class="row btn-info" style="background-color:#ffd0a0; color:#ffd0a0; border:1px solid #004400; border-radius:1px;">
+				<div class="span1">
+					<a href="index.php" style="color:#ffffff;"><b>Home</b></a>
+				</div>
+				<div class="span2 offset1 hidden-desktop visible-tablet hidden-phone" align="center">
 
-			<!-- Menu Usuário para Mobile [X] -->
-			<div class="span1 visible-phone hidden-desktop hidden-tablet">
-				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
-					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-						<div class="row-fluid">
-							Olá <?php echo $_SESSION['razao_social']; ?>
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
-						</div>
-					</form>
-				</div>                   
+				</div>
+				<div class="span2 offset2 visible-desktop hidden-tablet hidden-phone" align="center">
+
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+
+				</div>
+				<div align="right" class="span4 offset1 visible-desktop hidden-tablet hidden-phone">
+					Olá <b> <?php echo $_SESSION['razao_social']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
+				<div align="right" class="span4 offset1 hiden-desktop visible-tablet hiden-phone">
+					Olá <b> <?php echo $_SESSION['razao_social']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
+				<div class="span2 hiden-desktop hiden-tablet visible-phone">
+					Olá <b> <?php echo $_SESSION['razao_social']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
+				</div>
             </div>
+
         </div>
 
 
 		<div class="container-fluid">
 		
 			<!-- Logotipo [X] -->
-			<div class="span3">
+			<div class="span4">
 				<a href="index.php" ><img src="img/logo.png"></a>
-			</div>                  
-
-			<!-- Área de Acesso [X] -->
-			<div id="login" class="span2 offset5 visible-desktop hidden-tablet hidden-phone">
-				 <div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
-					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-						<div class="row-fluid">
-							Olá <?php echo $_SESSION['razao_social']; ?>
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
-						</div>
-					</form>
-				</div>                
-			</div>
-
-			<!-- Área de Acesso [X] -->
-			<div id="login" class="span3 offset3 hidden-desktop visible-tablet hidden-phone">
-				<div class="span2 hero-unit" style="background-color:#ffd0a0; border-style:solid; border-width:3px; border-color:#000;">
-					<form class="form-horizontal" action="sair.php" name="form_sair" method="post">
-						<div class="row-fluid">
-							Olá <?php echo $_SESSION['razao_social']; ?>
-							<button type="submit" class="btn btn-info btn-small">Sair</button>
-						</div>
-					</form>
-				</div>
-			</div>
-			
+			</div>                			
 		</div>
     </div>
 

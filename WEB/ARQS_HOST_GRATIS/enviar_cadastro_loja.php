@@ -112,7 +112,7 @@ $sql = "CALL cadastro_loja('$cnpj','$rsocial','$nfantasia','$inscest','$tel','$e
 		<div class="container-fluid">
 		
 			<!-- Logotipo [X] -->
-			<div class="span4">
+			<div class="span3">
 				<a href="index.php" ><img src="img/logo.png"></a>
 			</div>                  
 

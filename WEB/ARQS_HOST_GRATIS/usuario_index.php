@@ -26,6 +26,7 @@ $sql = "select o.nome_oferta, o.imagem, DATE_FORMAT(o.data_validade, '%d/%m/%Y')
 
 //executando comando
 $rs = mysql_query($sql, $conn);
+$rs2 = mysql_query($sql, $conn);
 ?>
 
 <!DOCTYPE html>
@@ -55,14 +56,29 @@ $rs = mysql_query($sql, $conn);
         <script type="text/javascript" src="js/troca.js"></script>
 		
 		<script type="text/javascript">
-			function alterarLocal() {
-				var option_local = document.getElementById("regionlocation");
+			function alterarLocal(i) {
+				var option_local = document.getElementById("regionlocation"+i);
 				var local = option_local.options[option_local.selectedIndex].value;
 				
 				var txt_local = document.getElementById("txt_local");
 				txt_local.value = local;
 				
 				document.forms["form_local"].submit();
+			}
+			
+			function mostrar(m,n) {
+				var id = "ofertas" + n;
+				var i = 0;
+				
+				while(i <= m) {
+					var sumir = document.getElementById('ofertas' + i);
+					sumir.style.display="none";
+					i = i + 1;
+				}
+				
+				var mostrar = document.getElementById(id);
+				mostrar.style.display="";
+				
 			}
 		</script>
 
@@ -79,7 +95,7 @@ $rs = mysql_query($sql, $conn);
 					<a href="index.php" style="color:#ffffff;"><b>Home</b></a>
 				</div>
 				<div class="span2 offset1 hidden-desktop visible-tablet hidden-phone" align="center">
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+					<select id="regionlocation1" name="regiao" style="width:150px;" onChange="alterarLocal('1')">
 						<option value="none"  disabled="disabled" selected="selected">Região</option>
 						<option value="Sorocaba">Sorocaba</option>
 						<option value="Campinas">Campinas</option>
@@ -89,24 +105,18 @@ $rs = mysql_query($sql, $conn);
 					</form>
 				</div>
 				<div class="span2 offset2 visible-desktop hidden-tablet hidden-phone" align="center">
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+					<select id="regionlocation2" name="regiao" style="width:150px;" onChange="alterarLocal('2')">
 						<option value="none"  disabled="disabled" selected="selected">Região</option>
 						<option value="Sorocaba">Sorocaba</option>
 						<option value="Campinas">Campinas</option>
 					</select>
-					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
-						<input type="text" name="txt_local" id="txt_local" value="" />
-					</form>
 				</div>
 				<div class="span2 hiden-desktop hiden-tablet visible-phone">
-					<select id="regionlocation" name="regiao" style="width:150px;" onChange="alterarLocal()">
+					<select id="regionlocation3" name="regiao" style="width:150px;" onChange="alterarLocal('3')">
 						<option value="none"  disabled="disabled" selected="selected">Região</option>
 						<option value="Sorocaba">Sorocaba</option>
 						<option value="Campinas">Campinas</option>
 					</select>
-					<form style="display: none;" action="usuario_index.php" id="form_local" name="form_local" method="post">
-						<input type="text" name="txt_local" id="txt_local" value="" />
-					</form>
 				</div>
 				<div align="right" class="span4 offset1 visible-desktop hidden-tablet hidden-phone">
 					Olá <b> <?php echo $_SESSION['nome']; ?></b> | <a href="usuario_alterar_cadastro.php" style="color:#ffffff;">Editar Perfil</a> | <a href="sair.php" style="color:#ffffff;">Sair</a>
@@ -150,11 +160,92 @@ $rs = mysql_query($sql, $conn);
 
        
 	<!-- Conteudo [X] -->
-	<div id="content" class="container alert alert-info" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+	<div id="content" align="center" class="container alert alert-info visible-desktop visible-tablet hidden-phone" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
 		<div class="row-fluid">
 			<ul class="thumbnails">
 <?php
+$i = 0;
+$j = 0;
+
 while($rst = mysql_fetch_array( $rs )) {
+	$nome_oferta = $rst["nome_oferta"];
+	$imagem = $rst["imagem"];
+	$data_validade = $rst["data_validade"];
+	$pontos = $rst["pontos"];
+	$descricao = $rst["descricao"];
+	$qtde_max = $rst["qtde_max"];
+	$qtde_vendida = $rst["qtde_vendida"];
+	$nome_fantasia = $rst["nome_fantasia"];
+	$telefone = $rst["telefone"];
+	
+	$i = $i + 1;
+	
+	if($i == 1) {
+		if($j == 0) {
+?>
+	<div id="ofertas<?php echo $j; ?>">
+<?php		
+		} else {
+?>
+	<div id="ofertas<?php echo $j; ?>" style="display:none;">
+<?php
+		}
+	}
+?>
+				<li class="span4">
+					<div class="thumbnail">
+						<img src="<?php echo $imagem; ?>" alt="" width="200" height="200">
+						<div class="caption">
+							<h3><?php echo $nome_oferta; ?></h3>
+							<h4><?php echo $nome_fantasia; ?></h4>
+							<p><?php echo $descricao; ?></p>
+							<table width="100%">
+								<tr><td>Quantidade: <?php echo $qtde_max; ?></td><td>Vendidos: <?php echo $qtde_vendida; ?></td></tr>
+								<tr><td>Valor: <?php echo $pontos; ?> trocados</td></tr>
+								<tr><td>Validade: <?php echo $data_validade; ?></td></tr>
+								<tr><td>Telefone: <?php echo $telefone; ?></td></tr>
+							</table>
+						</div>
+					</div>
+				</li>
+<?php
+	if($i == 3) {
+?>
+	</div>
+<?php
+		$i = 0;
+		$j = $j + 1;
+	}
+}
+
+if($i != 0) {
+?>
+	</div>
+<?php
+}
+?>
+			</ul>
+		</div>
+		<div class="btn-group">
+<?php
+$i = 0;
+while($i <= $j) {
+?>
+			<button class="btn btn-info btn-small" onclick="mostrar('<?php echo $j; ?>','<?php echo $i; ?>')"><?php echo $i; ?></button>
+<?php
+	$i = $i + 1;
+}
+?>
+		</div>
+	</div>        
+
+	
+	<!-- Conteudo [X] -->
+	<div id="content" align="center" class="container alert alert-info hiden-desktop hiden-tablet visible-phone" style="margin-bottom:0px;padding: 0px 0px 0px 0px; min-height: 300px;">
+		<div class="row-fluid">
+			<ul class="thumbnails">
+<?php
+while($rst = mysql_fetch_array( $rs2 )) {
 	$nome_oferta = $rst["nome_oferta"];
 	$imagem = $rst["imagem"];
 	$data_validade = $rst["data_validade"];
@@ -167,7 +258,7 @@ while($rst = mysql_fetch_array( $rs )) {
 ?>
 				<li class="span4">
 					<div class="thumbnail">
-						<img src="<?php echo $imagem; ?>" alt="">
+						<img src="<?php echo $imagem; ?>" alt="" width="200" height="200">
 						<div class="caption">
 							<h3><?php echo $nome_oferta; ?></h3>
 							<h4><?php echo $nome_fantasia; ?></h4>
@@ -186,8 +277,8 @@ while($rst = mysql_fetch_array( $rs )) {
 ?>
 			</ul>
 		</div>
-	</div>        
-
+	</div>  
+	
 	<!-- Rodapé [X]-->
 	<div id="footer" class="container-fluid btn-large btn-success btn-block" style="border:1px solid #000;">
 		<div  class="span3">
